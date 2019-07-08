@@ -1,9 +1,9 @@
-## Denominators Team - scope of work
+## Denominators Team - Scope of Work
 
-## Rationale: 
+# Rationale: 
 PEPFAR operating units (OUs) are required to geo-prioritize resources to optimize PEPFAR’s impact by focusing efforts on prioritized subnational units (PSNUs) and prioritized age/sex bands and key populations. OUs are also required to track progress towards meeting global HIV program coverage goals (e.g. 90-90-90; 90% of all people living with HIV (PLHIV) know their HIV status, 90% of all people with diagnosed HIV infection receive sustained antiretroviral therapy, 90% percent of all people receiving ART have viral suppression) in targeted PSNUs by five year age/sex bands (ie. <1 M/F, 1-4 M/F, 5-9 M/F, 10-14 M/F, 15-19 M/F… 45-49 M/F, 50+ M/F). Both the micro-targeting and monitoring of PEPFAR-supported programs place increased importance on the availability of reliable, granular epidemiological data and estimates about PLHIV, new HIV infections and priority age/sex bands and key populations. In many cases, novel and/or innovative methods (e.g. modeling and machine learning) are needed to meet these data needs. 
 
-## Objectives: 
+# Objectives: 
 # Harmonizing accessibility: 
 To provide leadership in the development of a transparent, appropriate and shareable platform for tools and estimates where analysts, countries and decision makers can easily gain new insights into PEPFAR data using state of the art analytic tools and access important data in time to impact program planning and monitoring and with lowest possible level of effort (LOE). 
 This objective is supported by the following goals:
