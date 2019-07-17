@@ -25,5 +25,6 @@ for (i in 1:length(pepfar_ctr_iso))
 {
   print(pepfar_ctr_iso[i])
   c<-pepfar_ctr_iso[i]
-  wpgpGetCountryDataset( ISO3 = c, covariate = "ppp_2015", destDir ="C:/DUAT/DenomWS/wp/wp")
+ ## change the year by changing covariate ppp_2017
+  wpgpGetCountryDataset( ISO3 = c, covariate = "ppp_2017", destDir ="C:/DUAT/DenomWS/wp/wp")
 }
