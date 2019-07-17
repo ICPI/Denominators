@@ -2,7 +2,7 @@
 
 install.packages("devtools")
 
-##..................This code uses a packages from Github - https://github.com/wpgp/wpgpDownloadR...................##
+##..................This code uses packages from Github - https://github.com/wpgp/wpgpDownloadR...................##
 devtools::install_github("wpgp/wpgpDownloadR")
 install.packages("RCurl")
 install.packages("bitops")
