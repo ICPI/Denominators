@@ -1,0 +1,105 @@
+---
+title: "Pilot Site Report"
+author: "CDC"
+date: "7/18/2019"
+output: html_document
+params:
+  site:
+    label: "site"
+    input: select
+    value: "Mushin General Hospital"
+    choices: ["Nongu u Kristu ke Sudan hen Tiv (NKST) Hospital - Mkar", "Wannune General Hospital", 
+                 "Federal Medical Center - Makurdi", "Bishop Murray Medical Center", 
+                 "Vandeikya General Hospital", "Nyam Ugbeh Clinic", "University of Portharcourt Teaching Hospital", 
+                 "Terrebor General Hospital", "Rumuolumeni Model Primary Health Centre", 
+                 "Isiokpo General Hospital", "Agbonchia Model Primary Health Centre", 
+                 "Obio Cottage Hospital", "Lagos State University Teaching Hospital", 
+                 "Alimosho General Hospital", "Akonwonjo Primary Health Center", 
+                 "Agboju Primary Health Center", "Mushin General Hospital"]
+---
+
+```{r, results="asis", echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+site <- params$site
+cat(paste('# ',site))
+```
+
+### Overall Number of Tests
+The table below shows the objective for the number of total tests performed per week at your site.
+```{r}
+df_site <- df %>% filter(time == 0, sitename == site)
+alloc <- pilot_allocations$allocations %>% filter(sitename == site)
+out <- alloc %>% 
+  summarise(weekly_hts_tst_q2=sum(current_hts_tst),
+            proposed_hts_tst=sum(proposed_hts_tst), 
+            estimated_hts_tst_pos=sum(expected_new_hiv_cases_at_proposed))
+out %>% summarise_all(function(x) round(x / weeks_in_quarter)) %>% knitr::kable()
+```
+
+* **weekly_hts_tst_q2:** This is the average number of tests performed per week during the second quarter of 2019.
+* **proposed_hts_tst:** This is the number of tests to do per week for the duration of this activity.
+* **estimated_hts_tst_pos:** Based on past performance, this is the number of positive cases that we are likely to see if the proposed number of tests are done. Note these are **not** targets, rather they are estimates based on the historical data.
+
+In the tables below, some of the numbers are fractional. This is the result of providing weekly numbers. A proposed number of tests of 2.5 means that we want to achieve 5 cases every 2 weeks.
+
+### Tests By Modality
+The table below shows the objective for the number of total tests performed per week at your site for each modality.
+```{r}
+out <- alloc %>% 
+  group_by(modality) %>%
+  summarise(weekly_hts_tst_q2=sum(current_hts_tst),
+            proposed_hts_tst=sum(proposed_hts_tst), 
+            estimated_hts_tst_pos=sum(expected_new_hiv_cases_at_proposed)) %>%
+  mutate(action=ifelse(proposed_hts_tst > weekly_hts_tst_q2,"Increase", 
+                       ifelse(proposed_hts_tst == weekly_hts_tst_q2, "No Change", "Decrease")))
+out %>% ungroup() %>% 
+  mutate_if(is.numeric, function(x) round(x / weeks_in_quarter, 1)) %>% 
+  knitr::kable()
+```
+
+### Tests By Gender
+The table below shows the objective for the number of total tests performed per week at your site for each gender.
+```{r}
+out <- alloc %>% 
+  group_by(sex) %>%
+  summarise(weekly_hts_tst_q2=sum(current_hts_tst),
+            proposed_hts_tst=sum(proposed_hts_tst), 
+            estimated_hts_tst_pos=sum(expected_new_hiv_cases_at_proposed)) %>%
+  mutate(action=ifelse(proposed_hts_tst > weekly_hts_tst_q2,"Increase", 
+                       ifelse(proposed_hts_tst == weekly_hts_tst_q2, "No Change", "Decrease")))
+out %>% ungroup() %>% 
+  mutate_if(is.numeric, function(x) round(x / weeks_in_quarter, 1)) %>% 
+  knitr::kable()
+```
+
+### Tests By Age Group
+The table below shows the objective for the number of total tests performed per week at your site broken down by age.
+```{r}
+out <- alloc %>% 
+  group_by(ageasentered) %>%
+  summarise(weekly_hts_tst_q2=sum(current_hts_tst),
+            proposed_hts_tst=sum(proposed_hts_tst), 
+            estimated_hts_tst_pos=sum(expected_new_hiv_cases_at_proposed)) %>%
+  mutate(action=ifelse(proposed_hts_tst > weekly_hts_tst_q2,"Increase", 
+                       ifelse(proposed_hts_tst == weekly_hts_tst_q2, "No Change", "Decrease")))
+out %>% ungroup() %>% 
+  mutate_if(is.numeric, function(x) round(x / weeks_in_quarter, 1)) %>% 
+  knitr::kable()
+```
+
+### Tests Fully Disaggregated
+The table below shows the objective for the number of total tests performed per week at your site broken down fully. The objective is to have the number of HIV tests per week match these proposed numbers.
+```{r}
+out <- alloc %>% group_by(primepartner, modality, ageasentered, sex) %>% 
+  summarise(weekly_hts_tst_q2=sum(current_hts_tst),
+            proposed_hts_tst=sum(proposed_hts_tst), 
+            estimated_hts_tst_pos=sum(expected_new_hiv_cases_at_proposed)) %>%
+  mutate(action=ifelse(proposed_hts_tst > weekly_hts_tst_q2,"Increase", 
+                       ifelse(proposed_hts_tst == weekly_hts_tst_q2, "No Change", "Decrease")))
+out %>% ungroup() %>% 
+  mutate_if(is.numeric, function(x) round(x / weeks_in_quarter, 1)) %>% 
+  knitr::kable()
+```
+
+
+

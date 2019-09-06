@@ -1,0 +1,336 @@
+---
+title: "Country Targeted HIV Testing Report"
+author: "Ian E. Fellows"
+output: html_document
+params:
+  country:
+    label: "Country"
+    input: select
+    value: "Lesotho"
+    choices: ["Cote d'Ivoire", "Malawi", "Nigeria","Lesotho"]
+---
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+library(xgboost)
+
+knitr::opts_chunk$set(echo = FALSE)
+if(!exists("dat_analysis2")){
+  country <- params$country
+  source("R/mer_globals.R")
+  filename <- paste0( "results/",stringr::str_replace_all(mer_data_source,"/","_"), "_results",".RData")
+  if(file.exists(filename)){
+    load(filename)
+  }else{
+    source("R/mer_main.R")
+  }
+}
+
+```
+
+## `r country`
+
+This workbook leverages MER structured data on HIV testing patterns and disaggregated Spectrum estimates of epidemic parameters to uncover opportunities to improved the targeting of HIV tests within `r country`. Categories with high yield, but with a relatively low number of tests compared to other categories may be good candidates for increased targeting.
+
+## Data Checks
+
+The table below displays the consistency between the "Total Numerator" and fully dissaggregated reported testing counts
+```{r, echo=FALSE}
+dat$count_check %>% kable()
+```
+
+The table below shows any negative counts. Negative counts are caused by deduplication adjustments
+```{r, echo=FALSE}
+dat$neg_check %>% kable()
+```
+
+## Descriptives
+
+In this section we look at the yield rates by age and sex. Yield here is defined as the percentage of (non-index) HIV tests that result in a new diagnosis. 
+
+### Yield By Age
+
+Age groups are broken down by as entered in DATIM. In most cases this should be 5 year age bands, but older data may have differing bands. Infant (<01 years old) tests are excluded from analysis.
+
+```{r pressure, echo=FALSE}
+age_descriptives <- dat_analysis %>%
+  filter(time == 0) %>%
+  group_by(age) %>%
+  summarise(observed_yield = sum(hiv_pos * weight) / sum(weight),
+            positives=sum(hiv_pos * weight),
+            total_tests = sum(weight))
+age_descriptives %>% mutate(observed_yield = observed_yield*100) %>% kable(digits=1)
+```
+
+
+```{r, out.width="100%"}
+  age_year_descriptives <- dat_analysis %>%
+    group_by(age, quarter) %>%
+    summarise(observed_yield = 100*sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+(
+  qplot(quarter, observed_yield, color=age, data=age_year_descriptives) +
+    geom_line(aes(x=as.numeric(quarter))) +
+    theme_bw()
+  ) %>% plotly::ggplotly()
+```
+
+### Yield By Gender
+
+
+```{r}
+sex_descriptives <- dat_analysis %>%
+  filter(time == 0) %>%
+    group_by(sex) %>%
+    summarise(observed_yield = sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+sex_descriptives %>% mutate(observed_yield = observed_yield*100) %>% kable(digits=1)
+```
+
+```{r, out.width="100%"}
+sex_year_descriptives <- dat_analysis %>%
+    group_by(sex, quarter) %>%
+    summarise(observed_yield = 100*sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+(
+  qplot(quarter, observed_yield, color=sex, data=sex_year_descriptives) +
+    geom_line(aes(x=as.numeric(quarter))) + geom_point(aes(y=0,x=1),alpha=0) +
+    theme_bw()
+  ) %>% plotly::ggplotly()
+```
+
+### Yield By Modality
+
+```{r, out.width="100%"}
+descriptives <- dat_analysis %>%
+  filter(time == 0) %>%
+    group_by(modality) %>%
+    summarise(observed_yield = sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+descriptives %>% mutate(observed_yield = observed_yield*100) %>% kable(digits=1)
+by_year_descriptives <- dat_analysis %>%
+    group_by(modality, quarter) %>%
+    summarise(observed_yield = 100*sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+(
+  qplot(quarter, observed_yield, color=modality, data=by_year_descriptives) +
+    geom_line(aes(x=as.numeric(quarter))) + geom_point(aes(y=0,x=1),alpha=0) +
+    theme_bw()
+  ) %>% plotly::ggplotly()
+```
+
+### Yield By Partner
+
+```{r, out.width="100%"}
+descriptives <- dat_analysis %>%
+  filter(time == 0) %>%
+    group_by(primepartner) %>%
+    summarise(observed_yield = sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+descriptives %>% mutate(observed_yield = observed_yield*100) %>% kable(digits=1)
+by_year_descriptives <- dat_analysis %>%
+    group_by(primepartner, quarter) %>%
+    summarise(observed_yield = 100*sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+(
+  qplot(quarter, observed_yield, color=primepartner, data=by_year_descriptives) +
+    geom_line(aes(x=as.numeric(quarter))) + geom_point(aes(y=0,x=1),alpha=0) +
+    theme_bw()
+  ) #%>% plotly::ggplotly()
+```
+
+## Yield by Site Type
+
+```{r, out.width="100%"}
+descriptives <- dat_analysis %>%
+  filter(time == 0) %>%
+    group_by(sitetype) %>%
+    summarise(observed_yield = sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+descriptives %>% mutate(observed_yield = observed_yield*100) %>% kable(digits=1)
+by_year_descriptives <- dat_analysis %>%
+    group_by(sitetype, quarter) %>%
+    summarise(observed_yield = 100*sum(hiv_pos * weight) / sum(weight),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+(
+  qplot(quarter, observed_yield, color=sitetype, data=by_year_descriptives) +
+    geom_line(aes(x=as.numeric(quarter))) + geom_point(aes(y=0,x=1),alpha=0) +
+    theme_bw()
+  ) %>% plotly::ggplotly()
+```
+
+
+
+
+# Model-Based Output
+
+Yield rates can be affected by many factors, including:
+
+* Susceptible population size
+* Number of people living with HIV
+* Number of HIV+ individuals on treatment
+* Number of tests being done at a site
+* Site type (community / facility)
+* Prioritization (Aggressive, Saturation, or Sustained)
+* Modality
+* Partner
+* Age
+* Gender
+* Site
+* Time
+
+Looking just at the observed yield rates can be misleading for site and PSNUs because some have populations more conducive to high yield rates, whereas others do not. In order to evaluate the effectiveness of different PSNUs and sites within psnu, a machine learning model is constructed that takes into count all of the factors above.
+
+The model generates conditional odds ratios. These are the increased odds of generating a positive case adjusting for all other factors, including PSNU covariates like POP_EST and PLHIV.
+
+### PSNU Effectiveness
+```{r}
+tmp <- dat_analysis2 %>% 
+  filter(time == 0) %>%
+  group_by(psnu_t) %>%
+  summarise(observed_yield = round(100*sum(hiv_pos * weight) / sum(weight),1),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+tmp2 <- data.frame(psnu_t=rownames(glmm$re$psnu_t),
+                   conditional_odds_ratio = round(exp(glmm$re$psnu_t[,1]),2))
+merge(tmp2,tmp) %>% arrange(desc(conditional_odds_ratio)) %>% DT::datatable(rownames = FALSE)
+#na.omit(model_marginals$psnu_marginals) %>% 
+#  mutate(marginal_yield = round(marginal_yield * 100, 1), 
+#         observed_yield=round(observed_yield * 100,1)) %>%
+#  #rename(new_postives_last_quarter=positives, total_tests_last_quarter=total_tests) %>%
+#  DT::datatable(rownames = FALSE)
+```
+
+
+### Site Effectiveness
+
+
+
+```{r}
+tmp <- dat_analysis2 %>% 
+  filter(time == 0) %>%
+  group_by(psnu_t, sitename) %>%
+  summarise(observed_yield = round(100*sum(hiv_pos * weight) / sum(weight),1),
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight))
+tmp2 <- data.frame(psnu_t=rownames(glmm$re$psnu_t),
+                   conditional_odds_ratio_psnu = glmm$re$psnu_t[,1])
+tmp3 <- data.frame(sitename=rownames(glmm$re$sitename),
+                   conditional_odds_ratio_sitename = glmm$re$sitename[,1])
+tmp4 <- merge(merge(tmp, tmp2), tmp3) %>% 
+  mutate(conditional_odds_ratio_w_psnu = round(exp(conditional_odds_ratio_sitename + conditional_odds_ratio_psnu),2),
+         conditional_odds_ratio_sitename = round(exp(conditional_odds_ratio_sitename),2)) %>%
+  select(-conditional_odds_ratio_psnu) %>%
+  arrange(desc(conditional_odds_ratio_sitename)) 
+  
+tmp4 <- tmp4[c("psnu_t", "sitename","conditional_odds_ratio_sitename", "conditional_odds_ratio_w_psnu", "observed_yield", "positives", "total_tests"
+)]
+  
+tmp4 %>% DT::datatable(rownames = FALSE)
+
+
+
+#na.omit(model_marginals$site_marginals) %>% 
+#  mutate(marginal_yield = round(marginal_yield * 100, 1), 
+#         observed_yield= round(observed_yield * 100,1)) %>%
+#  select(-param) %>%
+#  #rename(new_postives_last_quarter=positives, total_tests_last_quarter=total_tests) %>%
+#  DT::datatable(rownames = FALSE)
+```
+
+
+
+## Model Based Target Change Recommendations
+
+The machine learning model gives us estimated yield rates at the site level disaggregated by partner, modality, snu priority, age and sex. It also can provide estimates of what the yield rates would have been had the sites tested a different number of people. The IndexMod and Index modalities are considered fixed and are not optimized. Infant testing (<01 years old) is excluded.
+
+These yield estimates can be used to provide guidance on the number of tests these sites should target for next quarter. A greedy algorithm is used to optimize yield rates subject to thee constraint that the total number of tests remains constant, and the increase (or decrease) in the number of tests compared to last quarter can be at most `r (max_diff - 1) * 100`%.
+
+
+```{r}
+fname <- paste(country, max_diff, "allocations.csv")
+write.csv(model_allocations$allocations, file = fname, row.names = FALSE)
+```
+
+If these changes are adopted, yield among non Index/IndexMod modalities could increase from `r round(model_allocations$initial_yield * 100, 2)` to `r round(model_allocations$final_yield * 100, 2)`, an increase of `r round(100*model_allocations$final_yield/model_allocations$initial_yield-100, 2)`%.
+
+
+## [`r fname`](file:///`r normalizePath(fname)`)
+
+
+
+# Model Diagnostics
+
+## Train - Test Split
+```{r}
+tmp <- dat_analysis2
+tmp$weight_test <- split$weight_test
+tmp$weight_train <- split$weight_train
+tmp %>% group_by(quarter,hiv_pos) %>%summarise(training_cases=sum(weight_train), testing_cases=sum(weight_test))
+```
+
+## Boosting Round 1: GLMM
+A model summary of the GLMM fit to the full dataset.
+
+```{r}
+w <- options()$width
+options(width = 10000)
+summary(glmm$glmm_full_fit)
+options(width = w)
+```
+
+Testing and training AUC values by number of quarters (prior to current) included in training data.
+```{r}
+tmp <- as.data.frame(glmm[c("auc_value","auc_training_value")])
+tmp$time_lag <- (nrow(tmp)-1):0
+tmp %>% kable()
+```
+
+
+## Boosting Round 2: GBM
+
+
+Bayesian optimization of hyper-parameters.
+```{r}
+gbm$opt_res$History %>% kable()
+```
+
+
+```{r}
+importance_matrix <- xgb.importance(colnames(gbm$dmat), model = gbm$gbm_full_fit)
+(xgb.ggplot.importance(importance_matrix, top_n=40) + theme_bw()) %>% plotly::ggplotly()
+
+```
+
+## Boosting Round 3: Elastic Net
+
+
+```{r}
+(
+  qplot(enet$glmnet_fit_full$df, enet$auc_trace) + scale_x_log10()
+) %>% plotly::ggplotly()
+```
+
+Number of cases affected by elastic net model
+
+```{r}
+enet$tab %>% kable()
+```
+
+
+
+
+
+
+
