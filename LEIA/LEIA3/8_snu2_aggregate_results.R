@@ -103,7 +103,7 @@ snu2_na<-merge(snu2_na,op55_snu2[,c("snu1","snu2","snu1uid","psnuuid","snu2uid")
 snu2_na<-rbind(cbind(fyq=1,snu2_na),cbind(fyq=2,snu2_na))
 snu2_na<-snu2_na[,names(op55_agg)]
 
-fyq<-read.csv("./data/fyq_code.csv",stringsAsFactors=F)
+fyq<-read.csv("fyq_code.csv",stringsAsFactors=F)
 fyq$date<-as.Date(fyq$date,"%m/%d/%Y");
 fyq<-fyq[fyq$fyq>8,c("fyq","date","fyear_qtr")]
 fyq$fyq<-1:2
