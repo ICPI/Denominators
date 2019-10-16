@@ -26,7 +26,7 @@ psnu@data[632,"uid"]<-"tNxqnAq8Xc0"	# "tNxqnAq8Xc0\r\ntNxqnAq8Xc0\r\ntNxqnAq8Xc0
 # uid_diff=1 for incorrect uid codes in the PEPFAR shapefile.	#
 #****************************************************************#
 
-psnu2<-read.csv("psnu_crosswalk_2019-08-28.csv",stringsAsFactors=F)
+psnu2<-read.csv("psnu_crosswalk.csv",stringsAsFactors=F)
 names(psnu2)<-tolower(names(psnu2));
 psnu2$uid_diff[which(is.na(psnu2$uid_diff))]<-0
 
