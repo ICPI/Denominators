@@ -1,0 +1,775 @@
+row,snu1uid,statename,snu2,level4name,level5name,uid,uid_diff,psnuuid
+1,X1YSuZzQAP8,Lagos,Badagry,Lagos,la Badagry,KVW9Io1khx7,,KVW9Io1khx7
+2,JPR7FWvI4Jq,Ogun,Egbado North,Ogun,og Yewa North,XY5wcfahN5W,,XY5wcfahN5W
+3,ERH1gaeZSqG,Kaduna,Lere,Kaduna,kd Lere,xgIRJYISVOB,,xgIRJYISVOB
+4,ERH1gaeZSqG,Kaduna,Zaria,Kaduna,kd Zaria,bKXKmhOnPpK,,bKXKmhOnPpK
+5,ERH1gaeZSqG,Kaduna,Zangon-Kataf,Kaduna,kd Zango-Kataf,LRJl5ilFu2M,,LRJl5ilFu2M
+6,ERH1gaeZSqG,Kaduna,Birnin-Gwari,Kaduna,kd Birnin Gwari,z7cRKbwx8L7,,z7cRKbwx8L7
+7,ERH1gaeZSqG,Kaduna,Sanga,Kaduna,kd Sanga,igUyFcgaVHP,,igUyFcgaVHP
+8,ERH1gaeZSqG,Kaduna,Sabon-Gari,Kaduna,kd Sabon Gari,n81KW6HQJ9Q,,n81KW6HQJ9Q
+9,ERH1gaeZSqG,Kaduna,Giwa,Kaduna,kd Giwa,t4pYfQ9Skx4,,t4pYfQ9Skx4
+10,erpCFZj6yFu,Adamawa,Yola North,Adamawa,ad Yola North,f8yDBoPVWu1,,f8yDBoPVWu1
+11,ERH1gaeZSqG,Kaduna,Kajuru,Kaduna,kd Kajuru,Vpd9OutI5QE,,Vpd9OutI5QE
+12,ERH1gaeZSqG,Kaduna,Igabi,Kaduna,kd Igabi,dlxwQg99WoE,,dlxwQg99WoE
+13,ERH1gaeZSqG,Kaduna,Ikara,Kaduna,kd Ikara,pad3e5xOCdP,,pad3e5xOCdP
+14,ERH1gaeZSqG,Kaduna,Jaba,Kaduna,kd Jaba,uFaSs80gLIx,,uFaSs80gLIx
+15,ERH1gaeZSqG,Kaduna,Kaduna North,Kaduna,kd Kaduna North,U42lUlqw14s,,U42lUlqw14s
+16,ERH1gaeZSqG,Kaduna,Kachia,Kaduna,kd Kachia,ILwIROK4TTR,,ILwIROK4TTR
+17,ERH1gaeZSqG,Kaduna,Soba,Kaduna,kd Soba,sWKNZPZj231,,sWKNZPZj231
+18,erpCFZj6yFu,Adamawa,Shelleng,Adamawa,ad Shelleng,LH0JbbkkKBP,,LH0JbbkkKBP
+19,pRNjUammgeK,Akwa Ibom,Okobo,Akwa Ibom,ak Okobo,yNiTlEQJJOr,,yNiTlEQJJOr
+20,ERH1gaeZSqG,Kaduna,Chikun,Kaduna,kd Chikun,A279VIsHpTI,,A279VIsHpTI
+21,ERH1gaeZSqG,Kaduna,Makarfi,Kaduna,kd Makarfi,oPl04jv6omI,,oPl04jv6omI
+22,ERH1gaeZSqG,Kaduna,kaduna South,Kaduna,kd Kaduna South,QaeAxjVVGmA,,QaeAxjVVGmA
+23,ERH1gaeZSqG,Kaduna,Jema'a,Kaduna,kd Jema'a,vufh9kqDnPj,,vufh9kqDnPj
+24,ERH1gaeZSqG,Kaduna,Kudan,Kaduna,kd Kudan,tXeGc4P4bXe,,tXeGc4P4bXe
+25,ERH1gaeZSqG,Kaduna,Kauru,Kaduna,kd Kauru,fk5t7pAg7Cm,,fk5t7pAg7Cm
+26,ERH1gaeZSqG,Kaduna,Kagarko,Kaduna,kd Kagarko,Bc82bF99cN1,,Bc82bF99cN1
+27,ERH1gaeZSqG,Kaduna,Kaura,Kaduna,kd Kaura,tkNy2sER8xX,,tkNy2sER8xX
+28,ERH1gaeZSqG,Kaduna,Kubau,Kaduna,kd Kubau,k2dAp9r2mRa,,k2dAp9r2mRa
+29,erpCFZj6yFu,Adamawa,Song,Adamawa,ad Song,FlBE3mL1gu7,,FlBE3mL1gu7
+30,erpCFZj6yFu,Adamawa,Toungo,Adamawa,ad Toungo,IlQNjQ4xhtJ,,IlQNjQ4xhtJ
+31,erpCFZj6yFu,Adamawa,Yola South,Adamawa,ad Yola South,ygm0La5inNU,,ygm0La5inNU
+32,erpCFZj6yFu,Adamawa,Jada,Adamawa,ad Jada,qrAb13XpOC2,,qrAb13XpOC2
+33,erpCFZj6yFu,Adamawa,Michika,Adamawa,ad Michika,DqggvhYh4iJ,,DqggvhYh4iJ
+34,erpCFZj6yFu,Adamawa,Numan,Adamawa,ad Numan,Z0saBqitaCS,,Z0saBqitaCS
+35,erpCFZj6yFu,Adamawa,Lamurde,Adamawa,ad Lamurde,YrmqAeqD90Z,,YrmqAeqD90Z
+36,erpCFZj6yFu,Adamawa,Hong,Adamawa,ad Hong,fpBVTbTedSf,,fpBVTbTedSf
+37,erpCFZj6yFu,Adamawa,Guyuk,Adamawa,ad Guyuk,w4bclNyjW8p,,w4bclNyjW8p
+38,pRNjUammgeK,Akwa Ibom,Nsit Ibom,Akwa Ibom,ak Nsit Ibom,QzoJtRtnwEK,,QzoJtRtnwEK
+39,pRNjUammgeK,Akwa Ibom,Nsit Atai,Akwa Ibom,ak Nsit Atai,bTbhVIeXl5B,,bTbhVIeXl5B
+40,erpCFZj6yFu,Adamawa,Fufore,Adamawa,ad Fufore,dv4N89160b6,,dv4N89160b6
+41,erpCFZj6yFu,Adamawa,Ganye,Adamawa,ad Ganye,EorvxnuHvOc,,EorvxnuHvOc
+42,erpCFZj6yFu,Adamawa,Gombi,Adamawa,ad Gombi,I0NB6gmLUsA,,I0NB6gmLUsA
+43,erpCFZj6yFu,Adamawa,Mubi South,Adamawa,ad Mubi South,m6LBTfgy4N4,,m6LBTfgy4N4
+44,erpCFZj6yFu,Adamawa,Mubi North,Adamawa,ad Mubi North,Lfi7NDdKEEs,,Lfi7NDdKEEs
+45,erpCFZj6yFu,Adamawa,Girie,Adamawa,ad Girei,g353MwNv1ST,,g353MwNv1ST
+46,erpCFZj6yFu,Adamawa,Madagali,Adamawa,ad Madagali,wvoQtDWsFy9,,wvoQtDWsFy9
+47,erpCFZj6yFu,Adamawa,Mayo-Belwa,Adamawa,ad Mayo-Belwa,PekU6CGZl4z,,PekU6CGZl4z
+48,erpCFZj6yFu,Adamawa,Maiha,Adamawa,ad Maiha,GlcpSBFFUZF,,GlcpSBFFUZF
+49,erpCFZj6yFu,Adamawa,Demsa,Adamawa,ad Demsa,p7M264Wg1qB,,p7M264Wg1qB
+50,pRNjUammgeK,Akwa Ibom,Mkpat Enin,Akwa Ibom,ak Mkpat Enin,U76V7Aagy0M,,U76V7Aagy0M
+51,pRNjUammgeK,Akwa Ibom,Nsit Ubium,Akwa Ibom,ak Nsit Ubium,uURIdxN44t7,,uURIdxN44t7
+52,pRNjUammgeK,Akwa Ibom,Abak,Akwa Ibom,ak Abak,XBIWanrEkbP,,XBIWanrEkbP
+53,pRNjUammgeK,Akwa Ibom,Mbo,Akwa Ibom,ak Mbo,UcOzBtlIxjs,,UcOzBtlIxjs
+54,pRNjUammgeK,Akwa Ibom,Udung Uko,Akwa Ibom,ak Udung Uko,iyBox8IdIwz,,iyBox8IdIwz
+55,pRNjUammgeK,Akwa Ibom,Eket,Akwa Ibom,ak Eket,LtNhTo6ObDy,,LtNhTo6ObDy
+56,pRNjUammgeK,Akwa Ibom,Onna,Akwa Ibom,ak Onna,qEnUjTAp97f,,qEnUjTAp97f
+57,pRNjUammgeK,Akwa Ibom,Oron,Akwa Ibom,ak Oron,Aa1whDXzJ2c,,Aa1whDXzJ2c
+58,pRNjUammgeK,Akwa Ibom,Eastern Obolo,Akwa Ibom,ak Eastern Obolo,ALVyRcoCEeE,,ALVyRcoCEeE
+59,pRNjUammgeK,Akwa Ibom,Oruk Anam,Akwa Ibom,ak Oruk Anam,R3xzKk95P1a,,R3xzKk95P1a
+60,pRNjUammgeK,Akwa Ibom,Esit Eket,Akwa Ibom,ak Esit Eket,DbuyCcoGr3o,,DbuyCcoGr3o
+61,pRNjUammgeK,Akwa Ibom,Etim Ekpo,Akwa Ibom,ak Etim Ekpo,KF4B3lAghd8,,KF4B3lAghd8
+62,Mt26U3BtZWW,Bauchi,Warji,Bauchi,ba Warji,dIi3XUCSsXQ,,dIi3XUCSsXQ
+63,pRNjUammgeK,Akwa Ibom,Etinan,Akwa Ibom,ak Etinan,fpXkddgSxc2,,fpXkddgSxc2
+64,pRNjUammgeK,Akwa Ibom,Essien Udim,Akwa Ibom,ak Essien Udim,Z5atgpujIuB,,Z5atgpujIuB
+65,pRNjUammgeK,Akwa Ibom,Obot Akara,Akwa Ibom,ak Obot Akara,OcjOTIIz6PZ,,OcjOTIIz6PZ
+66,pRNjUammgeK,Akwa Ibom,Itu,Akwa Ibom,ak Itu,zxPmBggJpRL,,zxPmBggJpRL
+67,pRNjUammgeK,Akwa Ibom,Ini,Akwa Ibom,ak Ini,UEO4kGjgWGz,,UEO4kGjgWGz
+68,pRNjUammgeK,Akwa Ibom,Ikot Ekpene,Akwa Ibom,ak Ikot Ekpene,Hav0LhcZr8l,,Hav0LhcZr8l
+69,pRNjUammgeK,Akwa Ibom,Ikot Abasi,Akwa Ibom,ak Ikot Abasi,KXQgiiDCxNB,,KXQgiiDCxNB
+70,pRNjUammgeK,Akwa Ibom,Ikono,Akwa Ibom,ak Ikono,QyiNd4lpoYO,,QyiNd4lpoYO
+71,pRNjUammgeK,Akwa Ibom,Ukanafun,Akwa Ibom,ak Ukanafun,VrBYQf8rbPc,,VrBYQf8rbPc
+72,pRNjUammgeK,Akwa Ibom,Ika,Akwa Ibom,ak Ika,uU7VK6bHY0b,,uU7VK6bHY0b
+73,pRNjUammgeK,Akwa Ibom,Ibiono Ibom,Akwa Ibom,ak Ibiono Ibom,RFu8InHRI0P,,RFu8InHRI0P
+74,pRNjUammgeK,Akwa Ibom,Uruan,Akwa Ibom,ak Uruan,fxkXzAmjGtQ,,fxkXzAmjGtQ
+75,pRNjUammgeK,Akwa Ibom,Uyo,Akwa Ibom,ak Uyo,HzF1QcC3jfm,,HzF1QcC3jfm
+76,pRNjUammgeK,Akwa Ibom,Ibeno,Akwa Ibom,ak Ibeno,KTBSBPINZ9K,,KTBSBPINZ9K
+77,pRNjUammgeK,Akwa Ibom,Ibesikpo Asutan,Akwa Ibom,ak Ibesikpo Asutan,FJORitdoOgZ,,FJORitdoOgZ
+78,pRNjUammgeK,Akwa Ibom,Urue-Offong/Oruko,Akwa Ibom,ak Urue-Offong-Oruko,HqzA0kbnPTT,,HqzA0kbnPTT
+79,LXdsxJVo6Gk,Anambra,Ihiala,Anambra,an Ihiala,kKXpnEpWHau,,kKXpnEpWHau
+80,LXdsxJVo6Gk,Anambra,Ogbaru,Anambra,an Ogbaru,ECHIr3eP4t4,,ECHIr3eP4t4
+81,LXdsxJVo6Gk,Anambra,Anaocha,Anambra,an Anaocha,sgqANA29vHG,,sgqANA29vHG
+82,LXdsxJVo6Gk,Anambra,Idemili North,Anambra,an Idemili North,EXvdc4ppwoz,,EXvdc4ppwoz
+83,LXdsxJVo6Gk,Anambra,Oyi,Anambra,an Oyi,DPtWPT96gZF,,DPtWPT96gZF
+84,LXdsxJVo6Gk,Anambra,Anambra East,Anambra,an Anambra East,WympM6A8Dyz,,WympM6A8Dyz
+85,LXdsxJVo6Gk,Anambra,Onitsha North,Anambra,an Onitsha North,DR7pw2aSUwX,,DR7pw2aSUwX
+86,LXdsxJVo6Gk,Anambra,Orumba South,Anambra,an Orumba South,HJYYvGcFd4u,,HJYYvGcFd4u
+87,LXdsxJVo6Gk,Anambra,Njikoka,Anambra,an Njikoka,jjP9tmzofKz,,jjP9tmzofKz
+88,LXdsxJVo6Gk,Anambra,Nnewi North,Anambra,an Nnewi North,zfiun4GPDku,,zfiun4GPDku
+89,LXdsxJVo6Gk,Anambra,Nnewi South,Anambra,an Nnewi South,NF6SfRY1kto,,NF6SfRY1kto
+90,LXdsxJVo6Gk,Anambra,Orumba North,Anambra,an Orumba North,R1QrxLfGQAu,,R1QrxLfGQAu
+91,LXdsxJVo6Gk,Anambra,Ayamelum,Anambra,an Ayamelum,cAtDMHGqXDY,,cAtDMHGqXDY
+92,LXdsxJVo6Gk,Anambra,Aguata,Anambra,an Aguata,DFMlCbHb8A8,,DFMlCbHb8A8
+93,LXdsxJVo6Gk,Anambra,Awka South,Anambra,an Awka South,JyswUUSs0Ga,,JyswUUSs0Ga
+94,LXdsxJVo6Gk,Anambra,Ekwusigo,Anambra,an Ekwusigo,UjwHpQb8RFM,,UjwHpQb8RFM
+95,LXdsxJVo6Gk,Anambra,Idemili South,Anambra,an Idemili South,GzWt3GqoM7i,,GzWt3GqoM7i
+96,LXdsxJVo6Gk,Anambra,Onitsha South,Anambra,an Onitsha South,JyWT5Q3Xqkf,,JyWT5Q3Xqkf
+97,LXdsxJVo6Gk,Anambra,Awka North,Anambra,an Awka North,Z69WtGQ0Urd,,Z69WtGQ0Urd
+98,LXdsxJVo6Gk,Anambra,Anambra West,Anambra,an Anambra West,ia5DjoyiJml,,ia5DjoyiJml
+99,LXdsxJVo6Gk,Anambra,Dunukofia,Anambra,an Dunukofia,LnzMu6ek3Y9,,LnzMu6ek3Y9
+100,Mt26U3BtZWW,Bauchi,Alkaleri,Bauchi,ba Alkaleri,Ci3pNStApME,,Ci3pNStApME
+101,Mt26U3BtZWW,Bauchi,Bauchi,Bauchi,ba Bauchi,BzVMcmlV7bF,,BzVMcmlV7bF
+102,Mt26U3BtZWW,Bauchi,Jama?ó?Ç?Öare,Bauchi,ba Jama'are,R44BnPDW4MP,,R44BnPDW4MP
+103,Mt26U3BtZWW,Bauchi,Misau,Bauchi,ba Misau,F5eeDhZQibe,,F5eeDhZQibe
+104,Mt26U3BtZWW,Bauchi,Itas/Gadau,Bauchi,ba Itas/Gadau,UCkm3Xfi1pW,,UCkm3Xfi1pW
+105,Mt26U3BtZWW,Bauchi,Giade,Bauchi,ba Giade,oxcaQN6VXDF,,oxcaQN6VXDF
+106,Mt26U3BtZWW,Bauchi,Gamawa,Bauchi,ba Gamawa,gRNPhXiBuz0,,gRNPhXiBuz0
+107,Mt26U3BtZWW,Bauchi,Tafawa-Balewa,Bauchi,ba Tafawa-Balewa,axJ2Bz7NMBy,,axJ2Bz7NMBy
+108,Mt26U3BtZWW,Bauchi,Ningi,Bauchi,ba Ningi,DSafrXaCblk,,DSafrXaCblk
+109,Mt26U3BtZWW,Bauchi,Damban,Bauchi,ba Damban,x8OYFzpULVk,,x8OYFzpULVk
+110,Mt26U3BtZWW,Bauchi,Shira,Bauchi,ba Shira,ATFOMtmPNUT,,ATFOMtmPNUT
+111,Mt26U3BtZWW,Bauchi,Ganjuwa,Bauchi,ba Ganjuwa,WLCeQxnQcYa,,WLCeQxnQcYa
+112,Mt26U3BtZWW,Bauchi,Kirfi,Bauchi,ba Kirfi,YvQJTMAxBGq,,YvQJTMAxBGq
+113,Mt26U3BtZWW,Bauchi,Toro,Bauchi,ba Toro,Rag21iTLDMN,,Rag21iTLDMN
+114,Mt26U3BtZWW,Bauchi,Katagum,Bauchi,ba Katagum,GP2BJihG1v6,,GP2BJihG1v6
+115,Mt26U3BtZWW,Bauchi,Darazo,Bauchi,ba Darazo,YDeeZ5qc9GH,,YDeeZ5qc9GH
+116,Mt26U3BtZWW,Bauchi,Bogoro,Bauchi,ba Bogoro,S809bXXP7Fv,,S809bXXP7Fv
+117,Mt26U3BtZWW,Bauchi,Zaki,Bauchi,ba Zaki,xq8JtKyFs3r,,xq8JtKyFs3r
+118,Mt26U3BtZWW,Bauchi,Dass,Bauchi,ba Dass,keN9s8FpxDq,,keN9s8FpxDq
+119,xod2zGl32QR,Imo,Unuimo,Imo,im Onuimo,uTRRg2zhU4D,,uTRRg2zhU4D
+120,R4vqlQuPEP3,Bayelsa,Southern Ijaw,Bayelsa,by Southern IJaw,XrKyi1pvgsU,,XrKyi1pvgsU
+121,R4vqlQuPEP3,Bayelsa,Ekeremor,Bayelsa,by Ekeremor,WzDT4si39yH,,WzDT4si39yH
+122,R4vqlQuPEP3,Bayelsa,Kolokuma/Opokuma,Bayelsa,by Kolokuma-Opokuma,NncixRTUNA8,,NncixRTUNA8
+123,R4vqlQuPEP3,Bayelsa,Yenegoa,Bayelsa,by Yenagoa,zr3XYkgbfIc,,zr3XYkgbfIc
+124,R4vqlQuPEP3,Bayelsa,Sagbama,Bayelsa,by Sagbama,a7N7uRgXtvy,,a7N7uRgXtvy
+125,R4vqlQuPEP3,Bayelsa,Brass,Bayelsa,by Brass,e340iNYBFKT,,e340iNYBFKT
+126,R4vqlQuPEP3,Bayelsa,Ogbia,Bayelsa,by Ogbia,UPDz1QKEaPi,,UPDz1QKEaPi
+127,R4vqlQuPEP3,Bayelsa,Nembe,Bayelsa,by Nembe,h5mI0PnkLy2,,h5mI0PnkLy2
+128,vSN6HHeBPqw,Benue,Buruku,Benue,be Buruku,QBFbFh5zJWX,,QBFbFh5zJWX
+129,vSN6HHeBPqw,Benue,Oturkpo,Benue,be Otukpo,RM45QszoeEi,,RM45QszoeEi
+130,vSN6HHeBPqw,Benue,Agatu,Benue,be Agatu,lUn6tmhyebg,,lUn6tmhyebg
+131,vSN6HHeBPqw,Benue,Gboko,Benue,be Gboko,i0MUgv6vIAM,,i0MUgv6vIAM
+132,vSN6HHeBPqw,Benue,Okpokwu,Benue,be Okpokwu,Sf0fPuVTEf1,,Sf0fPuVTEf1
+133,vSN6HHeBPqw,Benue,Gwer East,Benue,be Gwer East,PJJsxvEhEW5,,PJJsxvEhEW5
+134,vSN6HHeBPqw,Benue,Makurdi,Benue,be Makurdi,Q2Gb99dokfK,,Q2Gb99dokfK
+135,vSN6HHeBPqw,Benue,Konshisha,Benue,be Konshisha,gpgLJrma8Tm,,gpgLJrma8Tm
+136,vSN6HHeBPqw,Benue,Tarka,Benue,be Tarka,eFnaQTWW1DC,,eFnaQTWW1DC
+137,vSN6HHeBPqw,Benue,Oju,Benue,be Oju,L9g3RB3Jqy3,,L9g3RB3Jqy3
+138,JPR7FWvI4Jq,Ogun,Ikenne,Ogun,og Ikenne,kAWl47kmoyv,,kAWl47kmoyv
+139,vSN6HHeBPqw,Benue,Gwer West,Benue,be Gwer West,bU41bAD1r84,,bU41bAD1r84
+140,vSN6HHeBPqw,Benue,Ogbadibo,Benue,be Ogbadibo,TaAqWZoyAof,,TaAqWZoyAof
+141,vSN6HHeBPqw,Benue,Logo,Benue,be Logo,ZewNOZ5xMp9,,ZewNOZ5xMp9
+142,vSN6HHeBPqw,Benue,Apa,Benue,be Apa,OG6fY4TsvRM,,OG6fY4TsvRM
+143,vSN6HHeBPqw,Benue,Ohimini,Benue,be Ohimini,nWLwNNNzJ7N,,nWLwNNNzJ7N
+144,vSN6HHeBPqw,Benue,Katsina-Ala,Benue,be Katsina-Ala,DluyXbyv63Q,,DluyXbyv63Q
+145,vSN6HHeBPqw,Benue,Ushongo,Benue,be Ushongo,apUWJiF9sQ2,,apUWJiF9sQ2
+146,vSN6HHeBPqw,Benue,Ado,Benue,be Ado,qRUSFz9WFB6,,qRUSFz9WFB6
+147,vSN6HHeBPqw,Benue,Obi,Benue,be Obi,PuJqb4zMn4A,,PuJqb4zMn4A
+148,vSN6HHeBPqw,Benue,Kwande,Benue,be Kwande,v7xGqiid6Pg,,v7xGqiid6Pg
+149,vSN6HHeBPqw,Benue,Ukum,Benue,be Ukum,cvkiCumu2an,,cvkiCumu2an
+150,vSN6HHeBPqw,Benue,Guma,Benue,be Guma,YbtVeNOCICl,,YbtVeNOCICl
+151,vSN6HHeBPqw,Benue,Vandeikya,Benue,be Vandeikya,FJ28GRyMVq9,,FJ28GRyMVq9
+152,sXsTHBsj0rh,Borno,Damboa,Borno,bo Damboa,DEPsFEGZ6jU,,DEPsFEGZ6jU
+153,sXsTHBsj0rh,Borno,Kwaya Kusar,Borno,bo Kwaya Kusar,v9EkkU2JyKZ,,v9EkkU2JyKZ
+154,sXsTHBsj0rh,Borno,Gubio,Borno,bo Gubio,Ssbz4SEc1IM,,Ssbz4SEc1IM
+155,sXsTHBsj0rh,Borno,Konduga,Borno,bo Konduga,h4dMPsRKUmh,,h4dMPsRKUmh
+156,sXsTHBsj0rh,Borno,Marte,Borno,bo Marte,js4XVdXgkfq,,js4XVdXgkfq
+157,sXsTHBsj0rh,Borno,Maiduguri,Borno,bo Maiduguri,qhRYYAbgQVH,,qhRYYAbgQVH
+158,sXsTHBsj0rh,Borno,Biu,Borno,bo Biu,nUCOl5r6nTX,,nUCOl5r6nTX
+159,eGalRf62pxe,Osun,Irewole,Osun,os Irewole,AIWlVFpaxFZ,,AIWlVFpaxFZ
+160,sXsTHBsj0rh,Borno,Kaga,Borno,bo Kaga,nvpWc1dxZ2a,,nvpWc1dxZ2a
+161,sXsTHBsj0rh,Borno,BAMA,Borno,bo Bama,cff8nY3Y9t6,,cff8nY3Y9t6
+162,sXsTHBsj0rh,Borno,Abadam,Borno,bo Abadam,CUS7o0LhAty,,CUS7o0LhAty
+163,sXsTHBsj0rh,Borno,Bayo,Borno,bo Bayo,IoVUPBw3cBJ,,IoVUPBw3cBJ
+164,sXsTHBsj0rh,Borno,Dikwa,Borno,bo Dikwa,SqVuiOLlKb8,,SqVuiOLlKb8
+165,sXsTHBsj0rh,Borno,Jere,Borno,bo Jere,GeeiQ1SxW8a,,GeeiQ1SxW8a
+166,sXsTHBsj0rh,Borno,Mafa,Borno,bo Mafa,ynzQSRhyaHe,,ynzQSRhyaHe
+167,sXsTHBsj0rh,Borno,Chibok,Borno,bo Chibok,XgcKWaZe33a,,XgcKWaZe33a
+168,sXsTHBsj0rh,Borno,Shani,Borno,bo Shani,xJCynBk9mXI,,xJCynBk9mXI
+169,sXsTHBsj0rh,Borno,Kukawa,Borno,bo Kukawa,iE5LhdbOoQI,,iE5LhdbOoQI
+170,sXsTHBsj0rh,Borno,Magumeri,Borno,bo Magumeri,ZtstX7En5ot,,ZtstX7En5ot
+171,sXsTHBsj0rh,Borno,Hawul,Borno,bo Hawul,JvtwguXEkD5,,JvtwguXEkD5
+172,sXsTHBsj0rh,Borno,Gwoza,Borno,bo Gwoza,MdJ6fZJNIWg,,MdJ6fZJNIWg
+173,sXsTHBsj0rh,Borno,Kala/Balge,Borno,bo Kala/Balge,vSNtNuibM9P,,vSNtNuibM9P
+174,sXsTHBsj0rh,Borno,Ngala,Borno,bo Ngala,WQwHVPPsqW2,,WQwHVPPsqW2
+175,sXsTHBsj0rh,Borno,Nganzai,Borno,bo Nganzai,a76Ey6R5Ynz,,a76Ey6R5Ynz
+176,sXsTHBsj0rh,Borno,Monguno,Borno,bo Monguno,I5QvelpUvDa,,I5QvelpUvDa
+177,sXsTHBsj0rh,Borno,Mobbar,Borno,bo Mobbar,aBEaAM8Eabm,,aBEaAM8Eabm
+178,sXsTHBsj0rh,Borno,Askira/Uba,Borno,bo Askira-Uba,B6B6G0suyIH,,B6B6G0suyIH
+179,sXsTHBsj0rh,Borno,Guzamala,Borno,bo Guzamala,ZeCCooHQrB4,,ZeCCooHQrB4
+180,pq7kECDgKc7,Cross River,Calabar South,Cross River,cr Calabar South,CXhkcOKexa8,,CXhkcOKexa8
+181,pq7kECDgKc7,Cross River,Yakurr,Cross River,cr Yakuur,ErgzW0NbtKg,,ErgzW0NbtKg
+182,pq7kECDgKc7,Cross River,Calabar Municipal,Cross River,cr Calabar Municipal,KmN1vtO0Xv3,,KmN1vtO0Xv3
+183,pq7kECDgKc7,Cross River,Obubra,Cross River,cr Obubra,QYalSmXneXl,,QYalSmXneXl
+184,pq7kECDgKc7,Cross River,Abi,Cross River,cr Abi,e7J1RT47WsJ,,e7J1RT47WsJ
+185,i5hb4KFA5MW,Delta,Aniocha South,Delta,de Aniocha South,jjdlSy7XvmM,,jjdlSy7XvmM
+186,pq7kECDgKc7,Cross River,Yala,Cross River,cr Yala,rtUy9A3YHEU,,rtUy9A3YHEU
+187,pq7kECDgKc7,Cross River,Boki,Cross River,cr Boki,virmrpkYGXf,,virmrpkYGXf
+188,pq7kECDgKc7,Cross River,Akamkpa,Cross River,cr Akamkpa,NIaJ9yoGyDs,,NIaJ9yoGyDs
+189,pq7kECDgKc7,Cross River,Ogoja,Cross River,cr Ogoja,pQ5yVgpTBiz,,pQ5yVgpTBiz
+190,pq7kECDgKc7,Cross River,Bekwarra,Cross River,cr Bekwarra,uUHJXESBL6v,,uUHJXESBL6v
+191,pq7kECDgKc7,Cross River,Obudu,Cross River,cr Obudu,Z9MZT1BTsJ5,,Z9MZT1BTsJ5
+192,pq7kECDgKc7,Cross River,Biase,Cross River,cr Biase,proG1Con5sh,,proG1Con5sh
+193,pq7kECDgKc7,Cross River,Etung,Cross River,cr Etung,HySQRcghuzV,,HySQRcghuzV
+194,i5hb4KFA5MW,Delta,Patani,Delta,de Patani,G1wJbuwm1Pj,,G1wJbuwm1Pj
+195,W1EHlIiNm7L,Ekiti,Moba,Ekiti,ek Moba,An7rsUOrIhI,,An7rsUOrIhI
+196,pq7kECDgKc7,Cross River,Odukpani,Cross River,cr Odukpani,gsS9Cpuu01y,,gsS9Cpuu01y
+197,pq7kECDgKc7,Cross River,Ikom,Cross River,cr Ikom,GIXuVsi53km,,GIXuVsi53km
+198,pq7kECDgKc7,Cross River,Obanliku,Cross River,cr Obanliku,dhr29sgXCMz,,dhr29sgXCMz
+199,i5hb4KFA5MW,Delta,Ndokwa West,Delta,de Ndokwa West,ip6npch0teY,,ip6npch0teY
+200,i5hb4KFA5MW,Delta,Sapele,Delta,de Sapele,c8wRDtzO14l,,c8wRDtzO14l
+201,i5hb4KFA5MW,Delta,Aniocha North,Delta,de Aniocha North,sOvdseHOfPM,,sOvdseHOfPM
+202,i5hb4KFA5MW,Delta,Oshimili South,Delta,de Oshimili South,pA7KmJWZWi5,,pA7KmJWZWi5
+203,i5hb4KFA5MW,Delta,Warri South West,Delta,de Warri South-West,F2sisT8xwGl,,F2sisT8xwGl
+204,W1EHlIiNm7L,Ekiti,Ekiti East,Ekiti,ek Ekiti East,Z8NBMmojNEN,,Z8NBMmojNEN
+205,i5hb4KFA5MW,Delta,Warri South,Delta,de Warri South,MNVESOkGZ0T,,MNVESOkGZ0T
+206,i5hb4KFA5MW,Delta,Ukwuani,Delta,de Ukwuani,h1vcs9cuaTf,,h1vcs9cuaTf
+207,i5hb4KFA5MW,Delta,Ndokwa East,Delta,de Ndokwa East,nzvY9GKkpym,,nzvY9GKkpym
+208,i5hb4KFA5MW,Delta,Ughelli South,Delta,de Ughelli South,EQLuOekanSM,,EQLuOekanSM
+209,i5hb4KFA5MW,Delta,Ughelli North,Delta,de Ughelli North,XYbM1RspaLs,,XYbM1RspaLs
+210,i5hb4KFA5MW,Delta,Udu,Delta,de Udu,KEKFFPFTneN,,KEKFFPFTneN
+211,i5hb4KFA5MW,Delta,Ethiope East,Delta,de Ethiope East,rGJKS4OLyqd,,rGJKS4OLyqd
+212,i5hb4KFA5MW,Delta,Ethiope West,Delta,de Ethiope West,ozapfg9XcmM,,ozapfg9XcmM
+213,W1EHlIiNm7L,Ekiti,Ado-Ekiti,Ekiti,ek Ado-Ekiti,w537PeRTb2k,,w537PeRTb2k
+214,i5hb4KFA5MW,Delta,Okpe,Delta,de Okpe,TF6DZGTsVO2,,TF6DZGTsVO2
+215,i5hb4KFA5MW,Delta,Bomadi,Delta,de Bomadi,vIWJt7NIoFp,,vIWJt7NIoFp
+216,i5hb4KFA5MW,Delta,Oshimili North,Delta,de Oshimili North,qUFyVUUSqUb,,qUFyVUUSqUb
+217,i5hb4KFA5MW,Delta,Burutu,Delta,de Burutu,AMSQzhoDGn0,,AMSQzhoDGn0
+218,i5hb4KFA5MW,Delta,Warri North,Delta,de Warri North,zKZKB0aNzsZ,,zKZKB0aNzsZ
+219,i5hb4KFA5MW,Delta,Uvwie,Delta,de Uvwie,yyaZXER8YfR,,yyaZXER8YfR
+220,i5hb4KFA5MW,Delta,Isoko North,Delta,de Isoko North,RXyzOWGy8sf,,RXyzOWGy8sf
+221,i5hb4KFA5MW,Delta,Ika North East,Delta,de Ika North East,fSlbRfrxgBX,,fSlbRfrxgBX
+222,W1EHlIiNm7L,Ekiti,Emure,Ekiti,ek Emure,LoolSVHi1Jq,,LoolSVHi1Jq
+223,i5hb4KFA5MW,Delta,Isoko South,Delta,de Isoko South,X8NUW1sxr3s,,X8NUW1sxr3s
+224,i5hb4KFA5MW,Delta,Ika South,Delta,de Ika South,Q7RlCFBv0PT,,Q7RlCFBv0PT
+225,GBuVMaobpww,Ebonyi,Ezza South,Ebonyi,eb Ezza South,UHy5pRsQvje,,UHy5pRsQvje
+226,GBuVMaobpww,Ebonyi,Ivo,Ebonyi,eb Ivo,k8q2pBQgUN8,,k8q2pBQgUN8
+227,GBuVMaobpww,Ebonyi,Ezza North,Ebonyi,eb Ezza North,tIuMJ7BIDWY,,tIuMJ7BIDWY
+228,GBuVMaobpww,Ebonyi,Ebonyi,Ebonyi,eb Ebonyi,oygNEfySnMl,1,J4yYjIqL7mG
+229,GBuVMaobpww,Ebonyi,Ikwo,Ebonyi,eb Ikwo,MTm3lyt1uyA,,MTm3lyt1uyA
+230,GBuVMaobpww,Ebonyi,Ishielu,Ebonyi,eb Ishielu,vPNckbEJmgJ,,vPNckbEJmgJ
+231,GBuVMaobpww,Ebonyi,Ohaukwu,Ebonyi,eb Ohaukwu,IgQnoCiFkNF,,IgQnoCiFkNF
+232,GBuVMaobpww,Ebonyi,Ohaozara,Ebonyi,eb Ohaozara,DUdIkrprTo5,,DUdIkrprTo5
+233,GBuVMaobpww,Ebonyi,Izzi,Ebonyi,eb Izzi,I0BlgP4H1OY,,I0BlgP4H1OY
+234,W1EHlIiNm7L,Ekiti,Ilejemeje,Ekiti,ek Ilejemeje,QeuyxdulDDC,,QeuyxdulDDC
+235,GBuVMaobpww,Ebonyi,Abakaliki,Ebonyi,eb Abakaliki,EzsXkY9WARj,,EzsXkY9WARj
+236,GBuVMaobpww,Ebonyi,Afikpo North,Ebonyi,eb Afikpo North,KN2TmcAVqzi,,KN2TmcAVqzi
+237,GBuVMaobpww,Ebonyi,Afikpo South,Ebonyi,eb Afikpo South,ZrkJxE1QhrW,,ZrkJxE1QhrW
+238,GBuVMaobpww,Ebonyi,Onicha,Ebonyi,eb Onicha,LVqMvb9kkzH,,LVqMvb9kkzH
+239,gsAcqPGkabf,Edo,Ikpoba-Okha,Edo,ed Ikpoba-Okha,n6VEZ4pTBrX,,n6VEZ4pTBrX
+240,gsAcqPGkabf,Edo,Etsako West,Edo,ed Etsako West,fYRobXvSy5e,,fYRobXvSy5e
+241,gsAcqPGkabf,Edo,Etsako East,Edo,ed Etsako East ,GxvqAACzQY4,,GxvqAACzQY4
+242,gsAcqPGkabf,Edo,Akoko-Edo,Edo,ed Akoko Edo,pQHIzaJsi8t,,pQHIzaJsi8t
+243,gsAcqPGkabf,Edo,Esan South East,Edo,ed Esan South-East,MgiGNCxuQsJ,,MgiGNCxuQsJ
+244,gsAcqPGkabf,Edo,Egor,Edo,ed Egor,NYHYee8uWfQ,,NYHYee8uWfQ
+245,gsAcqPGkabf,Edo,Oredo,Edo,ed Oredo,WOZEZlUXOvg,,WOZEZlUXOvg
+246,gsAcqPGkabf,Edo,Orhionmwon,Edo,ed Orhionmwon,qkLeWHFPNM6,,qkLeWHFPNM6
+247,gsAcqPGkabf,Edo,Etsako Central,Edo,ed Etsako Central,p3BuvMLV3IA,,p3BuvMLV3IA
+248,gsAcqPGkabf,Edo,Uhunmwonde,Edo,ed Uhunmwonde,cgWurQSVEBH,,cgWurQSVEBH
+249,gsAcqPGkabf,Edo,Esan Central,Edo,ed Esan Central,lMKXLq9dXVW,,lMKXLq9dXVW
+250,gsAcqPGkabf,Edo,Esan West,Edo,ed Esan West,vB0zMLI52Y0,,vB0zMLI52Y0
+251,gsAcqPGkabf,Edo,Esan North East,Edo,ed Esan North-East,a661mTq8jD4,,a661mTq8jD4
+252,gsAcqPGkabf,Edo,Owan West,Edo,ed Owan West,l5vfZdLFrQB,,l5vfZdLFrQB
+253,gsAcqPGkabf,Edo,Igueben,Edo,ed Igueben,Ne0WWZQ8HJ5,,Ne0WWZQ8HJ5
+254,gsAcqPGkabf,Edo,Owan East,Edo,ed Owan East,bCyBh5BKp0Q,,bCyBh5BKp0Q
+255,W1EHlIiNm7L,Ekiti,Ekiti West,Ekiti,ek Ekiti West,WFsEvMCIS56,,WFsEvMCIS56
+256,W1EHlIiNm7L,Ekiti,Gbonyin,Ekiti,ek Gbonyin,MtwzdW6p7T4,,MtwzdW6p7T4
+257,gsAcqPGkabf,Edo,Ovia South West,Edo,ed Ovia South-West,c8v5QxYg2ce,,c8v5QxYg2ce
+258,gsAcqPGkabf,Edo,Ovia North East,Edo,ed Ovia North East,X6OJDLsUnzI,,X6OJDLsUnzI
+259,W1EHlIiNm7L,Ekiti,Oye,Ekiti,ek Oye,Ewz6HKTS15C,,Ewz6HKTS15C
+260,W1EHlIiNm7L,Ekiti,Ikole,Ekiti,ek Ikole,n3F9ZEqPUtq,,n3F9ZEqPUtq
+261,W1EHlIiNm7L,Ekiti,Ikere,Ekiti,ek Ikere,FLIkT6NShZE,,FLIkT6NShZE
+262,W1EHlIiNm7L,Ekiti,Idosi-Osi,Ekiti,ek Ido-Osi,WCjxJ6kxKRS,,WCjxJ6kxKRS
+263,W1EHlIiNm7L,Ekiti,Ijero,Ekiti,ek Ijero,GBgnruQv8ym,,GBgnruQv8ym
+264,W1EHlIiNm7L,Ekiti,Ise/Orun,Ekiti,ek Ise-Orun,jeHlpPF831R,,jeHlpPF831R
+265,W1EHlIiNm7L,Ekiti,Irepodun/Ifelodun,Ekiti,ek Irepodun-Ifelodun,ZoU6u0WrIM1,,ZoU6u0WrIM1
+266,W1EHlIiNm7L,Ekiti,Ekiti South West,Ekiti,ek Ekiti South-West,gaRACh9QB6a,,gaRACh9QB6a
+267,W1EHlIiNm7L,Ekiti,Efon,Ekiti,ek Efon,v6VKDsRhry2,,v6VKDsRhry2
+268,yNTAsxa4JYC,Enugu,Isi-Uzo,Enugu,en Isiuzo,WihGaIxuEIs,,WihGaIxuEIs
+269,yNTAsxa4JYC,Enugu,Enugu East,Enugu,en Enugu East,h61xiVptz4A,1,HlABmTwBpu6
+270,yNTAsxa4JYC,Enugu,Udi,Enugu,en Udi,OY7K8rR5ukn,,OY7K8rR5ukn
+271,yNTAsxa4JYC,Enugu,Igbo-Eze South,Enugu,en Igbo Eze South,WSdmE5ogw0T,,WSdmE5ogw0T
+272,yNTAsxa4JYC,Enugu,Nsukka,Enugu,en Nsukka,ITdnyCiBvz7,,ITdnyCiBvz7
+273,yNTAsxa4JYC,Enugu,Enugu North,Enugu,en Enugu North,pLAiWmFjn0V,,pLAiWmFjn0V
+274,yNTAsxa4JYC,Enugu,Udenu,Enugu,en Udenu,Jw8aS21k2oW,,Jw8aS21k2oW
+275,yNTAsxa4JYC,Enugu,Igbo-Eze North,Enugu,en Igbo Eze North,ai7N2iAo0JE,,ai7N2iAo0JE
+276,yNTAsxa4JYC,Enugu,Aninri,Enugu,en Aninri,hu1xt1ogF4p,,hu1xt1ogF4p
+277,yNTAsxa4JYC,Enugu,Igbo-Etiti,Enugu,en Igbo Etiti,XSjMKY9mf7k,,XSjMKY9mf7k
+278,yNTAsxa4JYC,Enugu,Enugu South,Enugu,en Enugu South,HHDEeZbVEaw,1,HhCbsjlKoWA
+279,yNTAsxa4JYC,Enugu,Ezeagu,Enugu,en Ezeagu,H3vPz5cLc8w,,H3vPz5cLc8w
+280,yNTAsxa4JYC,Enugu,Uzo-Uwani,Enugu,en Uzo Uwani,os29wbUTQz7,,os29wbUTQz7
+281,yNTAsxa4JYC,Enugu,Awgu,Enugu,en Awgu,j44sQg7jgxN,,j44sQg7jgxN
+282,yNTAsxa4JYC,Enugu,Oji-River,Enugu,en Oji River,xu2XtcwkKms,,xu2XtcwkKms
+283,yNTAsxa4JYC,Enugu,Nkanu East,Enugu,en Nkanu East,fEruEcd3780,,fEruEcd3780
+284,yNTAsxa4JYC,Enugu,Nkanu West,Enugu,en Nkanu West,PWOBEq85BOf,,PWOBEq85BOf
+285,rwV3sqg9IyH,"FCT, Abuja",Kwali,FCT,fc Kwali,sQbPVIKsxwT,,sQbPVIKsxwT
+286,rwV3sqg9IyH,"FCT, Abuja",Abuja Municipal Area Council,FCT,fc Abuja Municipal Area Council,uosU9sINAPe,,uosU9sINAPe
+287,rwV3sqg9IyH,"FCT, Abuja",Bwari,FCT,fc Bwari,JkmyrqDGshk,,JkmyrqDGshk
+288,rwV3sqg9IyH,"FCT, Abuja",Abaji,FCT,fc Abaji,nX918whVxYP,,nX918whVxYP
+289,rwV3sqg9IyH,"FCT, Abuja",Kuje,FCT,fc Kuje,qK6jo6jLIav,,qK6jo6jLIav
+290,rwV3sqg9IyH,"FCT, Abuja",Gwagwalada,FCT,fc Gwagwalada,V91ICEXLeks,,V91ICEXLeks
+291,XzSGf4ZxlR6,Gombe,Funakaye,Gombe,go Funakaye,ar43MQufI9v,,ar43MQufI9v
+292,XzSGf4ZxlR6,Gombe,Akko,Gombe,go Akko,hQDiS6TSZdz,,hQDiS6TSZdz
+293,XzSGf4ZxlR6,Gombe,Nafada,Gombe,go Nafada-Bajoga,fgDvaz58q64,,fgDvaz58q64
+294,XzSGf4ZxlR6,Gombe,Shomgom,Gombe,go Shongom,gArfGStpgDM,,gArfGStpgDM
+295,XzSGf4ZxlR6,Gombe,Balanga,Gombe,go Balanga,MMtwgHXDdXV,,MMtwgHXDdXV
+296,XzSGf4ZxlR6,Gombe,Kwami,Gombe,go Kwami,ipw9D3TRP8p,,ipw9D3TRP8p
+297,XzSGf4ZxlR6,Gombe,Kaltungo,Gombe,go Kaltungo,VFdjWHMxQJ7,,VFdjWHMxQJ7
+298,XzSGf4ZxlR6,Gombe,Yamaltu/Deba,Gombe,go Yamaltu-Deba,Dz65VTZfbUd,,Dz65VTZfbUd
+299,XzSGf4ZxlR6,Gombe,Dukku,Gombe,go Dukku,VQgRF8xzLJH,,VQgRF8xzLJH
+300,XzSGf4ZxlR6,Gombe,Billiri,Gombe,go Billiri,NeOiTtsL5sa,,NeOiTtsL5sa
+301,XzSGf4ZxlR6,Gombe,Gombe,Gombe,go Gombe,kbvQ8m0PGSU,,kbvQ8m0PGSU
+302,xod2zGl32QR,Imo,Oguta,Imo,im Oguta,fIJ193PGC3L,,fIJ193PGC3L
+303,xod2zGl32QR,Imo,Ideato South,Imo,im Ideato South,laM7jR9mtfj,,laM7jR9mtfj
+304,xod2zGl32QR,Imo,Ideato North,Imo,im Ideato North,CRvHqQVBlD6,,CRvHqQVBlD6
+305,xod2zGl32QR,Imo,Owerri west,Imo,im Owerri West,lx2r0T1GnaQ,,lx2r0T1GnaQ
+306,xod2zGl32QR,Imo,Owerri North,Imo,im Owerri North,xmRjV3Gx1H6,1,FjiNyXde6Ae
+307,xod2zGl32QR,Imo,Owerri-Municipal,Imo,im Owerri Municipal,mVuyipSx9aU,,mVuyipSx9aU
+308,xod2zGl32QR,Imo,Ikeduru,Imo,im Ikeduru,JVBsHZWT7pB,,JVBsHZWT7pB
+309,xod2zGl32QR,Imo,Oru West,Imo,im Oru West,GSZ1YWRPxPk,,GSZ1YWRPxPk
+310,xod2zGl32QR,Imo,Njaba,Imo,im Njaba,qNzCWtO8dMh,,qNzCWtO8dMh
+311,xod2zGl32QR,Imo,Nkwerre,Imo,im Nkwerre,iz3ehfkjBvm,,iz3ehfkjBvm
+312,xod2zGl32QR,Imo,Ahiazu-Mbaise,Imo,im Ahiazu Mbaise,EyHfmrBzsuk,,EyHfmrBzsuk
+313,xod2zGl32QR,Imo,Ohaji/Egbema,Imo,im Ohaji Egbema,k396XseVgOV,,k396XseVgOV
+314,xod2zGl32QR,Imo,Mbaitoli,Imo,im Mbaitoli,GEwjVcMYoao,,GEwjVcMYoao
+315,xod2zGl32QR,Imo,Okigwe,Imo,im Okigwe,Hl9Yfii9vCN,,Hl9Yfii9vCN
+316,xod2zGl32QR,Imo,Ngor-Okpala,Imo,im Ngor Okpala,D47MUIzTapM,1,vpCKW3gWNhV
+317,xod2zGl32QR,Imo,Ehime-Mbano,Imo,im Ehime Mbano,Ymb6umwsISK,,Ymb6umwsISK
+318,xod2zGl32QR,Imo,Nwangele,Imo,im Nwangele,eUmxQeRPiBM,,eUmxQeRPiBM
+319,xod2zGl32QR,Imo,Ihitte/Uboma,Imo,im Ihitte Uboma,V7JZ4QSddM4,,V7JZ4QSddM4
+320,xod2zGl32QR,Imo,Ezinihitte,Imo,im Ezinihitte,IxeWi5YG9lE,1,dzjXm8e1cNs
+321,xod2zGl32QR,Imo,Isu,Imo,im Isu,ZzZelaZBCYJ,,ZzZelaZBCYJ
+322,xod2zGl32QR,Imo,Isiala Mbano,Imo,im Isiala Mbano,W0Bnlz2CdRD,,W0Bnlz2CdRD
+323,xod2zGl32QR,Imo,Aboh-Mbaise,Imo,im Aboh Mbaise,QT7WqfzOT7X,,QT7WqfzOT7X
+324,xod2zGl32QR,Imo,Obowo,Imo,im Obowo,VTczXNlh45U,,VTczXNlh45U
+325,xod2zGl32QR,Imo,Orsu,Imo,im Orsu,jU19ZJn6TI8,,jU19ZJn6TI8
+326,xod2zGl32QR,Imo,Oru East,Imo,im Oru East,FHkaaPwowJN,,FHkaaPwowJN
+327,xod2zGl32QR,Imo,Orlu,Imo,im Orlu,MHK8b5HRHWg,,MHK8b5HRHWg
+328,F8ealt899Lx,Jigawa,Kaugama,Jigawa,jg Kaugama,aS2udX8k7bI,,aS2udX8k7bI
+329,F8ealt899Lx,Jigawa,Taura,Jigawa,jg Taura,aChfL7S45l8,,aChfL7S45l8
+330,F8ealt899Lx,Jigawa,Sule Tankarkar,Jigawa,jg Sule Tankarkar,CJ1qAtITXnn,,CJ1qAtITXnn
+331,F8ealt899Lx,Jigawa,Babura,Jigawa,jg Babura,J5F2X2qqq3L,,J5F2X2qqq3L
+332,F8ealt899Lx,Jigawa,Guri,Jigawa,jg Guri,RgWOMoZpSj1,,RgWOMoZpSj1
+333,F8ealt899Lx,Jigawa,Gumel,Jigawa,jg Gumel,ujfhm07rpYT,,ujfhm07rpYT
+334,F8ealt899Lx,Jigawa,Kiri Kasama,Jigawa,jg Kiri Kasama,OPQ08mpFkNS,,OPQ08mpFkNS
+335,F8ealt899Lx,Jigawa,Gwaram,Jigawa,jg Gwaram,WlY47shYnnr,,WlY47shYnnr
+336,F8ealt899Lx,Jigawa,Gwiwa,Jigawa,jg Gwiwa,wrEDuANgaVk,,wrEDuANgaVk
+337,F8ealt899Lx,Jigawa,Kazaure,Jigawa,jg Kazaure,WvxEjK4hxfo,,WvxEjK4hxfo
+338,F8ealt899Lx,Jigawa,Hadejia,Jigawa,jg Hadejia,vPxA5Pt1JGZ,,vPxA5Pt1JGZ
+339,F8ealt899Lx,Jigawa,Dutse,Jigawa,jg Dutse,obbfFvgh8Um,,obbfFvgh8Um
+340,F8ealt899Lx,Jigawa,Auyo,Jigawa,jg Auyo,T4bC8V6Pxvf,,T4bC8V6Pxvf
+341,F8ealt899Lx,Jigawa,Miga,Jigawa,jg Miga,eHuUs7BORtc,,eHuUs7BORtc
+342,F8ealt899Lx,Jigawa,Roni,Jigawa,jg Roni,m2vUPXG3sSF,,m2vUPXG3sSF
+343,F8ealt899Lx,Jigawa,Gagarawa,Jigawa,jg Gagarawa,JYp856h1BYV,,JYp856h1BYV
+344,F8ealt899Lx,Jigawa,Malam Madori,Jigawa,jg Malam Madori,kWn84cyfCtm,,kWn84cyfCtm
+345,F8ealt899Lx,Jigawa,Buji,Jigawa,jg Buji,SS3cAEgAw2T,,SS3cAEgAw2T
+346,F8ealt899Lx,Jigawa,Yankwashi,Jigawa,jg Yankwashi,cFeHqZjzf5w,,cFeHqZjzf5w
+347,F8ealt899Lx,Jigawa,Ringim,Jigawa,jg Ringim,f0TB3r61i5b,,f0TB3r61i5b
+348,F8ealt899Lx,Jigawa,Biriniwa,Jigawa,jg Biriniwa,yFfZIhVPEO6,,yFfZIhVPEO6
+349,F8ealt899Lx,Jigawa,Birnin Kudu,Jigawa,jg Birnin Kudu,ZpjKf61i2Uc,,ZpjKf61i2Uc
+350,F8ealt899Lx,Jigawa,Maigatari,Jigawa,jg Maigatari,FuEmzawu1KF,,FuEmzawu1KF
+351,F8ealt899Lx,Jigawa,Garki,Jigawa,jg Garki,xImwHFotapN,,xImwHFotapN
+352,F8ealt899Lx,Jigawa,kiyawa,Jigawa,jg Kiyawa,ahLDLd3w2Xt,,ahLDLd3w2Xt
+353,F8ealt899Lx,Jigawa,Jahun,Jigawa,jg Jahun,sW1EiA2DlI3,,sW1EiA2DlI3
+354,F8ealt899Lx,Jigawa,Kafin Hausa,Jigawa,jg Kafin Hausa,algIunF3eLD,,algIunF3eLD
+355,PSyoMabuxF4,Abia,Ohafia,Abia,ab Ohafia,pZTnyzppDlO,,pZTnyzppDlO
+356,PSyoMabuxF4,Abia,Osisioma Ngwa,Abia,ab Osisioma Ngwa,L1aZjDe1sH1,,L1aZjDe1sH1
+357,PSyoMabuxF4,Abia,Obi Ngwa,Abia,ab Obingwa,xQ0mrXizc76,,xQ0mrXizc76
+358,PSyoMabuxF4,Abia,Umu-Nneochi,Abia,ab Umu Nneochi,hJwaMaptWAC,,hJwaMaptWAC
+359,PSyoMabuxF4,Abia,Umuahia South,Abia,ab Umuahia South,sjaIPoRZPBo,,sjaIPoRZPBo
+360,PSyoMabuxF4,Abia,Aba North,Abia,ab Aba North,BY7bSKwPjPJ,,BY7bSKwPjPJ
+361,PSyoMabuxF4,Abia,Umuahia North,Abia,ab Umuahia North,Saab1FHVbPD,,Saab1FHVbPD
+362,PSyoMabuxF4,Abia,Arochukwu,Abia,ab Arochukwu,utjfWYGFWf9,,utjfWYGFWf9
+363,PSyoMabuxF4,Abia,Bende,Abia,ab Bende,hxL0g5v8Utk,,hxL0g5v8Utk
+364,PSyoMabuxF4,Abia,Ukwa East,Abia,ab Ukwa East,rUPLBHykOK5,,rUPLBHykOK5
+365,PSyoMabuxF4,Abia,Ugwunagbo,Abia,ab Ugwunagbo,WRdsg318pjK,,WRdsg318pjK
+366,PSyoMabuxF4,Abia,Ukwa West,Abia,ab Ukwa West,JReXS37mwcG,,JReXS37mwcG
+367,PSyoMabuxF4,Abia,Isiala-Ngwa North,Abia,ab Isiala-Ngwa North,GCY4ic15Vx9,,GCY4ic15Vx9
+368,PSyoMabuxF4,Abia,Isiala-Ngwa South,Abia,ab Isiala-Ngwa South,SQAfXNZsq0o,,SQAfXNZsq0o
+369,PSyoMabuxF4,Abia,Isuikwato,Abia,ab Isuikwuato,UcRhSWkBEBj,,UcRhSWkBEBj
+370,PSyoMabuxF4,Abia,Aba South,Abia,ab Aba South,sneW3AzybWl,,sneW3AzybWl
+371,PSyoMabuxF4,Abia,Ikwuano,Abia,ab Ikwuano,B313k9dIuCR,,B313k9dIuCR
+372,J1P31dMvu7x,Kano,Tarauni,Kano,kn Tarauni,bEYcwtSvhR6,,bEYcwtSvhR6
+373,J1P31dMvu7x,Kano,Takai,Kano,kn Takai,wOuof2XtCzo,,wOuof2XtCzo
+374,J1P31dMvu7x,Kano,Garum Mallam,Kano,kn Garum Mallam,ObXsOXMfFKl,,ObXsOXMfFKl
+375,J1P31dMvu7x,Kano,Ajingi,Kano,kn Ajingi,qScxHQJRXT2,,qScxHQJRXT2
+376,J1P31dMvu7x,Kano,Rimin Gado,Kano,kn Rimin Gado,gXzbTBd3j3Y,,gXzbTBd3j3Y
+377,J1P31dMvu7x,Kano,Garko,Kano,kn Garko,eszzmm9ElDQ,,eszzmm9ElDQ
+378,J1P31dMvu7x,Kano,Gaya,Kano,kn Gaya,ytb5bLhe4XQ,,ytb5bLhe4XQ
+379,J1P31dMvu7x,Kano,Tsanyawa,Kano,kn Tsanyawa,uzq1THfmxvH,,uzq1THfmxvH
+380,J1P31dMvu7x,Kano,Bagwai,Kano,kn Bagwai,LQ07jvCf7L7,,LQ07jvCf7L7
+381,J1P31dMvu7x,Kano,Gezawa,Kano,kn Gezawa,pK6V4j3qOzW,,pK6V4j3qOzW
+382,J1P31dMvu7x,Kano,Sumaila,Kano,kn Sumaila,PEMshgXYnEs,,PEMshgXYnEs
+383,J1P31dMvu7x,Kano,Gwale,Kano,kn Gwale,jdlsTHZtuOE,,jdlsTHZtuOE
+384,J1P31dMvu7x,Kano,Shanono,Kano,kn Shanono,M6afPJHQb72,,M6afPJHQb72
+385,J1P31dMvu7x,Kano,Rano,Kano,kn Rano,cH8gyiz4Kyy,,cH8gyiz4Kyy
+386,J1P31dMvu7x,Kano,Tofa,Kano,kn Tofa,hAZCYOuJZBb,,hAZCYOuJZBb
+387,J1P31dMvu7x,Kano,Gabasawa,Kano,kn Gabasawa,mHXT2rANtG6,,mHXT2rANtG6
+388,J1P31dMvu7x,Kano,Gwarzo,Kano,kn Gwarzo,M7JgWP2RFy2,,M7JgWP2RFy2
+389,J1P31dMvu7x,Kano,Ungogo,Kano,kn Ungogo,ULLI5OowYdm,,ULLI5OowYdm
+390,J1P31dMvu7x,Kano,Warawa,Kano,kn Warawa,DHXag0phdG0,,DHXag0phdG0
+391,J1P31dMvu7x,Kano,Bichi,Kano,kn Bichi,Ndb1V96smxI,,Ndb1V96smxI
+392,J1P31dMvu7x,Kano,Doguwa,Kano,kn Doguwa,bFp5n4wtPuS,,bFp5n4wtPuS
+393,J1P31dMvu7x,Kano,Dawakin Tofa,Kano,kn Dawakin Tofa,lxaYSoNWlnj,,lxaYSoNWlnj
+394,J1P31dMvu7x,Kano,Dawakin Kudu,Kano,kn Dawakin Kudu,QuSjorQMTIB,,QuSjorQMTIB
+395,J1P31dMvu7x,Kano,Dambatta,Kano,kn Dambatta,qJxw5bx87ef,,qJxw5bx87ef
+396,J1P31dMvu7x,Kano,Dala,Kano,kn Dala,i39m25bqb6I,,i39m25bqb6I
+397,J1P31dMvu7x,Kano,Bebeji,Kano,kn Bebeji,TRlSNplN5Jg,,TRlSNplN5Jg
+398,J1P31dMvu7x,Kano,Kabo,Kano,kn Kabo,rHIUe15ZV19,,rHIUe15ZV19
+399,J1P31dMvu7x,Kano,Wudil,Kano,kn Wudil,vDDwD4zbB1o,,vDDwD4zbB1o
+400,J1P31dMvu7x,Kano,Bunkure,Kano,kn Bunkure,e3D11bIhjMM,,e3D11bIhjMM
+401,J1P31dMvu7x,Kano,Tudun Wada,Kano,kn Tudun Wada,zsRdNJpmNeE,,zsRdNJpmNeE
+402,J1P31dMvu7x,Kano,Fagge,Kano,kn Fagge,WdewJdiYf0U,,WdewJdiYf0U
+403,J1P31dMvu7x,Kano,Rogo,Kano,kn Rogo,QH3Meqh4VJQ,,QH3Meqh4VJQ
+404,J1P31dMvu7x,Kano,Kibiya,Kano,kn Kibiya,jWZPRJUEiFJ,,jWZPRJUEiFJ
+405,J1P31dMvu7x,Kano,Kiru,Kano,kn Kiru,npR1mmZD3MR,,npR1mmZD3MR
+406,J1P31dMvu7x,Kano,Kura,Kano,kn Kura,IkjqwHIYoJZ,,IkjqwHIYoJZ
+407,J1P31dMvu7x,Kano,Madobi,Kano,kn Madobi,itgq4MoNDVI,,itgq4MoNDVI
+408,J1P31dMvu7x,Kano,Nasarawa,Kano,kn Nasarawa,u813QHCYeuq,,u813QHCYeuq
+409,J1P31dMvu7x,Kano,Albasu,Kano,kn Albasu,WPpXY9AvyHg,,WPpXY9AvyHg
+410,J1P31dMvu7x,Kano,Makoda,Kano,kn Makoda,RMEbH3T3o0l,,RMEbH3T3o0l
+411,J1P31dMvu7x,Kano,Minjibir,Kano,kn Minjibir,o1OVapsXXrH,,o1OVapsXXrH
+412,J1P31dMvu7x,Kano,Karaye,Kano,kn Karaye,PHt2f7SlMsk,,PHt2f7SlMsk
+413,J1P31dMvu7x,Kano,Kunchi,Kano,kn Kunchi,I2rGvpGOy25,,I2rGvpGOy25
+414,J1P31dMvu7x,Kano,Kano Municipal,Kano,kn Kano Municipal,sD1YPwvBkpv,,sD1YPwvBkpv
+415,J1P31dMvu7x,Kano,Kumbotso,Kano,kn Kumbotso,pdPUuTMC9Y9,,pdPUuTMC9Y9
+416,EuopELCVYdk,Katsina,Jibia,Katsina,kt Jibia,tiBbmPwovlH,,tiBbmPwovlH
+417,EuopELCVYdk,Katsina,Ingawa,Katsina,kt Ingawa,clxrlIljUkQ,,clxrlIljUkQ
+418,EuopELCVYdk,Katsina,kaita,Katsina,kt kaita,Mq9Y1QEWTTf,,Mq9Y1QEWTTf
+419,EuopELCVYdk,Katsina,Kafur,Katsina,kt Kafur,UbrsWhXj70k,,UbrsWhXj70k
+420,EuopELCVYdk,Katsina,Kankara,Katsina,kt Kankara,Oc78WrIzv4O,,Oc78WrIzv4O
+421,EuopELCVYdk,Katsina,Kankia,Katsina,kt Kankia,WeHFx8CmMqV,,WeHFx8CmMqV
+422,EuopELCVYdk,Katsina,Katsina,Katsina,kt Katsina,XDgdj9Pdsiq,,XDgdj9Pdsiq
+423,EuopELCVYdk,Katsina,Rimi,Katsina,kt Rimi,KX6WxCBO8sd,,KX6WxCBO8sd
+424,WXvWYq7i2Az,Zamfara,Tsafe,Zamfara,za Tsafe,t07Wu4dK2Se,,t07Wu4dK2Se
+425,EuopELCVYdk,Katsina,Sabuwa,Katsina,kt Sabuwa,P5LcMSudkwP,,P5LcMSudkwP
+426,MLdHgMQUM3y,Oyo,Lagelu,Oyo,oy Lagelu,sjFUh2vg03X,,sjFUh2vg03X
+427,EuopELCVYdk,Katsina,Faskari,Katsina,kt Faskari,AUZAz1oqQ7F,,AUZAz1oqQ7F
+428,EuopELCVYdk,Katsina,Safana,Katsina,kt Safana,smhArjDWLuv,,smhArjDWLuv
+429,EuopELCVYdk,Katsina,Mai?ó?Ç?Öadua,Katsina,kt Mai'Adua,jHgdqXImWVH,,jHgdqXImWVH
+430,EuopELCVYdk,Katsina,Mani,Katsina,kt Mani,AmRHP7t5r7s,,AmRHP7t5r7s
+431,EuopELCVYdk,Katsina,Musawa,Katsina,kt Musawa,A8BaTswwST4,,A8BaTswwST4
+432,EuopELCVYdk,Katsina,Sandamu,Katsina,kt Sandamu,F8RVAawTj3q,,F8RVAawTj3q
+433,EuopELCVYdk,Katsina,Batagarawa,Katsina,kt Batagarawa,dURSfL69IMw,,dURSfL69IMw
+434,EuopELCVYdk,Katsina,Bindawa,Katsina,kt Bindawa,dutkWvnYS9i,,dutkWvnYS9i
+435,EuopELCVYdk,Katsina,Batsari,Katsina,kt Batsari,duzPZ6Bukjf,,duzPZ6Bukjf
+436,EuopELCVYdk,Katsina,Dutsin-Ma,Katsina,kt Dutsin-Ma,PwTVkZPuTDA,,PwTVkZPuTDA
+437,EuopELCVYdk,Katsina,Daura,Katsina,kt Daura,QGI0cnzjZIP,,QGI0cnzjZIP
+438,MLdHgMQUM3y,Oyo,Ibadan North East,Oyo,oy Ibadan North-East,dFj2ILZVfUi,,dFj2ILZVfUi
+439,EuopELCVYdk,Katsina,Kusada,Katsina,kt Kusada,ACvgKttmG58,,ACvgKttmG58
+440,EuopELCVYdk,Katsina,Bakori,Katsina,kt Bakori,E7bvNe8kEF0,,E7bvNe8kEF0
+441,EuopELCVYdk,Katsina,Zango,Katsina,kt Zango,cSqqluzYmPt,,cSqqluzYmPt
+442,EuopELCVYdk,Katsina,Danja,Katsina,kt Danja,GbrZHS1OjjD,,GbrZHS1OjjD
+443,EuopELCVYdk,Katsina,Funtua,Katsina,kt Funtua,uYJi1Sc1OlZ,,uYJi1Sc1OlZ
+444,EuopELCVYdk,Katsina,Malumfashi,Katsina,kt Malumfashi,b3NvwiCilSH,,b3NvwiCilSH
+445,EuopELCVYdk,Katsina,Dandume,Katsina,kt Dandume,O3zSmYC7dRp,,O3zSmYC7dRp
+446,EuopELCVYdk,Katsina,Dan Musa,Katsina,kt Dan Musa,H3TXFP8cHtr,,H3TXFP8cHtr
+447,EuopELCVYdk,Katsina,Baure,Katsina,kt Baure,eDBqlezxH0a,,eDBqlezxH0a
+448,EuopELCVYdk,Katsina,Matazu,Katsina,kt Matazu,gp5qHsPu52e,,gp5qHsPu52e
+449,EuopELCVYdk,Katsina,Mashi,Katsina,kt Mashi,CxUtCqUjMHr,,CxUtCqUjMHr
+450,EuopELCVYdk,Katsina,Dutsi,Katsina,kt Dutsi,oZK7wQ8AS05,,oZK7wQ8AS05
+451,SSqrxMy7RHB,Rivers,Tai,Rivers,ri Tai ,tFy20OB0Wyw,,tFy20OB0Wyw
+452,EuopELCVYdk,Katsina,Charanchi,Katsina,kt Charanchi,aoi69JaAW3P,,aoi69JaAW3P
+453,EuopELCVYdk,Katsina,Kurfi,Katsina,kt Kurfi,Lge2fmokEKv,,Lge2fmokEKv
+454,LaLcSZWEEMv,Kebbi,Argungu,Kebbi,ke Argungu,bhS2NNwWzkb,,bhS2NNwWzkb
+455,LaLcSZWEEMv,Kebbi,Suru,Kebbi,ke Suru,NpxFn7xBbot,,NpxFn7xBbot
+456,LaLcSZWEEMv,Kebbi,Koko/Besse,Kebbi,ke Koko Besse,XyOr2mBaTzz,,XyOr2mBaTzz
+457,LaLcSZWEEMv,Kebbi,Sakaba,Kebbi,ke Sakaba,udN1v10a2tK,,udN1v10a2tK
+458,LaLcSZWEEMv,Kebbi,Augie,Kebbi,ke Augie,HQHZPaPqaMC,,HQHZPaPqaMC
+459,LaLcSZWEEMv,Kebbi,Shanga,Kebbi,ke Shanga,oy7nF3sX05H,,oy7nF3sX05H
+460,LaLcSZWEEMv,Kebbi,Gwandu,Kebbi,ke Gwandu,Jp7qmiWQpke,,Jp7qmiWQpke
+461,X1YSuZzQAP8,Lagos,Alimosho,Lagos,la Alimosho,AUIjfqeZEFH,,AUIjfqeZEFH
+462,LaLcSZWEEMv,Kebbi,Wasagu/Danko,Kebbi,ke Wasagu/Danko,jcUO5qAgLQd,,jcUO5qAgLQd
+463,LaLcSZWEEMv,Kebbi,Bagudo,Kebbi,ke Bagudo,Zelc7Ij8pQq,,Zelc7Ij8pQq
+464,LaLcSZWEEMv,Kebbi,Jega,Kebbi,ke Jega,g0DDonzdUA9,,g0DDonzdUA9
+465,LaLcSZWEEMv,Kebbi,Fakai,Kebbi,ke Fakai,PK80KRcgF8c,,PK80KRcgF8c
+466,LaLcSZWEEMv,Kebbi,Dandi,Kebbi,ke Dandi,nnmWMcj4mCA,,nnmWMcj4mCA
+467,LaLcSZWEEMv,Kebbi,Ngaski,Kebbi,ke Ngaski,GoyPAqsi8hE,,GoyPAqsi8hE
+468,LaLcSZWEEMv,Kebbi,Kalgo,Kebbi,ke Kalgo,A6bbzR080Zg,,A6bbzR080Zg
+469,LaLcSZWEEMv,Kebbi,Arewa-Dandi,Kebbi,ke Arewa-Dandi,cyhHIcJZjHi,,cyhHIcJZjHi
+470,LaLcSZWEEMv,Kebbi,Birnin Kebbi,Kebbi,ke Birnin Kebbi,yY15GJ9MSfL,,yY15GJ9MSfL
+471,LaLcSZWEEMv,Kebbi,Zuru,Kebbi,ke Zuru ,O4lKV4nabSL,,O4lKV4nabSL
+472,LaLcSZWEEMv,Kebbi,Bunza,Kebbi,ke Bunza,FNMrAWtZWQ4,,FNMrAWtZWQ4
+473,LaLcSZWEEMv,Kebbi,Yauri,Kebbi,ke Yauri,R81UH1R1lTl,,R81UH1R1lTl
+474,LaLcSZWEEMv,Kebbi,Maiyama,Kebbi,ke Maiyama,dHqBHka5u3Y,,dHqBHka5u3Y
+475,LaLcSZWEEMv,Kebbi,Aleiro,Kebbi,ke Aleiro,BZ0DpSTBjIr,,BZ0DpSTBjIr
+476,G22rHB3F3Ew,Kogi,Idah,Kogi,ko Idah,xwBUYtnRhqv,,xwBUYtnRhqv
+477,G22rHB3F3Ew,Kogi,Ankpa,Kogi,ko Ankpa,logPshzwZGg,,logPshzwZGg
+478,G22rHB3F3Ew,Kogi,Ijumu,Kogi,ko Ijumu,JdodeJT1030,,JdodeJT1030
+479,X1YSuZzQAP8,Lagos,Ikeja,Lagos,la Ikeja,u8skYaLV6QF,,u8skYaLV6QF
+480,G22rHB3F3Ew,Kogi,Bassa,Kogi,ko Bassa,merMznnVwIA,,merMznnVwIA
+481,G22rHB3F3Ew,Kogi,Kabba/Bunu,Kogi,ko Kabba Bunu,LRXpCvMxrYU,,LRXpCvMxrYU
+482,G22rHB3F3Ew,Kogi,Dekina,Kogi,ko Dekina,OQ5fZjjCoDR,,OQ5fZjjCoDR
+483,G22rHB3F3Ew,Kogi,Igalamela-Odolu,Kogi,ko Igalamela-Odolu,spxEj5Dlg70,,spxEj5Dlg70
+484,G22rHB3F3Ew,Kogi,Lokoja,Kogi,ko Lokoja,D4zacvYxq0b,,D4zacvYxq0b
+485,G22rHB3F3Ew,Kogi,Ibaji,Kogi,ko Ibaji,cNr80ZanaDp,,cNr80ZanaDp
+486,G22rHB3F3Ew,Kogi,Kogi,Kogi,ko Kogi,XKv4TrYPA47,,XKv4TrYPA47
+487,X1YSuZzQAP8,Lagos,Kosofe,Lagos,la Kosofe,fQ6LC2LWI8S,,fQ6LC2LWI8S
+488,G22rHB3F3Ew,Kogi,Ajaokuta,Kogi,ko Ajaokuta,xJy5KJJn8gz,,xJy5KJJn8gz
+489,G22rHB3F3Ew,Kogi,Yagba West,Kogi,ko Yagba West,BvUDTXGnj8s,,BvUDTXGnj8s
+490,G22rHB3F3Ew,Kogi,Yagba East,Kogi,ko Yagba East,wYSTfYinFO7,,wYSTfYinFO7
+491,G22rHB3F3Ew,Kogi,Mopa-Muro,Kogi,ko Mopa-Muro,CdZWAGT8Qes,,CdZWAGT8Qes
+492,G22rHB3F3Ew,Kogi,Ogori/Magongo,Kogi,ko Ogori-Magongo,cMvadwiBado,,cMvadwiBado
+493,G22rHB3F3Ew,Kogi,Ofu,Kogi,ko Ofu,MvoR4rmtllj,,MvoR4rmtllj
+494,G22rHB3F3Ew,Kogi,Okene,Kogi,ko Okene,WKSMZvuda1v,,WKSMZvuda1v
+495,G22rHB3F3Ew,Kogi,Olamabolo,Kogi,ko Olamaboro,Re4VU7MrOUM,,Re4VU7MrOUM
+496,G22rHB3F3Ew,Kogi,Okehi,Kogi,ko Okehi,ROj1N52eCYd,,ROj1N52eCYd
+497,G22rHB3F3Ew,Kogi,Omala,Kogi,ko Omala,deDUnu6PVkl,,deDUnu6PVkl
+498,G22rHB3F3Ew,Kogi,Adavi,Kogi,ko Adavi,WK5gDvZgOD6,,WK5gDvZgOD6
+499,DB9jvKNvPXU,Kwara,Irepodun,Kwara,kw Irepodun,BxzOTRISQFy,,BxzOTRISQFy
+500,DB9jvKNvPXU,Kwara,Ilorin west,Kwara,kw Ilorin West,IhUKbniSTiQ,,IhUKbniSTiQ
+501,DB9jvKNvPXU,Kwara,Oke-Ero,Kwara,kw Oke-Ero,P4AJqqADkFr,,P4AJqqADkFr
+502,DB9jvKNvPXU,Kwara,Pategi,Kwara,kw Patigi ,DZdOPZ0KKX8,,DZdOPZ0KKX8
+503,DB9jvKNvPXU,Kwara,Offa,Kwara,kw Offa,syjevgeVeYf,,syjevgeVeYf
+504,DB9jvKNvPXU,Kwara,Ekiti,Kwara,kw Ekiti,sEvO47HfVfV,,sEvO47HfVfV
+505,DB9jvKNvPXU,Kwara,Kaiama,Kwara,kw Kaiama,HOgqXpFfAgJ,,HOgqXpFfAgJ
+506,DB9jvKNvPXU,Kwara,Ifelodun,Kwara,kw Ifelodun,V9SCtrA3Uh5,,V9SCtrA3Uh5
+507,X1YSuZzQAP8,Lagos,Amuwo-Odofin,Lagos,la Amuwo-Odofin,HOJVVYgS5vV,,HOJVVYgS5vV
+508,DB9jvKNvPXU,Kwara,Edu,Kwara,kw Edu,VrDETBStvFP,,VrDETBStvFP
+509,DB9jvKNvPXU,Kwara,Asa,Kwara,kw Asa,E1WP6qD8CZm,,E1WP6qD8CZm
+510,DB9jvKNvPXU,Kwara,Isin,Kwara,kw Isin,JrlQdGeVnSa,,JrlQdGeVnSa
+511,DB9jvKNvPXU,Kwara,Baruten,Kwara,kw Baruten,AYikj7W0R0w,,AYikj7W0R0w
+512,DB9jvKNvPXU,Kwara,Moro,Kwara,kw Moro,P9k9CPeUisR,,P9k9CPeUisR
+513,DB9jvKNvPXU,Kwara,Ilorin East,Kwara,kw Ilorin East,FxENiNIpifl,,FxENiNIpifl
+514,DB9jvKNvPXU,Kwara,Oyun,Kwara,kw Oyun,FT85lF1kbUI,,FT85lF1kbUI
+515,DB9jvKNvPXU,Kwara,Ilorin South,Kwara,kw Ilorin South,L589JlvsLup,,L589JlvsLup
+516,X1YSuZzQAP8,Lagos,Lagos Mainland,Lagos,la Lagos Mainland,ghorQdinizS,,ghorQdinizS
+517,X1YSuZzQAP8,Lagos,Lagos Island,Lagos,la Lagos Island,ZpDPMnrCgAN,,ZpDPMnrCgAN
+518,X1YSuZzQAP8,Lagos,Eti-Osa,Lagos,la Eti-Osa,VHITI10xoZc,,VHITI10xoZc
+519,X1YSuZzQAP8,Lagos,Apapa,Lagos,la Apapa,dAeoz9ttxAz,,dAeoz9ttxAz
+520,X1YSuZzQAP8,Lagos,Ojo,Lagos,la Ojo,b1Z9Yv3VcVr,,b1Z9Yv3VcVr
+521,X1YSuZzQAP8,Lagos,Mushin,Lagos,la Mushin,DvkBcDk4DRQ,,DvkBcDk4DRQ
+522,X1YSuZzQAP8,Lagos,Ibeju/Lekki,Lagos,la Ibeju-Lekki,ISi4PDO97U5,,ISi4PDO97U5
+523,X1YSuZzQAP8,Lagos,Oshodi-Isolo,Lagos,la Oshodi-Isolo,lJkmYJB9kHr,,lJkmYJB9kHr
+524,X1YSuZzQAP8,Lagos,Agege,Lagos,la Agege,OycwDoCnlAB,,OycwDoCnlAB
+525,X1YSuZzQAP8,Lagos,Ikorodu,Lagos,la Ikorodu,HjGwmHbL0Y4,,HjGwmHbL0Y4
+526,X1YSuZzQAP8,Lagos,Ifako-Ijaye,Lagos,la Ifako-Ijaiye,sSg7pUov51f,,sSg7pUov51f
+527,X1YSuZzQAP8,Lagos,Epe,Lagos,la Epe,uzCT1lOZhL5,,uzCT1lOZhL5
+528,X1YSuZzQAP8,Lagos,Surulere,Lagos,la Surulere,wHyFh9VVK2m,,wHyFh9VVK2m
+529,X1YSuZzQAP8,Lagos,Shomolu,Lagos,la Shomolu,MxHHoeHUJ4J,,MxHHoeHUJ4J
+530,X1YSuZzQAP8,Lagos,Ajeromi-Ifelodun,Lagos,la Ajeromi-Ifelodun,tkA4PRXk0W7,,tkA4PRXk0W7
+531,JPR7FWvI4Jq,Ogun,Odogbolu,Ogun,og Odogbolu,UHsCCQQ8HOl,,UHsCCQQ8HOl
+532,ek80rI6DFKt,Nasarawa,Nasarawa Egon,Nasarawa,na Nasarawa Eggon,MZ2jaWNX1Oq,,MZ2jaWNX1Oq
+533,ek80rI6DFKt,Nasarawa,Nasarawa,Nasarawa,na Nasarawa,PM4sFTtfJQa,,PM4sFTtfJQa
+534,ek80rI6DFKt,Nasarawa,Keana,Nasarawa,na Keana,IbcfQbdZNdC,,IbcfQbdZNdC
+535,ek80rI6DFKt,Nasarawa,Kokona,Nasarawa,na Kokona,JBqBHvcmICE,,JBqBHvcmICE
+536,ek80rI6DFKt,Nasarawa,Toto,Nasarawa,na Toto,rQBtRTixEgZ,,rQBtRTixEgZ
+537,ek80rI6DFKt,Nasarawa,Doma,Nasarawa,na Doma,tGdZvabgJw6,,tGdZvabgJw6
+538,ek80rI6DFKt,Nasarawa,Karu,Nasarawa,na Karu,EusV10zkN3t,,EusV10zkN3t
+539,ek80rI6DFKt,Nasarawa,Wamba,Nasarawa,na Wamba,ldTia6dCApK,,ldTia6dCApK
+540,ek80rI6DFKt,Nasarawa,Obi,Nasarawa,na Obi,ljMQwl1DOCb,,ljMQwl1DOCb
+541,ek80rI6DFKt,Nasarawa,Akwanga,Nasarawa,na Akwanga,tKAh5zuMYhT,,tKAh5zuMYhT
+542,ek80rI6DFKt,Nasarawa,Awe,Nasarawa,na Awe,K17UuwVu7Jf,,K17UuwVu7Jf
+543,ek80rI6DFKt,Nasarawa,Keffi,Nasarawa,na Keffi,gZ8SPQ2CKQG,,gZ8SPQ2CKQG
+544,ek80rI6DFKt,Nasarawa,Lafia,Nasarawa,na Lafia,TMbbzVpDDad,,TMbbzVpDDad
+545,mWutl8clHfY,Niger,Kontagora,Niger,ni Kontagora ,J3K9h8I4IBV,,J3K9h8I4IBV
+546,mWutl8clHfY,Niger,Gurara,Niger,ni Gurara,nuDn0S9i6sk,,nuDn0S9i6sk
+547,mWutl8clHfY,Niger,Tafa,Niger,ni Tafa,WJ7Ba8U4Yoq,,WJ7Ba8U4Yoq
+548,mWutl8clHfY,Niger,Suleja,Niger,ni Suleja,M7plide67qX,,M7plide67qX
+549,mWutl8clHfY,Niger,Bida,Niger,ni Bida,bT2GvywtrWr,,bT2GvywtrWr
+550,JPR7FWvI4Jq,Ogun,Abeokuta south,Ogun,og Abeokuta South,DGsvApy6NF9,,DGsvApy6NF9
+551,mWutl8clHfY,Niger,Mokwa,Niger,ni Mokwa,NhVur1uOseT,,NhVur1uOseT
+552,mWutl8clHfY,Niger,Magama,Niger,ni Magama,kuQXJAjDaCJ,,kuQXJAjDaCJ
+553,mWutl8clHfY,Niger,Katcha,Niger,ni Katcha,UpkhGdjtFUs,,UpkhGdjtFUs
+554,mWutl8clHfY,Niger,Muya,Niger,ni Muya,HTynaak9XDD,,HTynaak9XDD
+555,mWutl8clHfY,Niger,Agwara,Niger,ni Agwara,Hv2MoShsZw0,,Hv2MoShsZw0
+556,mWutl8clHfY,Niger,Edati,Niger,ni Edati,UznsLpQC71p,,UznsLpQC71p
+557,mWutl8clHfY,Niger,Paikoro,Niger,ni Paikoro,Fq5ztsHKN20,,Fq5ztsHKN20
+558,mWutl8clHfY,Niger,Gbako,Niger,ni Gbako,JBG1Q6nxI90,,JBG1Q6nxI90
+559,mWutl8clHfY,Niger,Agaie,Niger,ni Agaie,lPbWOmkCL2b,,lPbWOmkCL2b
+560,mWutl8clHfY,Niger,Shiroro,Niger,ni Shiroro,c4BzVjGvVi8,,c4BzVjGvVi8
+561,mWutl8clHfY,Niger,Rijau,Niger,ni Rijau,SbFrewIebN4,,SbFrewIebN4
+562,mWutl8clHfY,Niger,Bosso,Niger,ni Bosso,rWxhYYc4CUd,,rWxhYYc4CUd
+563,mWutl8clHfY,Niger,Wushishi,Niger,ni Wushishi,xqcqxtydENu,,xqcqxtydENu
+564,mWutl8clHfY,Niger,Borgu,Niger,ni Borgu,n1p57xvZS27,,n1p57xvZS27
+565,mWutl8clHfY,Niger,Chanchaga,Niger,ni Chanchaga,zDW6C2cJ9zt,,zDW6C2cJ9zt
+566,JPR7FWvI4Jq,Ogun,Remo North,Ogun,og Remo North,xvaHIN4Xroj,,xvaHIN4Xroj
+567,JPR7FWvI4Jq,Ogun,Egbado South,Ogun,og Yewa South,ewh51nY512W,,ewh51nY512W
+568,mWutl8clHfY,Niger,Mariga,Niger,ni Mariga,KeCUS5x3EgL,,KeCUS5x3EgL
+569,mWutl8clHfY,Niger,Rafi,Niger,ni Rafi,GMnfyPIKHxo,,GMnfyPIKHxo
+570,mWutl8clHfY,Niger,Lavun,Niger,ni Lavun,idG1XlGCMTq,,idG1XlGCMTq
+571,mWutl8clHfY,Niger,Lapai,Niger,ni Lapai,JP7S5oKBlf2,,JP7S5oKBlf2
+572,mWutl8clHfY,Niger,Mashegu,Niger,ni Mashegu,YRqSIEu2EBe,,YRqSIEu2EBe
+573,JPR7FWvI4Jq,Ogun,Ewekoro,Ogun,og Ewekoro,D19ydhlaHnt,,D19ydhlaHnt
+574,JPR7FWvI4Jq,Ogun,Abeokuta north,Ogun,og Abeokuta North,ac13I392HZi,,ac13I392HZi
+575,JPR7FWvI4Jq,Ogun,Odeda,Ogun,og Odeda,NWkcNnhkkZr,,NWkcNnhkkZr
+576,JPR7FWvI4Jq,Ogun,Ado-Odo/Ota,Ogun,og Ado-Odo Ota,ZF2mGWrqp1t,,ZF2mGWrqp1t
+577,JPR7FWvI4Jq,Ogun,Ogun waterside,Ogun,og Ogun Waterside,sXqBQgQKqQj,,sXqBQgQKqQj
+578,JPR7FWvI4Jq,Ogun,Obafemi-Owode,Ogun,og Obafemi-Owode,Li453nnViez,,Li453nnViez
+579,JPR7FWvI4Jq,Ogun,Ipokia,Ogun,og Ipokia,D6rivmJFt33,,D6rivmJFt33
+580,JPR7FWvI4Jq,Ogun,Shagamu,Ogun,og Sagamu,cx0xFi6L7Fp,,cx0xFi6L7Fp
+581,JPR7FWvI4Jq,Ogun,Imeko-Afon,Ogun,og Imeko-Afon,mvsGm4vAS0k,,mvsGm4vAS0k
+582,JPR7FWvI4Jq,Ogun,Ijebu North East,Ogun,og Ijebu North-East,jUV75YrmoXh,,jUV75YrmoXh
+583,JPR7FWvI4Jq,Ogun,Ijebu ode,Ogun,og Ijebu Ode,pYomDDNQ6hO,,pYomDDNQ6hO
+584,JPR7FWvI4Jq,Ogun,Ijebu North,Ogun,og Ijebu North,MFGZuaAykM3,,MFGZuaAykM3
+585,JPR7FWvI4Jq,Ogun,Ijebu East,Ogun,og Ijebu East,vDdqmCWm4Ca,,vDdqmCWm4Ca
+586,JPR7FWvI4Jq,Ogun,Ifo,Ogun,og Ifo,Ln5bTDtGDif,,Ln5bTDtGDif
+587,H7zZFfHCS3p,Ondo,Owo,Ondo,on Owo,yQa2xS9x96u,,yQa2xS9x96u
+588,H7zZFfHCS3p,Ondo,Irele,Ondo,on Irele,AZsdgJCaQWl,,AZsdgJCaQWl
+589,H7zZFfHCS3p,Ondo,Ondo west,Ondo,on Ondo West,GAGxDMx8uvm,,GAGxDMx8uvm
+590,H7zZFfHCS3p,Ondo,Okitipupa,Ondo,on Okitipupa,cealFXAKL2I,,cealFXAKL2I
+591,H7zZFfHCS3p,Ondo,Odigbo,Ondo,on Odigbo,dZRlykTqZhw,,dZRlykTqZhw
+592,H7zZFfHCS3p,Ondo,Ile-Oluji-Okeigbo,Ondo,on Ile Oluji Okeigbo,O65wXRg0Ic3,,O65wXRg0Ic3
+593,eGalRf62pxe,Osun,Odo-Otin,Osun,os Odo-Otin,GjyQSlHTYcS,,GjyQSlHTYcS
+594,H7zZFfHCS3p,Ondo,Ilaje,Ondo,on Ilaje,nxPuG6XnkxA,,nxPuG6XnkxA
+595,H7zZFfHCS3p,Ondo,Ifedore,Ondo,on Ifedore,Vx6DDE2P1e8,,Vx6DDE2P1e8
+596,H7zZFfHCS3p,Ondo,Akoko North West,Ondo,on Akoko North West,a1YObf4CR93,,a1YObf4CR93
+597,H7zZFfHCS3p,Ondo,Idanre,Ondo,on Idanre,InBkYWArQFT,,InBkYWArQFT
+598,H7zZFfHCS3p,Ondo,Akoko South East,Ondo,on Akoko South East,SiZyocWf5kz,,SiZyocWf5kz
+599,H7zZFfHCS3p,Ondo,Akure North,Ondo,on Akure North,oV6tlXANpkd,,oV6tlXANpkd
+600,H7zZFfHCS3p,Ondo,Akoko North East,Ondo,on Akoko North East,PJ710HPntzX,,PJ710HPntzX
+601,H7zZFfHCS3p,Ondo,Ose,Ondo,on Ose,WLQLVZAd77i,,WLQLVZAd77i
+602,H7zZFfHCS3p,Ondo,Ondo East,Ondo,on Ondo East,xvPzCr7ZYEE,,xvPzCr7ZYEE
+603,H7zZFfHCS3p,Ondo,Akure South,Ondo,on Akure South,FpADQG6JcC5,,FpADQG6JcC5
+604,H7zZFfHCS3p,Ondo,Ese-Odo,Ondo,on Ese-Odo,GeeOYDsTZJU,,GeeOYDsTZJU
+605,H7zZFfHCS3p,Ondo,Akoko South West,Ondo,on Akoko South West,LM0SzUjIbAE,,LM0SzUjIbAE
+606,eGalRf62pxe,Osun,Obokun,Osun,os Obokun,dbhjolBPkSA,,dbhjolBPkSA
+607,eGalRf62pxe,Osun,Isokan,Osun,os Isokan,rhg7o351Ogx,,rhg7o351Ogx
+608,eGalRf62pxe,Osun,Irepodun,Osun,os Irepodun,Xzs7E1b7S5U,,Xzs7E1b7S5U
+609,eGalRf62pxe,Osun,Ilesha West,Osun,os Ilesha West,K3QRzs0XJAw,,K3QRzs0XJAw
+610,eGalRf62pxe,Osun,Ola-Oluwa,Osun,os Ola-Oluwa,c9h9bKztIqJ,,c9h9bKztIqJ
+611,eGalRf62pxe,Osun,Atakunmosa West,Osun,os Atakunmosa West,DWAW5pcNEL2,,DWAW5pcNEL2
+612,eGalRf62pxe,Osun,Oriade,Osun,os Oriade,CNt1ZK0RFeB,,CNt1ZK0RFeB
+613,eGalRf62pxe,Osun,Olorunda,Osun,os Olorunda,kabZQyVo8MM,,kabZQyVo8MM
+614,MLdHgMQUM3y,Oyo,Ogo Oluwa,Oyo,oy Ogo Oluwa,yNLdrMwLReu,,yNLdrMwLReu
+615,eGalRf62pxe,Osun,Orolu,Osun,os Orolu,xPVXbnfePYE,,xPVXbnfePYE
+616,eGalRf62pxe,Osun,Atakunmosa East,Osun,os Atakunmosa East,suKyhw89Qaq,,suKyhw89Qaq
+617,eGalRf62pxe,Osun,Ilesha East,Osun,os Ilesha East,dxMNL5PwvQa,,dxMNL5PwvQa
+618,eGalRf62pxe,Osun,Ila,Osun,os Ila,k9ilIScUQLb,,k9ilIScUQLb
+619,eGalRf62pxe,Osun,Iwo,Osun,os Iwo,VWzOuFbOVsE,,VWzOuFbOVsE
+620,eGalRf62pxe,Osun,Osogbo,Osun,os Osogbo,wLldH8OpVNF,,wLldH8OpVNF
+621,eGalRf62pxe,Osun,Ede North,Osun,os Ede North,h5AxqPwPdT3,,h5AxqPwPdT3
+622,MLdHgMQUM3y,Oyo,Ona-Ara,Oyo,oy Ona Ara,SMv1QuqswmC,,SMv1QuqswmC
+623,eGalRf62pxe,Osun,Ejigbo,Osun,os Ejigbo,dzhjTRHGqu0,,dzhjTRHGqu0
+624,eGalRf62pxe,Osun,Ife East,Osun,os Ife East,Wf7A67DZQDR,,Wf7A67DZQDR
+625,eGalRf62pxe,Osun,Boluwaduro,Osun,os Boluwaduro,ONCf0MkPt7j,,ONCf0MkPt7j
+626,eGalRf62pxe,Osun,Ife North,Osun,os Ife North,OqZ11xWhJlB,,OqZ11xWhJlB
+627,eGalRf62pxe,Osun,Boripe,Osun,os Boripe,k3vaaxirnVU,,k3vaaxirnVU
+628,eGalRf62pxe,Osun,Ifelodun,Osun,os Ifelodun,llqmYXa4TEq,,llqmYXa4TEq
+629,eGalRf62pxe,Osun,Ede South,Osun,os Ede South,PWfDHBvn1hw,,PWfDHBvn1hw
+630,eGalRf62pxe,Osun,Aiyedire,Osun,os Aiyedire,ndLdNK4zUD7,,ndLdNK4zUD7
+631,eGalRf62pxe,Osun,Egbedore,Osun,os Egbedore,cpcIeES6ouI,,cpcIeES6ouI
+632,eGalRf62pxe,Osun,Aiyedade,Osun,os Aiyedade,tNxqnAq8Xc0,,tNxqnAq8Xc0
+633,eGalRf62pxe,Osun,Ifedayo,Osun,os Ifedayo,CcjiElAynqW,,CcjiElAynqW
+634,eGalRf62pxe,Osun,Ife Central,Osun,os Ife Central,tr5rm0vaxGG,,tr5rm0vaxGG
+635,eGalRf62pxe,Osun,Ife South,Osun,os Ife South,Am4PwcNA5tQ,,Am4PwcNA5tQ
+636,MLdHgMQUM3y,Oyo,Orelope,Oyo,oy Orelope,WZhoAUn8Opk,,WZhoAUn8Opk
+637,MLdHgMQUM3y,Oyo,Ori Ire,Oyo,oy Ori Ire,oJiN1pog19z,,oJiN1pog19z
+638,MLdHgMQUM3y,Oyo,Atiba,Oyo,oy Atiba,vmUxBIASp0I,,vmUxBIASp0I
+639,MLdHgMQUM3y,Oyo,Ibarapa Central,Oyo,oy Ibarapa Central,AZ20YeJChyC,,AZ20YeJChyC
+640,MLdHgMQUM3y,Oyo,Oluyole,Oyo,oy Oluyole,rWgqvOVxhQN,,rWgqvOVxhQN
+641,MLdHgMQUM3y,Oyo,Oyo East,Oyo,oy Oyo East,RBnV0s4V6wj,,RBnV0s4V6wj
+642,MLdHgMQUM3y,Oyo,Oyo West,Oyo,oy Oyo West,YMlSzHMFp3b,,YMlSzHMFp3b
+643,MLdHgMQUM3y,Oyo,Kajola,Oyo,oy Kajola,XXgCDEMk4Ha,,XXgCDEMk4Ha
+644,MLdHgMQUM3y,Oyo,Saki East,Oyo,oy Saki East,UTmAHL0WmBn,,UTmAHL0WmBn
+645,MLdHgMQUM3y,Oyo,Egbeda,Oyo,oy Egbeda,zvDjtdkAuTP,,zvDjtdkAuTP
+646,MLdHgMQUM3y,Oyo,Saki west,Oyo,oy Saki West,leA9yz8ggzz,,leA9yz8ggzz
+647,MLdHgMQUM3y,Oyo,Irepo,Oyo,oy Irepo,fV2Ogk0TO7p,,fV2Ogk0TO7p
+648,MLdHgMQUM3y,Oyo,Surulere,Oyo,oy Surulere,vO4O9o8Y2Be,,vO4O9o8Y2Be
+649,MLdHgMQUM3y,Oyo,Akinyele,Oyo,oy Akinyele,vpR6qB6b19O,,vpR6qB6b19O
+650,MLdHgMQUM3y,Oyo,Atisbo,Oyo,oy Atisbo,dxrlspj18NY,,dxrlspj18NY
+651,MLdHgMQUM3y,Oyo,Olorunsogo,Oyo,oy Olorunsogo,p3M4FdE8RkC,,p3M4FdE8RkC
+652,MLdHgMQUM3y,Oyo,Ogbmosho South,Oyo,oy Ogbomoso South,p7y3haZd6OO,,p7y3haZd6OO
+653,MLdHgMQUM3y,Oyo,Ogbomosho North,Oyo,oy Ogbomoso North,ELWNSBUCfD3,,ELWNSBUCfD3
+654,MLdHgMQUM3y,Oyo,Iwajowa,Oyo,oy Iwajowa,bRYPnMBCWrq,,bRYPnMBCWrq
+655,MLdHgMQUM3y,Oyo,Ibadan North,Oyo,oy Ibadan North,iydYKfCH5Cl,,iydYKfCH5Cl
+656,MLdHgMQUM3y,Oyo,Ido,Oyo,oy Ido,QiWl2gmww69,,QiWl2gmww69
+657,MLdHgMQUM3y,Oyo,Itesiwaju,Oyo,oy Itesiwaju,Kcr5bLQVHEd,,Kcr5bLQVHEd
+658,MLdHgMQUM3y,Oyo,Iseyin,Oyo,oy Iseyin,ZA3JkbqwvuA,,ZA3JkbqwvuA
+659,MLdHgMQUM3y,Oyo,Ibarapa North,Oyo,oy Ibarapa North,M0ujki7803y,,M0ujki7803y
+660,MLdHgMQUM3y,Oyo,Afijio,Oyo,oy Afijio,IlkoZAYAoQs,,IlkoZAYAoQs
+661,MLdHgMQUM3y,Oyo,Ibadan South West,Oyo,oy Ibadan South-West,KCu09ZdJTEL,,KCu09ZdJTEL
+662,MLdHgMQUM3y,Oyo,Ibadan North West,Oyo,oy Ibadan North-West,iZCbzoOssS4,,iZCbzoOssS4
+663,MLdHgMQUM3y,Oyo,Ibarapa East,Oyo,oy Ibarapa East,GOOy2mVNRd1,,GOOy2mVNRd1
+664,MLdHgMQUM3y,Oyo,Ibadan South East,Oyo,oy Ibadan South-East,CtGoE7JQAiX,,CtGoE7JQAiX
+665,GAfGnvcVZ6k,Plateau,Pankshin,Plateau,pl Pankshin,VsRXIP925Kr,,VsRXIP925Kr
+666,GAfGnvcVZ6k,Plateau,Qua?ó?Ç?Öan Pan,Plateau,pl Qua'an Pan,iWTaRRoO3JH,,iWTaRRoO3JH
+667,GAfGnvcVZ6k,Plateau,Riyom,Plateau,pl Riyom,FaxOzvxNTmQ,,FaxOzvxNTmQ
+668,GAfGnvcVZ6k,Plateau,Jos South,Plateau,pl Jos South,zBpF1qbeHxk,,zBpF1qbeHxk
+669,GAfGnvcVZ6k,Plateau,Langtang North,Plateau,pl Langtang North,giwECr4xdr7,,giwECr4xdr7
+670,GAfGnvcVZ6k,Plateau,Jos North,Plateau,pl Jos North,Kxb2aLH6aQE,,Kxb2aLH6aQE
+671,GAfGnvcVZ6k,Plateau,Shendam,Plateau,pl Shendam,xcD0RUmcq3U,,xcD0RUmcq3U
+672,GAfGnvcVZ6k,Plateau,Jos East,Plateau,pl Jos East,txdQuyYCpbb,,txdQuyYCpbb
+673,GAfGnvcVZ6k,Plateau,Barkin Ladi,Plateau,pl Barkin Ladi,gevUQQwMYsl,,gevUQQwMYsl
+674,GAfGnvcVZ6k,Plateau,Kanke,Plateau,pl Kanke,h4GiCPKLpaj,,h4GiCPKLpaj
+675,GAfGnvcVZ6k,Plateau,Langtang South,Plateau,pl Langtang South,ol9Cy7ZHtmM,,ol9Cy7ZHtmM
+676,GAfGnvcVZ6k,Plateau,Wase,Plateau,pl Wase,E7AUIdZIUma,,E7AUIdZIUma
+677,GAfGnvcVZ6k,Plateau,Kanam,Plateau,pl Kanam,KW1MmI5AJ5C,,KW1MmI5AJ5C
+678,GAfGnvcVZ6k,Plateau,Bokkos,Plateau,pl Bokkos,D1XE609n41l,,D1XE609n41l
+679,GAfGnvcVZ6k,Plateau,Bassa,Plateau,pl Bassa,fRmH1IcpdA7,,fRmH1IcpdA7
+680,GAfGnvcVZ6k,Plateau,Mangu,Plateau,pl Mangu,vnYPxzWEwMO,,vnYPxzWEwMO
+681,GAfGnvcVZ6k,Plateau,Mikang,Plateau,pl Mikang,DU7QFC4eurr,,DU7QFC4eurr
+682,SSqrxMy7RHB,Rivers,Ahoada East,Rivers,ri Ahoada East,GBwKRrWGuVY,,GBwKRrWGuVY
+683,SSqrxMy7RHB,Rivers,Ogba/Egbema/Ndoni,Rivers,ri Ogba-Egbema-Ndoni,xZFseUogJWo,,xZFseUogJWo
+684,SSqrxMy7RHB,Rivers,Andoni,Rivers,ri Andoni,pp8zV2OXmvU,,pp8zV2OXmvU
+685,SSqrxMy7RHB,Rivers,Degema,Rivers,ri Degema,O9l6BemolrN,,O9l6BemolrN
+686,SSqrxMy7RHB,Rivers,Ogu/Bolo,Rivers,ri Ogu-Bolo,wXnjvr9p2zU,,wXnjvr9p2zU
+687,SSqrxMy7RHB,Rivers,Ahoada West,Rivers,ri Ahoada West,Nd9sbZcqorj,,Nd9sbZcqorj
+688,SSqrxMy7RHB,Rivers,Oyigbo,Rivers,ri Oyigbo,I0tQo5iW5NZ,,I0tQo5iW5NZ
+689,SSqrxMy7RHB,Rivers,Omumma,Rivers,ri Omumma,xdzbsxe1MQa,,xdzbsxe1MQa
+690,SSqrxMy7RHB,Rivers,Akuku Toru,Rivers,ri Akuku Toru,gdQCMg31viH,,gdQCMg31viH
+691,SSqrxMy7RHB,Rivers,Bonny,Rivers,ri Bonny,kyuGgrpjwZF,,kyuGgrpjwZF
+692,SSqrxMy7RHB,Rivers,Abua/Odual,Rivers,ri Abua-Odual,ObllIYWxwRA,,ObllIYWxwRA
+693,SSqrxMy7RHB,Rivers,Etche,Rivers,ri Etche,y5pPli7WP1V,,y5pPli7WP1V
+694,SSqrxMy7RHB,Rivers,Port-Harcourt,Rivers,ri Port-Harcourt,y3iWYd0poWG,,y3iWYd0poWG
+695,SSqrxMy7RHB,Rivers,Obio/Akpor,Rivers,ri Obio-Akpor,QUXP7f16K3Z,,QUXP7f16K3Z
+696,SSqrxMy7RHB,Rivers,Ikwerre,Rivers,ri Ikwerre,SL33bchlaKT,,SL33bchlaKT
+697,SSqrxMy7RHB,Rivers,Gokana,Rivers,ri Gokana,N0dXOBSVO7k,,N0dXOBSVO7k
+698,SSqrxMy7RHB,Rivers,Khana,Rivers,ri Khana,sZumF7t54ek,,sZumF7t54ek
+699,SSqrxMy7RHB,Rivers,Okrika,Rivers,ri Okrika,nNo5gV3to2B,,nNo5gV3to2B
+700,SSqrxMy7RHB,Rivers,Asari-Toru,Rivers,ri Asari-Toru,SExBRzuDiYb,,SExBRzuDiYb
+701,SSqrxMy7RHB,Rivers,Eleme,Rivers,ri Eleme,UdnUbXV7O9o,,UdnUbXV7O9o
+702,SSqrxMy7RHB,Rivers,Opobo/Nkoro,Rivers,ri Opobo-Nkoro,RgaAXlRX33Y,,RgaAXlRX33Y
+703,SSqrxMy7RHB,Rivers,Emuoha,Rivers,ri Emohua,UGwCX5IBQQj,,UGwCX5IBQQj
+704,abbiqwv4nNw,Sokoto,Goronyo,Sokoto,so Goronyo,QW6ipnJ667p,,QW6ipnJ667p
+705,abbiqwv4nNw,Sokoto,Bodinga,Sokoto,so Bodinga,mU4xLJkmJ1n,,mU4xLJkmJ1n
+706,abbiqwv4nNw,Sokoto,Tangaza,Sokoto,so Tangaza,IXHQSYJ6zKL,,IXHQSYJ6zKL
+707,abbiqwv4nNw,Sokoto,Sokoto North,Sokoto,so Sokoto North,c4XamXWAJm5,,c4XamXWAJm5
+708,abbiqwv4nNw,Sokoto,Tambuwal,Sokoto,so Tambuwal,N0H1zZzTWGq,,N0H1zZzTWGq
+709,abbiqwv4nNw,Sokoto,Gada,Sokoto,so Gada,OOozvPmus5h,,OOozvPmus5h
+710,abbiqwv4nNw,Sokoto,Sabon Birni,Sokoto,so Sabo Birni,EcW5sxrn7Kx,,EcW5sxrn7Kx
+711,abbiqwv4nNw,Sokoto,Binji,Sokoto,so Binji,JAbWcsjaThI,,JAbWcsjaThI
+712,abbiqwv4nNw,Sokoto,Gwadabawa,Sokoto,so Gwadabawa,RQ3XEd1s9pT,,RQ3XEd1s9pT
+713,abbiqwv4nNw,Sokoto,Rabah,Sokoto,so Rabah,L00lRsjGRNa,,L00lRsjGRNa
+714,abbiqwv4nNw,Sokoto,Tureta,Sokoto,so Tureta,loFfnXvTMpH,,loFfnXvTMpH
+715,abbiqwv4nNw,Sokoto,Isa,Sokoto,so Isa,VfF0gugE9nG,,VfF0gugE9nG
+716,abbiqwv4nNw,Sokoto,Gudu,Sokoto,so Gudu,NPq76gDFefd,,NPq76gDFefd
+717,abbiqwv4nNw,Sokoto,Sokoto South,Sokoto,so Sokoto South,wwWXkcdr5x5,,wwWXkcdr5x5
+718,abbiqwv4nNw,Sokoto,Silame,Sokoto,so Silame,hBETnzuLuGS,,hBETnzuLuGS
+719,abbiqwv4nNw,Sokoto,Shagari,Sokoto,so Shagari,UoqWfOPE4kb,,UoqWfOPE4kb
+720,abbiqwv4nNw,Sokoto,Yabo,Sokoto,so Yabo,nLtWhDsKEsm,,nLtWhDsKEsm
+721,abbiqwv4nNw,Sokoto,Dange-shuni,Sokoto,so Dange-shnsi,EFiZIMdk7CK,,EFiZIMdk7CK
+722,abbiqwv4nNw,Sokoto,Kware,Sokoto,so Kware,kaz5efadUMl,,kaz5efadUMl
+723,abbiqwv4nNw,Sokoto,Illela,Sokoto,so Illela,Ot1rO9XQIUx,,Ot1rO9XQIUx
+724,abbiqwv4nNw,Sokoto,Wurno,Sokoto,so Wurno,DylD4aLFi5r,,DylD4aLFi5r
+725,abbiqwv4nNw,Sokoto,Wamako,Sokoto,so Wamako,NiS8nFDiIJ6,,NiS8nFDiIJ6
+726,abbiqwv4nNw,Sokoto,Kebbe,Sokoto,so Kebbe,dlGASWuvQ3Y,,dlGASWuvQ3Y
+727,chS82SaWUb0,Taraba,Yorro,Taraba,ta Yorro,sOXGqHbV8Ji,,sOXGqHbV8Ji
+728,chS82SaWUb0,Taraba,Gassol,Taraba,ta Gassol,rDwTrMp6vv2,,rDwTrMp6vv2
+729,chS82SaWUb0,Taraba,Takum,Taraba,ta Takum,RVH0MzfkLrW,,RVH0MzfkLrW
+730,chS82SaWUb0,Taraba,Zing,Taraba,ta Zing,Sn2IQYMF2pQ,,Sn2IQYMF2pQ
+731,chS82SaWUb0,Taraba,Gashaka,Taraba,ta Gashaka,nb8lDm5Kxwr,,nb8lDm5Kxwr
+732,chS82SaWUb0,Taraba,Bali,Taraba,ta Bali,lXfgXUKqsUm,,lXfgXUKqsUm
+733,chS82SaWUb0,Taraba,Ardo-Kola,Taraba,ta Ardo-kola,H5GOeDtLBhH,,H5GOeDtLBhH
+734,chS82SaWUb0,Taraba,Karim-Lamido,Taraba,ta Karin-Lamido,U2CLKBu9ujk,,U2CLKBu9ujk
+735,chS82SaWUb0,Taraba,Kurmi,Taraba,ta Kurmi,brUuT9VMVFK,,brUuT9VMVFK
+736,chS82SaWUb0,Taraba,Ussa,Taraba,ta Ussa,ItOKwnnX5uy,,ItOKwnnX5uy
+737,chS82SaWUb0,Taraba,Ibi,Taraba,ta Ibi,F2Cl8Zfwmt8,,F2Cl8Zfwmt8
+738,chS82SaWUb0,Taraba,Lau,Taraba,ta Lau,kLf49CxvV8q,,kLf49CxvV8q
+739,chS82SaWUb0,Taraba,Jalingo,Taraba,ta Jalingo,SQwOj385pC9,,SQwOj385pC9
+740,chS82SaWUb0,Taraba,Wukari,Taraba,ta Wukari,klGoPCX1HTv,,klGoPCX1HTv
+741,chS82SaWUb0,Taraba,Donga,Taraba,ta Donga,aKSDHehzXnK,,aKSDHehzXnK
+742,chS82SaWUb0,Taraba,Sardauna,Taraba,ta Sardauna,kK6VT8uaxyv,,kK6VT8uaxyv
+743,j5uy1Add8lx,Yobe,Geidam,Yobe,yo Geidam,VdbX8KqjeJa,,VdbX8KqjeJa
+744,j5uy1Add8lx,Yobe,Nangere,Yobe,yo Nangere,HIRvIJ4Phtk,,HIRvIJ4Phtk
+745,j5uy1Add8lx,Yobe,Damaturu,Yobe,yo Damaturu,fhHfL7tA9l8,,fhHfL7tA9l8
+746,j5uy1Add8lx,Yobe,Barde,Yobe,yo Bade,FLrj0Vb8jh2,,FLrj0Vb8jh2
+747,j5uy1Add8lx,Yobe,Jakusko,Yobe,yo Jakusko,VND5WSq5w5Z,,VND5WSq5w5Z
+748,j5uy1Add8lx,Yobe,Potiskum,Yobe,yo Potiskum,wXVrXNmb0Gl,,wXVrXNmb0Gl
+749,j5uy1Add8lx,Yobe,Gujba,Yobe,yo Gujba,hMDFkMbJ3w6,,hMDFkMbJ3w6
+750,j5uy1Add8lx,Yobe,Tarmua,Yobe,yo Tarmuwa,mYpTNEl06Rp,,mYpTNEl06Rp
+751,j5uy1Add8lx,Yobe,Gulani,Yobe,yo Gulani,zrM1BT9UvRe,,zrM1BT9UvRe
+752,j5uy1Add8lx,Yobe,Nguru,Yobe,yo Nguru,nw2xsoZj1Qf,,nw2xsoZj1Qf
+753,j5uy1Add8lx,Yobe,Fune,Yobe,yo Fune,p7SAVi1RX6S,,p7SAVi1RX6S
+754,WXvWYq7i2Az,Zamfara,Bakura,Zamfara,za Bakura,uW0EwEqDoz3,,uW0EwEqDoz3
+755,j5uy1Add8lx,Yobe,Fika,Yobe,yo Fika,sUHLkFR6mEd,,sUHLkFR6mEd
+756,j5uy1Add8lx,Yobe,Bursari,Yobe,yo Bursari,yMpsqMmo7oI,,yMpsqMmo7oI
+757,j5uy1Add8lx,Yobe,Karasuwa,Yobe,yo Karasuwa,d8TsB5IWT3K,,d8TsB5IWT3K
+758,j5uy1Add8lx,Yobe,Yusufari,Yobe,yo Yusufari,xwVots58cXd,,xwVots58cXd
+759,j5uy1Add8lx,Yobe,Yunusari,Yobe,yo Yunusari,XGNY7RJSFaK,,XGNY7RJSFaK
+760,j5uy1Add8lx,Yobe,Machina,Yobe,yo Machina,pEXfJwykmi5,,pEXfJwykmi5
+761,WXvWYq7i2Az,Zamfara,Kauran Namoda,Zamfara,za Kaura Namoda,rZBbOn6W1wi,,rZBbOn6W1wi
+762,WXvWYq7i2Az,Zamfara,Anka,Zamfara,za Anka,yPpyV8PRdT5,,yPpyV8PRdT5
+763,WXvWYq7i2Az,Zamfara,Maru,Zamfara,za Maru,XZdFyxcLSxk,,XZdFyxcLSxk
+764,WXvWYq7i2Az,Zamfara,Maradun,Zamfara,za Maradun,tO5pER5YEmw,,tO5pER5YEmw
+765,WXvWYq7i2Az,Zamfara,Bungudu,Zamfara,za Bungudu,WQbcocy1CDP,,WQbcocy1CDP
+766,WXvWYq7i2Az,Zamfara,Talata Mafara,Zamfara,za Talata Mafara,JncTzTWoM1A,,JncTzTWoM1A
+767,WXvWYq7i2Az,Zamfara,Gummi,Zamfara,za Gummi,P36E1ppaM9q,,P36E1ppaM9q
+768,WXvWYq7i2Az,Zamfara,Birnin Magaji/Kiyaw,Zamfara,za Birnin Magaji,xDEHgP4W3sw,,xDEHgP4W3sw
+769,WXvWYq7i2Az,Zamfara,Gusau,Zamfara,za Gusau,R83C21BuCL5,,R83C21BuCL5
+770,WXvWYq7i2Az,Zamfara,Shinkafi,Zamfara,za Shinkafi,AKMBCyOdsMJ,,AKMBCyOdsMJ
+771,WXvWYq7i2Az,Zamfara,Zurmi,Zamfara,za Zurmi ,rktJXq6SLZh,,rktJXq6SLZh
+772,WXvWYq7i2Az,Zamfara,Bukkuyum,Zamfara,za Bukkuyum,nMO6MfPJMqO,,nMO6MfPJMqO
+773,pq7kECDgKc7,Cross River,Bakassi,Cross River,cr Bakassi,XZLfq0naEiG,,XZLfq0naEiG
+774,pq7kECDgKc7,Cross River,Akpabuyo,Cross River,cr Akpabuyo,R40riAkajr9,,R40riAkajr9
