@@ -55,15 +55,16 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
                                  total_tests_target=NULL, subgroup_fixed=NULL, subgroup_target=NULL, 
                                  include_variables=c()){
   variables <- c("age","ageasentered", "sitename","psnu_t","sitetype", "modality", "primepartner",
-                 "snuprioritization", "sex","log_plhiv", "log_tx", "log_pop_est",include_variables)
+                 "snuprioritization", "sex","log_plhiv", "log_tx", "log_pop_est", "cluster_1","cluster_2","cluster_3",
+                 "worldpop_50","worldpop_10","pmtct_lin_pred",include_variables)
   # get all combinations observed during the analysis period
   pdat <- unique(dat_analysis[variables])
   
   # merge in number of tests at time 0
   tmp <- dat_analysis[dat_analysis$time == 0, ] %>% 
-    group_by(ageasentered, snuprioritization, sitetype, psnu_t, sitename, sex, modality, primepartner, obs_id_factor) %>%
     select(ageasentered, snuprioritization, sitetype, psnu_t, sitename, 
            hts_tst, sex, modality, primepartner, obs_id_factor) %>%
+    group_by(ageasentered, snuprioritization, sitetype, psnu_t, sitename, sex, modality, primepartner, obs_id_factor) %>%
     summarise_all(function(x) unique(x))
   active_partners <- (dat_analysis %>% filter(time == 0 & 
                                                 sex != "Unknown Sex" & age != "Unknown Age"))$primepartner %>%

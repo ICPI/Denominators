@@ -217,11 +217,19 @@ fit_gbm <-function(dat_anlaysis2, split, glmm, n_iter=20){
   
   frm <- ~log_plhiv + log_pop_est + log_tx + time + log_hts_tst + age + 
     sitetype + sex + snuprioritization + primepartner + age + sex + 
-    modality + psnu_t + sitename + obs_id_factor + glmm_preds - 1
+    modality + psnu_t + sitename + obs_id_factor + glmm_preds + cluster_1 + 
+    cluster_2 + cluster_3 + worldpop_50 + worldpop_10 + pmtct_lin_pred- 1
   if(length(unique(dat_analysis2$snuprioritization)) == 1){
-    frm <- ~ log_plhiv + log_pop_est + log_tx + time + log_hts_tst + age + 
+    frm <- ~ log_plhiv + log_pop_est + log_tx + time + log_hts_tst + age + cluster_1 + 
+      cluster_2 + cluster_3 + worldpop_50 + worldpop_10 + pmtct_lin_pred + 
       sitetype + sex + primepartner + age + sex + 
       modality + psnu_t + glmm_preds  + sitename + obs_id_factor- 1    
+  }
+  if(all(is.na(dat_full_fit$log_plhiv))){
+    frm <- ~ time + log_hts_tst + age + cluster_1 + 
+      cluster_2 + cluster_3 + worldpop_50 + worldpop_10 + pmtct_lin_pred + 
+      sitetype + sex + primepartner + age + sex + 
+      modality + psnu_t + glmm_preds  + sitename + obs_id_factor- 1     
   }
   mm_gbm <- sparse.model.matrix(frm,data=dat_full_fit)
   dmat <- xgb.DMatrix(mm_gbm, 

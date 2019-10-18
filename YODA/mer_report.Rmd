@@ -194,17 +194,19 @@ Looking just at the observed yield rates can be misleading for site and PSNUs be
 
 The model generates conditional odds ratios. These are the increased odds of generating a positive case adjusting for all other factors, including PSNU covariates like POP_EST and PLHIV.
 
-### PSNU Effectiveness
+### Location Effectiveness
 ```{r}
-tmp <- dat_analysis2 %>% 
-  filter(time == 0) %>%
-  group_by(psnu_t) %>%
-  summarise(observed_yield = round(100*sum(hiv_pos * weight) / sum(weight),1),
-              positives=sum(hiv_pos * weight),
-              total_tests = sum(weight))
-tmp2 <- data.frame(psnu_t=rownames(glmm$re$psnu_t),
-                   conditional_odds_ratio = round(exp(glmm$re$psnu_t[,1]),2))
-merge(tmp2,tmp) %>% arrange(desc(conditional_odds_ratio)) %>% DT::datatable(rownames = FALSE)
+if(!is.null(glmm$re$psnu_t)){
+  tmp <- dat_analysis2 %>% 
+    filter(time == 0) %>%
+    group_by(psnu_t) %>%
+    summarise(observed_yield = round(100*sum(hiv_pos * weight) / sum(weight),1),
+                positives=sum(hiv_pos * weight),
+                total_tests = sum(weight))
+  tmp2 <- data.frame(psnu_t=rownames(glmm$re$psnu_t),
+                     conditional_odds_ratio = round(exp(glmm$re$psnu_t[,1]),2))
+  merge(tmp2,tmp) %>% arrange(desc(conditional_odds_ratio)) %>% DT::datatable(rownames = FALSE)
+}
 #na.omit(model_marginals$psnu_marginals) %>% 
 #  mutate(marginal_yield = round(marginal_yield * 100, 1), 
 #         observed_yield=round(observed_yield * 100,1)) %>%
@@ -218,35 +220,34 @@ merge(tmp2,tmp) %>% arrange(desc(conditional_odds_ratio)) %>% DT::datatable(rown
 
 
 ```{r}
+
 tmp <- dat_analysis2 %>% 
   filter(time == 0) %>%
-  group_by(psnu_t, sitename) %>%
-  summarise(observed_yield = round(100*sum(hiv_pos * weight) / sum(weight),1),
-              positives=sum(hiv_pos * weight),
+  group_by(psnu_t,cluster_1, cluster_2, cluster_3, modality, sitename) %>%
+  summarise(positives=sum(hiv_pos * weight),
+            total_tests = sum(weight),
+            weight = sum(weight))
+tmp$conditional_odds_ratio_sitename <- predict(
+    glmm$glmm_full_fit, 
+    newdata=tmp, 
+    random.only=TRUE, 
+    re.form=site_re_formula
+    )
+tmp <- tmp %>%
+  group_by(psnu_t,cluster_1, cluster_2, cluster_3, sitename) %>%
+  summarise(conditional_odds_ratio_sitename = sum(conditional_odds_ratio_sitename*weight) / sum(weight),
+    observed_yield = round(100*sum(positives) / sum(weight),1),
+              positives=sum(positives),
               total_tests = sum(weight))
-tmp2 <- data.frame(psnu_t=rownames(glmm$re$psnu_t),
-                   conditional_odds_ratio_psnu = glmm$re$psnu_t[,1])
-tmp3 <- data.frame(sitename=rownames(glmm$re$sitename),
-                   conditional_odds_ratio_sitename = glmm$re$sitename[,1])
-tmp4 <- merge(merge(tmp, tmp2), tmp3) %>% 
-  mutate(conditional_odds_ratio_w_psnu = round(exp(conditional_odds_ratio_sitename + conditional_odds_ratio_psnu),2),
-         conditional_odds_ratio_sitename = round(exp(conditional_odds_ratio_sitename),2)) %>%
-  select(-conditional_odds_ratio_psnu) %>%
-  arrange(desc(conditional_odds_ratio_sitename)) 
+tmp4 <-tmp %>% 
+  mutate(conditional_odds_ratio_sitename = round(exp(conditional_odds_ratio_sitename),2)) %>%
+  arrange(desc(conditional_odds_ratio_sitename))
   
-tmp4 <- tmp4[c("psnu_t", "sitename","conditional_odds_ratio_sitename", "conditional_odds_ratio_w_psnu", "observed_yield", "positives", "total_tests"
+tmp4 <- tmp4[c("psnu_t", "sitename","conditional_odds_ratio_sitename",  "observed_yield", "positives", "total_tests"
 )]
   
 tmp4 %>% DT::datatable(rownames = FALSE)
 
-
-
-#na.omit(model_marginals$site_marginals) %>% 
-#  mutate(marginal_yield = round(marginal_yield * 100, 1), 
-#         observed_yield= round(observed_yield * 100,1)) %>%
-#  select(-param) %>%
-#  #rename(new_postives_last_quarter=positives, total_tests_last_quarter=total_tests) %>%
-#  DT::datatable(rownames = FALSE)
 ```
 
 

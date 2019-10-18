@@ -73,8 +73,10 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   #
   dat_sub <- dat[dat$standardizeddisaggregate == "Modality/Age/Sex/Result" & dat$indicator == "HTS_TST",]
   dat_sub <- dat_sub %>% 
-    group_by(ageasentered, agesemifine, agecoarse, agefine, sex, sitename, region, operatingunit, psnu, 
-                                  snuprioritization, sitetype, modality, primepartner) %>% 
+    group_by(ageasentered, agesemifine, agecoarse, agefine, sex, sitename, 
+             region, operatingunit, psnu,snuprioritization, sitetype, modality, 
+             primepartner,
+             facilityuid,psnuuid,communityuid) %>% 
     summarise_at(fyvars, function(x) if(all(is.na(x))) NA else sum(x, na.rm=T)) %>%
     select(-ends_with("_targets")) %>%
     select(-ends_with("apr")) %>%
@@ -84,7 +86,7 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   dat_sub <- dat[dat$standardizeddisaggregate == "Modality/Age/Sex/Result" & dat$indicator == "HTS_TST_POS",]
   dat_sub <- dat_sub %>% 
     group_by(ageasentered, agesemifine, agecoarse, agefine, sex, sitename, region, operatingunit, psnu, 
-             snuprioritization, sitetype, modality, primepartner) %>% 
+             snuprioritization, sitetype, modality, primepartner,facilityuid,psnuuid,communityuid) %>% 
     summarise_at(fyvars, function(x) if(all(is.na(x))) NA else sum(x, na.rm=T)) %>%
     select(-ends_with("_targets")) %>%
     select(-ends_with("apr")) %>%
@@ -95,106 +97,113 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   dat_tidy$psnu_t <- stringr::str_replace_all(tolower(dat_tidy$psnu),"-"," ")
   dat_tidy <- dat_tidy %>% filter( substr(quarter, 1, 6) %in% c("fy2018","fy2019"))
   
-  
-  vcat("Reading Spectrum Data\n")
-  spec <- read_excel(spectrum_data_source, guess_max=Inf)
-  vcat("Processing Spectrum Data\n")
-  spec$variable <- sapply(strsplit(spec$indicatorCode,"\\."), function(x) x[[1]])
-  spec$age <- spec$categoryOption_name_1
-  spec$sex <- ifelse(spec$categoryOption_name_2 == "Male","Male","Female")
-  names(spec) <- tolower(names(spec))
-  if(!("psnu2" %in% names(spec))){
-    spec$psnu2 <- spec$psnu
+  if(!is.null(spectrum_data_source)){
+    vcat("Reading Spectrum Data\n")
+    spec <- read_excel(spectrum_data_source, guess_max=Inf)
+    vcat("Processing Spectrum Data\n")
+    spec$variable <- sapply(strsplit(spec$indicatorCode,"\\."), function(x) x[[1]])
+    spec$age <- spec$categoryOption_name_1
+    spec$sex <- ifelse(spec$categoryOption_name_2 == "Male","Male","Female")
+    names(spec) <- tolower(names(spec))
+    if(!("psnu2" %in% names(spec))){
+      spec$psnu2 <- spec$psnu
+    }
+    spec$psnu2 <- stringr::str_replace_all(tolower(spec$psnu2),"-"," ")
+    
+    spec_fine <- spec %>% 
+      select(psnu2, age, sex, value, variable) %>% 
+      group_by(psnu2, age, sex, variable) %>%
+      summarise_all(function(x) sum(x, na.rm=T)) %>%
+      spread(variable,value) %>%
+      select(-HIV_PREV)
+    names(spec_fine) <- tolower(names(spec_fine))
+    spec_fine_unknown_sex <- spec_fine %>%
+      group_by(psnu2, age) %>%
+      select(-sex) %>%
+      summarise_all(function(x) mean(x, na.rm=T))
+    spec_fine_unknown_sex$sex <- "Unknown Sex"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_unknown_sex)
+    spec_fine_unknown_age <- spec_fine %>%
+      group_by(psnu2, sex) %>%
+      select(-age) %>%
+      summarise_all(function(x) mean(x, na.rm=T))
+    spec_fine_unknown_age$age <- "Unknown Age"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_unknown_age)
+    
+    spec_fine_unknown_agesex <- spec_fine %>%
+      group_by(psnu2) %>%
+      select(-age,-sex) %>%
+      summarise_all(function(x) mean(x, na.rm=T))
+    spec_fine_unknown_agesex$age <- "Unknown Age"
+    spec_fine_unknown_agesex$sex <- "Unknown Sex"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_unknown_agesex)
+    
+    spec_fine_age <- spec_fine %>%
+      group_by(psnu2, sex) %>%
+      filter(age %in% c("01-04","05-09","1-4","5-9")) %>%
+      select(-age) %>%
+      summarise_all(function(x) sum(x, na.rm=T))
+    spec_fine_age$age <- "1-9"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
+    
+    spec_fine_age <- spec_fine %>%
+      group_by(psnu2, sex) %>%
+      filter(age %in% c("<01","01-09","<1","1-9")) %>%
+      select(-age) %>%
+      summarise_all(function(x) sum(x, na.rm=T))
+    spec_fine_age$age <- "<10"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
+    
+    spec_fine_age <- spec_fine %>%
+      group_by(psnu2, sex) %>%
+      filter(age %in% c("01-04","<01","1-4","<1")) %>%
+      select(-age) %>%
+      summarise_all(function(x) sum(x, na.rm=T))
+    spec_fine_age$age <- "<05"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
+    
+    spec_fine_age <- spec_fine %>%
+      group_by(psnu2, sex) %>%
+      filter(age %in% c("25-29","30-34","35-39","40-44","45-49")) %>%
+      select(-age) %>%
+      summarise_all(function(x) sum(x, na.rm=T))
+    spec_fine_age$age <- "25-49"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
+    
+    spec_fine_age <- spec_fine %>%
+      group_by(psnu2, sex) %>%
+      filter(age %in% c("40-44","45-49")) %>%
+      select(-age) %>%
+      summarise_all(function(x) sum(x, na.rm=T))
+    spec_fine_age$age <- "40-49"
+    spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
+    
+    spec_fine$age[spec_fine$age == "1-4"] <- "01-04"
+    spec_fine$age[spec_fine$age == "1-9"] <- "01-09"
+    spec_fine$age[spec_fine$age == "5-9"] <- "05-09"
+    spec_fine$age[spec_fine$age == "<1"] <- "<01"
+    
+    if(!all(unique(dat_tidy$ageasentered) %in% unique(spec_fine$age))){
+      warning("MER age band not captured by spectrum")
+    }
+    
+    vcat("Merging Spectrum and MER... ")
+    dat_tidy <- merge(
+      dat_tidy, 
+      spec_fine, 
+      by.x=c("psnu_t","ageasentered","sex"),
+      by.y=c("psnu2","age","sex"),
+      all.x=TRUE,
+      all.y=FALSE)
+    dat_tidy$perc_lhiv <- dat_tidy$plhiv / dat_tidy$pop_est
+    dat_tidy$perc_art <- dat_tidy$tx_curr_subnat / dat_tidy$plhiv
+  }else{
+    dat_tidy$plhiv <- -1
+    dat_tidy$pop_est <- -1
+    dat_tidy$tx_curr_subnat <- -1
+    dat_tidy$perc_lhiv <- -1
+    dat_tidy$perc_art <- -1
   }
-  spec$psnu2 <- stringr::str_replace_all(tolower(spec$psnu2),"-"," ")
-  
-  spec_fine <- spec %>% 
-    select(psnu2, age, sex, value, variable) %>% 
-    group_by(psnu2, age, sex, variable) %>%
-    summarise_all(function(x) sum(x, na.rm=T)) %>%
-    spread(variable,value) %>%
-    select(-HIV_PREV)
-  names(spec_fine) <- tolower(names(spec_fine))
-  spec_fine_unknown_sex <- spec_fine %>%
-    group_by(psnu2, age) %>%
-    select(-sex) %>%
-    summarise_all(function(x) mean(x, na.rm=T))
-  spec_fine_unknown_sex$sex <- "Unknown Sex"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_unknown_sex)
-  spec_fine_unknown_age <- spec_fine %>%
-    group_by(psnu2, sex) %>%
-    select(-age) %>%
-    summarise_all(function(x) mean(x, na.rm=T))
-  spec_fine_unknown_age$age <- "Unknown Age"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_unknown_age)
-  
-  spec_fine_unknown_agesex <- spec_fine %>%
-    group_by(psnu2) %>%
-    select(-age,-sex) %>%
-    summarise_all(function(x) mean(x, na.rm=T))
-  spec_fine_unknown_agesex$age <- "Unknown Age"
-  spec_fine_unknown_agesex$sex <- "Unknown Sex"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_unknown_agesex)
-  
-  spec_fine_age <- spec_fine %>%
-    group_by(psnu2, sex) %>%
-    filter(age %in% c("01-04","05-09","1-4","5-9")) %>%
-    select(-age) %>%
-    summarise_all(function(x) sum(x, na.rm=T))
-  spec_fine_age$age <- "1-9"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
-  
-  spec_fine_age <- spec_fine %>%
-    group_by(psnu2, sex) %>%
-    filter(age %in% c("<01","01-09","<1","1-9")) %>%
-    select(-age) %>%
-    summarise_all(function(x) sum(x, na.rm=T))
-  spec_fine_age$age <- "<10"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
-  
-  spec_fine_age <- spec_fine %>%
-    group_by(psnu2, sex) %>%
-    filter(age %in% c("01-04","<01","1-4","<1")) %>%
-    select(-age) %>%
-    summarise_all(function(x) sum(x, na.rm=T))
-  spec_fine_age$age <- "<05"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
-  
-  spec_fine_age <- spec_fine %>%
-    group_by(psnu2, sex) %>%
-    filter(age %in% c("25-29","30-34","35-39","40-44","45-49")) %>%
-    select(-age) %>%
-    summarise_all(function(x) sum(x, na.rm=T))
-  spec_fine_age$age <- "25-49"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
-  
-  spec_fine_age <- spec_fine %>%
-    group_by(psnu2, sex) %>%
-    filter(age %in% c("40-44","45-49")) %>%
-    select(-age) %>%
-    summarise_all(function(x) sum(x, na.rm=T))
-  spec_fine_age$age <- "40-49"
-  spec_fine <- spec_fine %>% bind_rows(spec_fine_age)
-  
-  spec_fine$age[spec_fine$age == "1-4"] <- "01-04"
-  spec_fine$age[spec_fine$age == "1-9"] <- "01-09"
-  spec_fine$age[spec_fine$age == "5-9"] <- "05-09"
-  spec_fine$age[spec_fine$age == "<1"] <- "<01"
-  
-  if(!all(unique(dat_tidy$ageasentered) %in% unique(spec_fine$age))){
-    warning("MER age band not captured by spectrum")
-  }
-  
-  vcat("Merging Spectrum and MER... ")
-  dat_tidy <- merge(
-    dat_tidy, 
-    spec_fine, 
-    by.x=c("psnu_t","ageasentered","sex"),
-    by.y=c("psnu2","age","sex"),
-    all.x=TRUE,
-    all.y=FALSE)
-  dat_tidy$perc_lhiv <- dat_tidy$plhiv / dat_tidy$pop_est
-  dat_tidy$perc_art <- dat_tidy$tx_curr_subnat / dat_tidy$plhiv
   dat_tidy$hts_tst_neg <- dat_tidy$hts_tst - dat_tidy$hts_tst_pos
   dat_tidy$obs_id <- 1:nrow(dat_tidy)
   

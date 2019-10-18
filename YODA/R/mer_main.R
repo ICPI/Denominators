@@ -3,20 +3,34 @@ source("R/mer_globals.R")
 source("R/mer_extract.R")
 source("R/mer_fit.R")
 source("R/mer_results.R")
+source("R/datim_geo.R")
+source("R/worldpop.R")
+source("R/pmtct.R")
 
+# Load in MER / Spectrum data
 dat <- extract_data(mer_data_source, spectrum_data_source)
 dat_analysis <- dat$dat_analysis
 trans_hts_tst <- dat$trans_hts_tst
 
-if(exists("filename_latlon")){
-  has_site_locations <- TRUE
-  latlon <- readRDS(filename_latlon)
-  names(latlon) <- tolower(names(latlon))
-  latlon$psnu <- latlon$level4name 
-  dat_analysis <- build_spatial_clusters(latlon, dat_analysis, group_sizes=group_sizes)
-}else{
-  has_site_locations <- FALSE
-}
+
+# Add site location and worldpop covariates
+locations <- datim_get_locations(country)
+da_locations <- site_locations(dat_analysis, locations)
+
+da_locations$cluster_1 <- boxed_groups(da_locations, group_sizes[1])
+da_locations$cluster_2 <- boxed_groups(da_locations, group_sizes[2])
+da_locations$cluster_3 <- boxed_groups(da_locations, group_sizes[3])
+
+wp <- raster::raster(world_pop_source)
+da_locations$worldpop_10 <- world_pop_count(da_locations, wp, 10)
+da_locations$worldpop_50 <- world_pop_count(da_locations, wp, 50)
+
+dat_analysis <- merge(dat_analysis, da_locations, all.x=TRUE)
+
+pmtct_fit <- pmtct_glmm(dat_analysis[dat_analysis$time >= -1.5 & dat_analysis$time < -1,])
+dat_analysis$pmtct_lin_pred <- pmtct_fit$compute_values(dat_analysis)
+da_locations$pmtct_lin_pred <- pmtct_fit$compute_values(da_locations)
+
 
 dat_analysis2 <- dat_analysis[dat_analysis$age != "Unknown Age" & dat_analysis$sex != "Unknown Sex",]
 

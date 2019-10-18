@@ -36,17 +36,13 @@ dat_analysis2 <- dat_analysis
 dat_analysis2$cluster_0 <- c0
 dat_analysis2$cluster_1 <- c1
 dat_analysis2$cluster_2 <- c2
-dat_analysis2 <- dat_analysis2 %>% filter(ageasentered != "Unknown Age", ageasentered != "+50", agecoarse != "<15")
-in_time <- dat_analysis2$time == 0
+dat_analysis2 <- dat_analysis2 %>% filter(ageasentered != "Unknown Age", 
+                                          ageasentered != "+50", 
+                                          agecoarse != "<15",
+                                          modality == "PMTCT ANC")
+in_time <- dat_analysis2$time > -.5
 
-frm <- hiv_pos ~ (#log_pop_est + 
-                    log_hts_tst+ age + sitetype)^2 +  sex +
-  I(log_hts_tst^2) + I(log_hts_tst^3) + 
-  I(log_pop_est^2) + I(log_pop_est^3) + #I((modality == "Index") & (time >= 0)) : age +
-  modality*log_hts_tst + (1  | modality:age ) + (1 | modality:cluster_0) + 
-  (1 | cluster_0 / cluster_1 / cluster_2) + (1 | sitename)
-
-frm <- hiv_pos ~ modality + age + sex +
+frm <- hiv_pos ~ age + #log_hts_tst +
   (1 | cluster_0 / cluster_1 / cluster_2) + (1 | sitename)
 
 
@@ -76,7 +72,7 @@ glmm_fit <- glmer(frm,
 #                   weights = weight_train[in_time])
 
 
-df_new <- dat_analysis2 %>% filter(time == 0)
+df_new <- dat_analysis2 %>% filter(in_time, modality == "PMTCT ANC")
 df <- df_new %>% 
   group_by(sitename) %>% filter(row_number() == 1) %>%
   merge(latlon %>% select(name,latitude,longitude), by.x = "sitename",by.y="name",all.x=TRUE,all.y=FALSE)
@@ -107,7 +103,7 @@ df <- df %>% select(-log_plhiv, -log_tx, -log_pop_est) %>%
 
 
 df_new <- dat_analysis2 %>% 
-  filter( time == 0) %>%
+  filter( in_time) %>%
   group_by(sitename) %>%
   summarise(observed_yield = 100*sum(hiv_pos * weight) / sum(weight),
             positives=sum(hiv_pos * weight),
@@ -120,9 +116,9 @@ df <- merge(df, df_new, by.x="sitename_true",by.y="sitename", all.x=TRUE, all.y=
 
 
 df$pred <-  predict(glmm_fit, 
-          newdata=df, 
-          allow.new.levels=TRUE, 
-          re.form= ~(1 | cluster_0/cluster_1/cluster_2) ) - 
+                    newdata=df, 
+                    allow.new.levels=TRUE, 
+                    re.form= ~(1 | cluster_0/cluster_1/cluster_2) ) - 
   predict(glmm_fit, 
           newdata=df, 
           allow.new.levels=TRUE, 
@@ -152,7 +148,7 @@ pal <- colorNumeric(
 
 
 lab <- paste0(
-'
+  '
 <b>', df$sitename_true,'</b><br><br>
 <b>% Higher Adj. Yield Rate</b><br>
 ',rr2,'%<br><br>
@@ -163,7 +159,7 @@ N Tests : ', df$total_tests,'<br>
 ')
 m <- leaflet(df) %>%
   addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
-#  addTiles() %>% 
+  #  addTiles() %>% 
   addCircles(lng=~longitude, 
              lat = ~latitude, 
              color = ~pal(rr2), 
@@ -178,120 +174,10 @@ m
 cor(df$rr, df$phiv_nn, method = "spearman")
 
 
-qplot(df$rr, df$phiv_nn, size=I(.1)) + geom_smooth()
+qplot(df$pred, df$phiv_nn, size=I(.1)) + 
+  geom_smooth(method = lm, formula = y ~ splines::bs(x, 3)) + 
+  scale_x_log10() + scale_y_log10() + 
+  ylab("Proportion HIV+ Near Factility (NAIIS)") +
+  xlab("Estimated Proportion PMTCT HIV+ (YODA)") +
+  theme_bw()
 library(readr)
-
-
-
-
-
-# Observed Yield
-df$rr2 <- rr2 <- pmin(200,round(100*(df$observed_yield/median(df$observed_yield)-1)))
-rr3 <- ifelse(rr2 > 0, paste0("+",rr2), as.character(rr2))
-
-
-pal <- colorNumeric(
-  palette = "RdBu",#colorRamp(c("white", "red"), interpolate = "spline"),
-  domain = c(-max(abs(rr2)), max(abs(rr2))),
-  reverse=TRUE
-)
-
-
-lab <- paste0(
-  '
-<b>', df$sitename_true,'</b><br><br>
-<b>Observed</b><br>
-Yield : ', round(df$observed_yield,1),'%<br>
-N Pos : ', df$positives,'<br>
-N Tests : ', df$total_tests,'<br>
-')
-m <- leaflet(df) %>%
-  addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
-  #  addTiles() %>% 
-  addCircles(lng=~longitude, 
-             lat = ~latitude, 
-             color = ~pal(rr2), 
-             opacity = 1, 
-             popup=lab) %>%
-  addLegend(pal=pal, 
-            position = "bottomright",
-            values = ~rr2,
-            title="Obs. Yield Rate")
-m
-
-
-
-# PMTCT Yield
-
-df$rr2 <- rr2 <- df$pmtct_observed_yield#pmin(200,round(100*(df$pmtct_observed_yield/median(df$pmtct_observed_yield)-1)))
-rr3 <- df$pmtct_observed_yield#ifelse(rr2 > 0, paste0("+",rr2), as.character(rr2))
-
-
-pal <- colorNumeric(
-  palette = "RdBu",#colorRamp(c("white", "red"), interpolate = "spline"),
-  domain = c(-max(abs(rr2), na.rm=T), max(abs(rr2),na.rm=T)),
-  reverse=TRUE
-)
-
-
-lab <- paste0(
-  '
-<b>', df$sitename_true,'</b><br><br>
-<b>Observed PMTCT</b><br>
-Yield : ', round(df$pmtct_observed_yield,1),'%<br>
-N Pos : ', df$pmtct_positives,'<br>
-N Tests : ', df$pmtct_total_tests,'<br>
-')
-m <- leaflet(df) %>%
-  addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
-  #  addTiles() %>% 
-  addCircles(lng=~longitude, 
-             lat = ~latitude, 
-             color = ~pal(rr2), 
-             opacity = 1, 
-             popup=lab) %>%
-  addLegend(pal=pal, 
-            position = "bottomright",
-            values = ~rr2,
-            title="Obs. PMTCTYield Rate")
-m
-
-
-
-
-phiv <- df$phiv_nn
-phiv <- pmin(100 * (phiv / median(phiv) - 1),100)
-
-pal <- colorNumeric(
-  palette = "RdBu",#colorRamp(c("white", "red"), interpolate = "spline"),
-  domain = c(-max(abs(phiv)), max(abs(phiv))),
-  reverse=TRUE
-)
-lab <- paste0(
-  '
-<b>', df$sitename_true,'</b><br><br>
-<b>Observed</b><br>
-perc pos : ', 100*round(df$phiv_nn,4),'%<br>
-')
-m <- leaflet(df) %>%
-  addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
-  #  addTiles() %>% 
-  addCircles(lng=~longitude, 
-             lat = ~latitude, 
-             color = ~pal(phiv), 
-             opacity = 1, 
-             popup=lab) %>%
-  addLegend(pal=pal, 
-            position = "bottomright",
-            values = ~phiv,
-            title="Obs. % pos / median(% pos)")
-m
-
-
-
-
-
-
-
-
-
