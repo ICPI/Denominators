@@ -114,8 +114,8 @@ extract_data <- function(mer_data_source, spectrum_data_source){
       select(psnu2, age, sex, value, variable) %>% 
       group_by(psnu2, age, sex, variable) %>%
       summarise_all(function(x) sum(x, na.rm=T)) %>%
-      spread(variable,value) %>%
-      select(-HIV_PREV)
+      spread(variable,value) 
+    spec_fine$HIV_PREV <- NULL
     names(spec_fine) <- tolower(names(spec_fine))
     spec_fine_unknown_sex <- spec_fine %>%
       group_by(psnu2, age) %>%
@@ -228,7 +228,7 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   if(any(dat_analysis$weight < 0)){
     cat("Warning: Removing negative testing counts\n")
     neg_check <- dat_analysis %>% group_by(quarter, hiv_pos) %>% summarise(total_negative_count=sum(weight[weight < 0])) %>% print(n=10000)
-    dat_analysis <-  dat_analysis %>% filter(weight>0)
+    dat_analysis <-  dat_analysis %>% filter(weight>0, hts_tst > 0)
   }
   
   center_hts_tst <- mean(log(dat_analysis$hts_tst + 1), na.rm=TRUE)

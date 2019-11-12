@@ -8,6 +8,8 @@ params:
     input: select
     value: "Lesotho"
     choices: ["Cote d'Ivoire", "Malawi", "Nigeria","Lesotho"]
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, echo=FALSE}
@@ -124,6 +126,26 @@ by_year_descriptives <- dat_analysis %>%
     geom_line(aes(x=as.numeric(quarter))) + geom_point(aes(y=0,x=1),alpha=0) +
     theme_bw()
   ) %>% plotly::ggplotly()
+```
+
+```{r}
+by_year_descriptives <- dat_analysis %>%
+  mutate(index = ifelse(modality %in% c("Index","IndexMod"), "index","nonindex")) %>%
+    group_by(index, quarter) %>%
+    summarise(
+              positives=sum(hiv_pos * weight),
+              total_tests = sum(weight)) %>%
+  pivot_wider(names_from = index, values_from=c(positives, total_tests)) %>%
+  mutate(index_tests_per_non_index_positive = total_tests_index / positives_nonindex) %>%
+  select(quarter, positives_nonindex, total_tests_index, index_tests_per_non_index_positive)
+by_year_descriptives %>% kable(digits=1)
+(
+    qplot(quarter, index_tests_per_non_index_positive, data=by_year_descriptives) +
+    geom_line(aes(x=as.numeric(quarter))) + 
+    ylim(c(0,max(2.5, max(by_year_descriptives$index_tests_per_non_index_positive)))) +
+    ylab("# Index Tests / # Non-Index Positives") +
+    theme_bw()
+) %>% plotly::ggplotly()
 ```
 
 ### Yield By Partner
@@ -254,20 +276,121 @@ tmp4 %>% DT::datatable(rownames = FALSE)
 
 ## Model Based Target Change Recommendations
 
-The machine learning model gives us estimated yield rates at the site level disaggregated by partner, modality, snu priority, age and sex. It also can provide estimates of what the yield rates would have been had the sites tested a different number of people. The IndexMod and Index modalities are considered fixed and are not optimized. Infant testing (<01 years old) is excluded.
+The machine learning model gives us estimated yield rates at the site level disaggregated by partner, modality, snu priority, age and sex. It also can provide estimates of what the yield rates would have been had the sites tested a different number of people. Infant testing (<01 years old) is excluded.
 
-These yield estimates can be used to provide guidance on the number of tests these sites should target for next quarter. A greedy algorithm is used to optimize yield rates subject to thee constraint that the total number of tests remains constant, and the increase (or decrease) in the number of tests compared to last quarter can be at most `r (max_diff - 1) * 100`%.
+These yield estimates can be used to provide guidance on the number of tests these sites should target for next quarter. A greedy algorithm is used to optimize yield rates subject to thee constraint that the total number of tests remains constant, and the increase (or decrease) in the number of non-index modality tests compared to last quarter can be at most `r (max_diff - 1) * 100`%.
 
 
 ```{r}
-fname <- paste(country, max_diff, "allocations.csv")
-write.csv(model_allocations$allocations, file = fname, row.names = FALSE)
+
 ```
 
-If these changes are adopted, yield among non Index/IndexMod modalities could increase from `r round(model_allocations$initial_yield * 100, 2)` to `r round(model_allocations$final_yield * 100, 2)`, an increase of `r round(100*model_allocations$final_yield/model_allocations$initial_yield-100, 2)`%.
+If these changes are adopted, yield among non Index/IndexMod modalities could increase from `r round(model_allocations$initial_yield * 100, 2)` to `r round(model_allocations$final_yield * 100, 2)`, an increase of `r round(100*model_allocations$final_yield/model_allocations$initial_yield-100, 2)`%. The algorithm proposes increasing index testing from `r as.integer(sum(model_allocations$index_allocations$current_hts_tst_index, na.rm=TRUE))` tests per quarter to `r as.integer(round(sum(model_allocations$index_allocations$proposed_hts_tst_index, na.rm=TRUE)))`, leading to an estimated  `r round(sum(model_allocations$index_allocations$expected_new_hiv_cases_at_proposed, na.rm=TRUE)) - sum(model_allocations$index_allocations$current_hts_tst_pos_index, na.rm=TRUE)` additional identified positives.
 
 
 ## [`r fname`](file:///`r normalizePath(fname)`)
+## [`r fname2`](file:///`r normalizePath(fname2)`)
+
+## Allocations by PSNU
+
+```{r}
+df <- model_allocations$allocations %>% 
+  mutate(psnu_t = as.character(psnu_t)) %>%
+  group_by(psnu_t) %>%
+  summarise(current_hts_tst = sum(current_hts_tst),
+            proposed_hts_tst = sum(proposed_hts_tst)
+            )
+dfi <- model_allocations$index_allocations %>%
+  group_by(psnu_t) %>%
+  summarise(current_hts_tst = sum(current_hts_tst_index, na.rm=TRUE),
+            proposed_hts_tst = round(sum(proposed_hts_tst_index))
+            ) 
+dft <- df %>% 
+  bind_rows(dfi) %>%
+  group_by(psnu_t) %>%
+  summarise_all(sum) %>%
+  mutate(
+    difference = proposed_hts_tst - current_hts_tst,
+    action = ifelse(difference < 0,
+                            "Reduce", 
+                            ifelse(difference > 0, "Increase","No Change"))
+  )
+
+dft %>% arrange(desc(difference)) %>% kable()
+```
+
+## Allocations by modality
+
+```{r}
+df <- model_allocations$allocations %>% 
+  mutate(modality = as.character(modality)) %>%
+  group_by(modality) %>%
+  summarise(current_hts_tst = sum(current_hts_tst),
+            proposed_hts_tst = sum(proposed_hts_tst)
+            )
+dfi <- model_allocations$index_allocations %>%
+  summarise(current_hts_tst = sum(current_hts_tst_index, na.rm=TRUE),
+            proposed_hts_tst = round(sum(proposed_hts_tst_index))
+            ) 
+dfi$modality <- "Index/IndexMod"
+dft <- df %>% 
+  bind_rows(dfi) %>%
+  group_by(modality) %>%
+  summarise_all(sum) %>%
+  mutate(
+    difference = proposed_hts_tst - current_hts_tst,
+    action = ifelse(difference < 0,
+                            "Reduce", 
+                            ifelse(difference > 0, "Increase","No Change"))
+  )
+
+dft %>% arrange(desc(difference)) %>% kable()
+```
+
+## Allocations by gender (non-index modalities)
+
+```{r}
+df <- model_allocations$allocations %>% 
+  mutate(sex = as.character(sex)) %>%
+  group_by(sex) %>%
+  summarise(current_hts_tst = sum(current_hts_tst),
+            proposed_hts_tst = sum(proposed_hts_tst)
+            )
+dft <- df  %>%
+  group_by(sex) %>%
+  summarise_all(sum) %>%
+  mutate(
+    difference = proposed_hts_tst - current_hts_tst,
+    action = ifelse(difference < 0,
+                            "Reduce", 
+                            ifelse(difference > 0, "Increase","No Change"))
+  )
+
+dft %>% arrange(desc(difference)) %>% kable()
+```
+
+## Allocations by age (non-index modalities)
+
+```{r}
+df <- model_allocations$allocations %>% 
+  mutate(ageasentered = as.character(ageasentered)) %>%
+  group_by(ageasentered) %>%
+  summarise(current_hts_tst = sum(current_hts_tst),
+            proposed_hts_tst = sum(proposed_hts_tst)
+            )
+dft <- df  %>%
+  group_by(ageasentered) %>%
+  summarise_all(sum) %>%
+  mutate(
+    difference = proposed_hts_tst - current_hts_tst,
+    action = ifelse(difference < 0,
+                            "Reduce", 
+                            ifelse(difference > 0, "Increase","No Change"))
+  )
+
+dft %>% kable()
+```
+
 
 
 

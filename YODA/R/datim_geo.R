@@ -16,7 +16,7 @@ datim_get_locations <- function(country){
   country_uid <- datim_countries[datim_countries$displayName == country,1]
   
   locations <- api_call("organisationUnits") %>%
-    api_fields(":all") %>%
+    api_fields("id,coordinates,organisationUnitGroups,displayName") %>%
     api_filter(paste0("ancestors.id:eq:",country_uid)) %>%
     api_get()
   
@@ -110,7 +110,6 @@ site_locations <- function(dat_analysis, locations){
 
 box_groupings <- function(latlon_sub, lat=FALSE, group_size = 10, 
                           lat_bd = NULL, long_bd=NULL, depth=1, max_depth=200){
-  print(depth)
   if(is.null(lat_bd)){
     lat_bd <- c(min(latlon_sub$latitude)- .00000001, max(latlon_sub$latitude)+.0000001)
   }

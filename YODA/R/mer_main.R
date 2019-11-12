@@ -30,9 +30,12 @@ dat_analysis <- merge(dat_analysis, da_locations, all.x=TRUE)
 pmtct_fit <- pmtct_glmm(dat_analysis[dat_analysis$time >= -1.5 & dat_analysis$time < -1,])
 dat_analysis$pmtct_lin_pred <- pmtct_fit$compute_values(dat_analysis)
 da_locations$pmtct_lin_pred <- pmtct_fit$compute_values(da_locations)
+#qplot(longitude, latitude, color=pmtct_lin_pred, data=da_locations)
 
-
-dat_analysis2 <- dat_analysis[dat_analysis$age != "Unknown Age" & dat_analysis$sex != "Unknown Sex",]
+dat_analysis2 <- dat_analysis[dat_analysis$age != "Unknown Age" & 
+                                dat_analysis$sex != "Unknown Sex" &
+                                dat_analysis$modality != "Index" &
+                                dat_analysis$modality != "IndexMod",]
 
 
 split <- split_sample(dat_analysis2, testing_fraction = .1)
@@ -46,11 +49,69 @@ enet <- fit_glmnet(dat_anlaysis2, split, glmm, gbm)
 predict_full_fit <- make_predict_full_fit(glmm, gbm, enet)
 
 
+# Index testing model
+site_id_vars <- c("sitename", "psnu_t", "sitetype", 
+                  "snuprioritization", "cluster_1", "cluster_2", "cluster_3")
+dat_analysis_non_index <- dat_analysis %>% 
+  filter(age != "Unknown Age", 
+         time == 0,
+         !(modality %in% c("Index","IndexMod"))) %>%
+  group_by_at(vars(one_of(c(site_id_vars,"hiv_pos", 
+                            "worldpop_10", "worldpop_50", "pmtct_lin_pred")))) %>%
+  summarise(weight = sum(weight)) %>%
+  pivot_wider(names_from = c(hiv_pos),
+              values_from = weight,
+              values_fill = list(weight = 0)) %>%
+  mutate(hts_tst_non_index = `FALSE` + `TRUE`,
+         hts_tst_pos_non_index = `TRUE`) %>%
+  select(-`TRUE`,-`FALSE`)
+
+dat_analysis_index <- dat_analysis %>% 
+  filter(age != "Unknown Age", 
+         time == 0,
+         modality %in% c("Index","IndexMod")) %>%
+  mutate(pediatric = agecoarse == "<15") %>%
+  group_by_at(vars(one_of(c(site_id_vars,"hiv_pos", "pediatric",
+                            "worldpop_10", "worldpop_50", "pmtct_lin_pred")))) %>%
+  summarise(weight = sum(weight)) %>%
+  pivot_wider(names_from = c(hiv_pos),
+              values_from = weight,
+              values_fill = list(weight = 0)) %>%
+  mutate(hts_tst_index = `FALSE` + `TRUE`,
+         hts_tst_pos_index = `TRUE`) %>%
+  select(-`TRUE`,-`FALSE`) %>%
+  filter(hts_tst_index != 0)
+dat_analysis_index <- merge(dat_analysis_index, dat_analysis_non_index, all.x=TRUE)
+dat_analysis_index$hts_tst_non_index[is.na(dat_analysis_index$hts_tst_non_index)] <- 0
+dat_analysis_index$hts_tst_pos_non_index[is.na(dat_analysis_index$hts_tst_pos_non_index)] <- 0
+
+
+glmm_index_fit <- glmer(cbind(hts_tst_pos_index, hts_tst_index) ~ pediatric + 
+                          pmtct_lin_pred + log(worldpop_50 + 1) + 
+                          log((hts_tst_index + 1) / (hts_tst_pos_non_index + 1)) +
+                          (1 | cluster_1 / cluster_3 / sitename),
+                  family=binomial(), 
+                  data=dat_analysis_index,
+                  verbose=verbose,
+                  nAGQ = 0)
+
+
+
+
+
+
+
+
 model_allocations <-  generate_allocations(dat_analysis, predict_full_fit, trans_hts_tst, 
+                                           glmm_index_fit=glmm_index_fit,
                                            max_diff=max_diff, 
                                            max_increase=max_increase,
                                            n_steps=n_steps,
-                                          total_tests_target = total_tests_target
+                                          total_tests_target = total_tests_target,
+                                          subgroup_fixed = data.frame(
+                                            "modality",
+                                            "PMTCT ANC",
+                                            stringsAsFactors = FALSE)
                                            )
 
 #yield_model <- fit_yield_model(dat_analysis, verbose=verbose)
@@ -65,6 +126,11 @@ model_allocations <-  generate_allocations(dat_analysis, predict_full_fit, trans
 
 filename <- paste0( "results/", stringr::str_replace_all(mer_data_source,"/","_"), "_results",".RData")
 save.image(file=filename)
+
+fname <- paste(country, max_diff, "allocations.csv")
+write.csv(model_allocations$allocations, file = fname, row.names = FALSE)
+fname2 <- paste(country, max_diff, "index_allocations.csv")
+write.csv(model_allocations$index_allocations, file = fname2, row.names = FALSE)
 
 rmarkdown::render('mer_report.Rmd')
 file.copy("mer_report.html",paste0("mer_report_",tolower(country),".html"), overwrite = TRUE)
