@@ -50,7 +50,7 @@ if(country == "Cote d'Ivoire"){
 }else if(country == "Lesotho"){
   time_cuts <- c(-0.75,  -0.5, -0.25, 0)
   #mer_data_source <- "lesotho/MER_Structured_Datasets_Site_IM_FY17-19_20190920_v2_1_Lesotho.txt"
-  mer_data_source <- "lesotho/Genie_Daily_441e2d82285d40fd9965a55349b3f3e8.txt"
+  mer_data_source <- "lesotho/Genie_Daily_2ae82f8a6fb84c858d946553580a4caa.txt"
   spectrum_data_source <- "lesotho/spectrum.xlsx"
   world_pop_source <- "lesotho/lso_ppp_2019.tif"
   group_sizes <- c(50,30,15)
@@ -66,7 +66,16 @@ if(country == "Cote d'Ivoire"){
     (1  | sitename / modality) 
   site_re_formula <- ~(1 | sitename / modality) + (1 | cluster_1 / cluster_3)
   
-  
+  index_ratio <- function(ratio, pediatric){
+    ratio[is.na(ratio)] <- 0
+    #ratio <- 1.5 * ratio
+    #ratio[!pediatric & ratio < 1.5]  <- ratio[!pediatric & ratio < 1.5] * 1.25#pmin(1.5, ratio[!pediatric & ratio < 1.5] * 1.4)
+    #ratio[pediatric & ratio < .4]  <- ratio[pediatric & ratio < .4] * 1.25#pmin(.4, ratio[pediatric & ratio < .4] * 1.4)
+    #ratio[!pediatric & ratio < .5] <- .25
+    #ratio[pediatric & ratio < .1] <- .05
+    ratio[is.infinite(ratio)] <- 1.5
+    ratio
+  }
 }else if(country == "Tanzania"){
   mer_data_source <- "tanzania/MER_Structured_Dataset_Site_IM_FY17-19_20190621_v2_1_Tanzania.txt"
   spectrum_data_source <- "tanzania/spectrum.xlsx"

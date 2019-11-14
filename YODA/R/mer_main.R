@@ -97,10 +97,10 @@ dat_analysis_index$hts_tst_pos_non_index[is.na(dat_analysis_index$hts_tst_pos_no
 
 glmm_index_fit <- glmer(cbind(hts_tst_pos_index, hts_tst_index - hts_tst_pos_index) ~ pediatric + 
                           pmtct_lin_pred + log(worldpop_50 + 1) + 
-                          log((hts_tst_index + 1) / (hts_tst_pos_non_index + 1)) +
+                          log((hts_tst_index) / (hts_tst_pos_non_index) ) +
                           (1 | cluster_1 / cluster_3 / sitename), #(1 | cluster_1 / cluster_3 / sitename),
                   family=binomial(), 
-                  data=dat_analysis_index,
+                  data=dat_analysis_index %>% filter(hts_tst_index > 0, hts_tst_pos_non_index > 0),
                   verbose=verbose,
                   nAGQ = 0)
 #tmp <- dat_analysis_index
@@ -109,9 +109,11 @@ glmm_index_fit <- glmer(cbind(hts_tst_pos_index, hts_tst_index - hts_tst_pos_ind
 #                     offset = lin_pred,
 #                     family=binomial(),
 #                     data=tmp)
-#pd <- predict(glmm_index_fit)
-#qplot(1 / (1 + exp(-pd)),  hts_tst_pos_index / hts_tst_index, size=hts_tst_pos_non_index, 
-#color=pediatric, data=dat_analysis_index) + geom_smooth() + geom_abline()
+pd <- predict(glmm_index_fit, 
+              newdata=dat_analysis_index, 
+              allow.new.levels=TRUE)
+qplot(1 / (1 + exp(-pd)),  hts_tst_pos_index / hts_tst_index, size=hts_tst_pos_non_index, 
+color=pediatric, data=dat_analysis_index) + geom_smooth() + geom_abline()
 
 
 

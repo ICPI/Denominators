@@ -35,7 +35,7 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
   active_sites <- (dat_analysis %>% filter(time == 0 & 
                                             sex != "Unknown Sex" & age != "Unknown Age"))$sitename %>%
     unique()
-  pdat <- merge(pdat, tmp, all.x=T)
+  pdat <- merge(pdat, tmp, all.x=T, sort=FALSE)
   
   
   pdat$hts_tst[is.na(pdat$hts_tst)] <- 0
@@ -65,7 +65,7 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
   no_ind <- !(apply(po,1,paste, collapse="_") %in% apply(pi,1,paste, collapse="_"))
   po <- po[no_ind,]
   po$no_ind <- TRUE
-  po <- merge(pdat,po,all.x=TRUE)
+  po <- merge(pdat,po,all.x=TRUE, sort=FALSE)
   po <- po[!is.na(po$no_ind) & po$hts_tst > 0,]
   po$modality <- "Index"
   po$no_ind <- NULL
@@ -89,10 +89,13 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
   pdat_index_tot <- pdat_index[c(site_id_vars,"hts_tst","pediatric")] %>% 
     group_by_at(vars(one_of(c(site_id_vars,"pediatric")))) %>%
     summarise(hts_tst_index=sum(hts_tst))
-  pdat_non_index_pos <- dat_analysis[dat_analysis$time == 0 & dat_analysis$hiv_pos, c(site_id_vars,"weight")] %>% 
+  pdat_non_index_pos <- dat_analysis[dat_analysis$time == 0 & 
+                                       dat_analysis$hiv_pos & 
+                                       !(dat_analysis$modality %in% c("Index","IndexMod")), 
+                                     c(site_id_vars,"weight")] %>% 
     group_by_at(vars(one_of(site_id_vars))) %>%
     summarise(hts_tst_pos_non_index=sum(weight))
-  pdat_index_tot <- merge(pdat_index_tot, pdat_non_index_pos, all=TRUE)
+  pdat_index_tot <- merge(pdat_index_tot, pdat_non_index_pos, all=TRUE, sort=FALSE)
   pdat_index_tot$hts_tst_pos_non_index[is.na(pdat_index_tot$hts_tst_pos_non_index)] <- 0
   pdat_index_tot$hts_tst_index[is.na(pdat_index_tot$hts_tst_index)] <- 0
   pdat_index_tot$hts_index_per_non_index <- pdat_index_tot$hts_tst_index / pdat_index_tot$hts_tst_pos_non_index
@@ -108,6 +111,8 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
   pdat <- pdat[order(-pdat$preds),]
   initial_preds <- pdat$preds
   initial_hts_tst <- pdat$hts_tst
+  
+  
   
   # Precalculate predicted yield rates at each increment of hts_tst
   step <- exp(log(max_diff) / n_steps)
@@ -158,13 +163,6 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
     pnew[new_step_ind == i] <- preds_step[new_step_ind == i,i]
   }
   
-  # Calculate yield amoung those who would be tested if the testing rate was incremented up.
-  yield_amoung_changes <- (pnew * up_hts_tst - pdat$preds * pdat$hts_tst) / (up_hts_tst - pdat$hts_tst)
-  yield_amoung_changes[up_hts_tst == pdat$hts_tst] <- pnew[up_hts_tst == pdat$hts_tst]
-  if(!is.null(subgroup_fixed)){
-    yield_amoung_changes[subgroup] <- -Inf
-  }
-  
   for(sid in unique(pdat_index_tot$site_id)){
     site_ind <- which(pdat$site_id == sid)
     site_hts_tst_pos_non_index <- sum(pdat[site_ind,"hts_tst"] * pdat[site_ind,"preds"])
@@ -180,13 +178,38 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
     summarise(hts_tst_pos_non_index = sum(expected_new_hiv_cases_at_proposed))
   tmp <- pdat_index_tot %>%
     select(-hts_tst_pos_non_index) %>%
-    merge(tmp, all.x=TRUE)
+    merge(tmp, all.x=TRUE, sort = FALSE)
   tmp$hts_tst_pos_non_index[is.na(tmp$hts_tst_pos_non_index)] <- 0
   pdat_index_tot <- tmp
   pdat_index_tot$index_ratio <- index_ratio_func(pdat_index_tot$hts_index_per_non_index, pdat_index_tot$pediatric)
   pdat_index_tot$hts_tst_index <- pdat_index_tot$hts_tst_pos_non_index * pdat_index_tot$index_ratio
   pdat_index_tot$lin_pred <- predict(glmm_index_fit, newdata=pdat_index_tot, allow.new.levels=TRUE)
   pdat_index_tot$expected_new_hiv_cases_at_proposed <- pdat_index_tot$hts_tst_index * 1 / (1 + exp(-pdat_index_tot$lin_pred ))
+  
+  tmp <- pdat_index_tot %>% 
+    group_by(site_id) %>%
+    summarise(
+      hts_tst_index_yield = sum(index_ratio * 1 / (1 + exp(-lin_pred))) / 
+        sum(index_ratio),
+      hts_index_per_non_index = sum(index_ratio)
+    )
+  pdat <- left_join(pdat, tmp, by="site_id")
+  
+  # Calculate yield amoung those who would be tested if the testing rate was incremented up.
+  tot_ni_diff <- ifelse(up_hts_tst == pdat$hts_tst, 1, up_hts_tst - pdat$hts_tst)
+  pos_ni_diff <- ifelse(up_hts_tst == pdat$hts_tst, pnew, pnew * up_hts_tst - pdat$preds * pdat$hts_tst)
+  tot_i_diff <- pos_ni_diff * pdat$hts_index_per_non_index
+  pos_i_diff <- tot_i_diff * pdat$hts_tst_index_yield
+  yield_amoung_changes <- (pos_ni_diff + pos_i_diff) / (tot_ni_diff + tot_i_diff)
+  #yield_amoung_changes <- (pnew * up_hts_tst - pdat$preds * pdat$hts_tst) / (up_hts_tst - pdat$hts_tst)
+  #yield_amoung_changes[up_hts_tst == pdat$hts_tst] <- pnew[up_hts_tst == pdat$hts_tst]
+  if(!is.null(subgroup_fixed)){
+    yield_amoung_changes[subgroup] <- -Inf
+  }
+              
+  
+  
+  
   # Iteratively select and increment the record that maximizes yield
   target_tot <- sum(pdat$hts_tst) + sum(pdat_index_tot$hts_tst_index)
   monitor <- 0
@@ -246,11 +269,22 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
     }else{
       new_hts_tst <- floor(step^(pdat$step[up_ind] + 1) * initial_hts_tst[up_ind])
     }
-    yield_amoung_changes[up_ind] <- (pnew[up_ind] * new_hts_tst - 
-                                       pdat$preds[up_ind] * pdat$hts_tst[up_ind]) / (new_hts_tst - pdat$hts_tst[up_ind])
-    if(new_hts_tst - pdat$hts_tst[up_ind] < .5){
-      yield_amoung_changes[up_ind] <- pnew[up_ind]
-    }
+    
+    tot_ni_diff <- ifelse(new_hts_tst == pdat$hts_tst[up_ind], 
+                          1, 
+                          new_hts_tst - pdat$hts_tst[up_ind])
+    pos_ni_diff <- ifelse(new_hts_tst == pdat$hts_tst[up_ind], 
+                          pnew[up_ind], 
+                          pnew[up_ind] * new_hts_tst - pdat$preds[up_ind] * pdat$hts_tst[up_ind])
+    tot_i_diff <- pos_ni_diff * pdat$hts_index_per_non_index[up_ind]
+    pos_i_diff <- tot_i_diff * pdat$hts_tst_index_yield[up_ind]
+    yield_amoung_changes[up_ind] <- (pos_ni_diff + pos_i_diff) / (tot_ni_diff + tot_i_diff)
+    
+    #yield_amoung_changes[up_ind] <- (pnew[up_ind] * new_hts_tst - 
+    #                                   pdat$preds[up_ind] * pdat$hts_tst[up_ind]) / (new_hts_tst - pdat$hts_tst[up_ind])
+    #if(new_hts_tst - pdat$hts_tst[up_ind] < .5){
+    #  yield_amoung_changes[up_ind] <- pnew[up_ind]
+    #}
     
     site_ind <- which(pdat$site_id == pdat$site_id[up_ind])
     site_hts_tst_pos_non_index <- sum(pdat[site_ind,"hts_tst"] * pdat[site_ind,"preds"])
@@ -276,7 +310,7 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
     select(ageasentered, snuprioritization, sitetype, psnu_t, sitename, 
            weight, hiv_pos, sex, modality, primepartner) %>%
     summarise(current_hts_tst = sum(weight), new_hiv_cases = sum(weight * hiv_pos))
-  allocations <- merge(allocations, tmp, all.x=TRUE) %>% 
+  allocations <- merge(allocations, tmp, all.x=TRUE, sort=FALSE) %>% 
     arrange(desc(preds)) %>%
     mutate(observed_yield = new_hiv_cases / current_hts_tst)
   
@@ -337,7 +371,7 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
       expected_hts_tst_pos_non_index = hts_tst_pos_non_index,
       estimated_yield_at_proposed = 1 / (1 + exp(-lin_pred))
       ) %>%
-    merge(tmp , by=c(site_id_vars,"pediatric"), all.x=TRUE) %>%
+    merge(tmp , by=c(site_id_vars,"pediatric"), all.x=TRUE, sort=FALSE) %>%
     select(-worldpop_10, -worldpop_50, -pmtct_lin_pred, -hts_tst_index,
            -hts_index_per_non_index, -lin_pred, -index_ratio, -hts_tst_pos_non_index,
            -cluster_1, -cluster_2, -cluster_3) 
