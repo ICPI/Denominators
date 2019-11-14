@@ -24,6 +24,7 @@ da_locations$cluster_3 <- boxed_groups(da_locations, group_sizes[3])
 wp <- raster::raster(world_pop_source)
 da_locations$worldpop_10 <- world_pop_count(da_locations, wp, 10)
 da_locations$worldpop_50 <- world_pop_count(da_locations, wp, 50)
+rm("wp")
 
 dat_analysis <- merge(dat_analysis, da_locations, all.x=TRUE)
 
@@ -58,13 +59,21 @@ dat_analysis_non_index <- dat_analysis %>%
          !(modality %in% c("Index","IndexMod"))) %>%
   group_by_at(vars(one_of(c(site_id_vars,"hiv_pos", 
                             "worldpop_10", "worldpop_50", "pmtct_lin_pred")))) %>%
-  summarise(weight = sum(weight)) %>%
-  pivot_wider(names_from = c(hiv_pos),
-              values_from = weight,
-              values_fill = list(weight = 0)) %>%
-  mutate(hts_tst_non_index = `FALSE` + `TRUE`,
-         hts_tst_pos_non_index = `TRUE`) %>%
-  select(-`TRUE`,-`FALSE`)
+  summarise(weight = sum(weight))
+t1 <- dat_analysis_non_index %>% filter(hiv_pos) %>% ungroup() %>% select(-hiv_pos)
+t2 <- dat_analysis_non_index %>% filter(!hiv_pos) %>% ungroup() %>% select( -hiv_pos)
+t3 <- merge(t1,t2, by=setdiff(names(t1),"weight"))
+dat_analysis_non_index <- t3 %>%
+  mutate(hts_tst_non_index = weight.x + weight.y,
+         hts_tst_pos_non_index = weight.x) %>%
+  select(-weight.x,-weight.y)
+#%>%
+#  pivot_wider(names_from = c(hiv_pos),
+#              values_from = weight,
+#              values_fill = list(weight = 0)) %>%
+#  mutate(hts_tst_non_index = `FALSE` + `TRUE`,
+#         hts_tst_pos_non_index = `TRUE`) %>%
+#  select(-`TRUE`,-`FALSE`)
 
 dat_analysis_index <- dat_analysis %>% 
   filter(age != "Unknown Age", 
@@ -86,16 +95,23 @@ dat_analysis_index$hts_tst_non_index[is.na(dat_analysis_index$hts_tst_non_index)
 dat_analysis_index$hts_tst_pos_non_index[is.na(dat_analysis_index$hts_tst_pos_non_index)] <- 0
 
 
-glmm_index_fit <- glmer(cbind(hts_tst_pos_index, hts_tst_index) ~ pediatric + 
+glmm_index_fit <- glmer(cbind(hts_tst_pos_index, hts_tst_index - hts_tst_pos_index) ~ pediatric + 
                           pmtct_lin_pred + log(worldpop_50 + 1) + 
                           log((hts_tst_index + 1) / (hts_tst_pos_non_index + 1)) +
-                          (1 | cluster_1 / cluster_3 / sitename),
+                          (1 | cluster_1 / cluster_3 / sitename), #(1 | cluster_1 / cluster_3 / sitename),
                   family=binomial(), 
                   data=dat_analysis_index,
                   verbose=verbose,
                   nAGQ = 0)
-
-
+#tmp <- dat_analysis_index
+#tmp$lin_pred <- predict(glmm_index_fit)
+#glm_index_fit <- glm(cbind(hts_tst_pos_index, hts_tst_index) ~ I(1 / (1 + exp(-lin_pred)) > .3),
+#                     offset = lin_pred,
+#                     family=binomial(),
+#                     data=tmp)
+#pd <- predict(glmm_index_fit)
+#qplot(1 / (1 + exp(-pd)),  hts_tst_pos_index / hts_tst_index, size=hts_tst_pos_non_index, 
+#color=pediatric, data=dat_analysis_index) + geom_smooth() + geom_abline()
 
 
 
@@ -111,7 +127,8 @@ model_allocations <-  generate_allocations(dat_analysis, predict_full_fit, trans
                                           subgroup_fixed = data.frame(
                                             "modality",
                                             "PMTCT ANC",
-                                            stringsAsFactors = FALSE)
+                                            stringsAsFactors = FALSE),
+                                          index_ratio_func = index_ratio
                                            )
 
 #yield_model <- fit_yield_model(dat_analysis, verbose=verbose)

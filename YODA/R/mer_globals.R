@@ -6,6 +6,18 @@ vcat <- function(...) if(verbose) cat(...)
 if(!exists("country")) country <- "Cote d'Ivoire"
 if(!exists("max_diff")) max_diff <- 1.2
 if(!exists("n_steps")) n_steps <- 4
+
+index_ratio <- function(ratio, pediatric){
+  ratio[is.na(ratio)] <- 0
+  ratio[!pediatric & ratio < 1.5]  <-pmax(1.5, ratio[!pediatric & ratio < 1.5] * 1.4)
+  ratio[pediatric & ratio < .4]  <-pmax(.4, ratio[pediatric & ratio < .4] * 1.4)
+  ratio[!pediatric & ratio < .5] <- .5
+  ratio[pediatric & ratio < .1] <- .1
+  ratio[is.infinite(ratio)] <- 1.5
+  ratio
+}
+
+
 frm <- NULL
 time_cuts <- c(-0.75,  -0.5, -0.25)
 max_increase <- Inf
@@ -37,7 +49,8 @@ if(country == "Cote d'Ivoire"){
   site_re_formula <- ~(1 | sitename / modality) + (1 | cluster_1 /cluster_2 / cluster_3)
 }else if(country == "Lesotho"){
   time_cuts <- c(-0.75,  -0.5, -0.25, 0)
-  mer_data_source <- "lesotho/MER_Structured_Datasets_Site_IM_FY17-19_20190920_v2_1_Lesotho.txt"
+  #mer_data_source <- "lesotho/MER_Structured_Datasets_Site_IM_FY17-19_20190920_v2_1_Lesotho.txt"
+  mer_data_source <- "lesotho/Genie_Daily_441e2d82285d40fd9965a55349b3f3e8.txt"
   spectrum_data_source <- "lesotho/spectrum.xlsx"
   world_pop_source <- "lesotho/lso_ppp_2019.tif"
   group_sizes <- c(50,30,15)
@@ -52,6 +65,8 @@ if(country == "Cote d'Ivoire"){
     (1  | modality ) + ( log_hts_tst - 1 | modality) + (1 | cluster_1 / cluster_3) + 
     (1  | sitename / modality) 
   site_re_formula <- ~(1 | sitename / modality) + (1 | cluster_1 / cluster_3)
+  
+  
 }else if(country == "Tanzania"){
   mer_data_source <- "tanzania/MER_Structured_Dataset_Site_IM_FY17-19_20190621_v2_1_Tanzania.txt"
   spectrum_data_source <- "tanzania/spectrum.xlsx"

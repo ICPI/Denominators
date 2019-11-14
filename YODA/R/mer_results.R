@@ -1,14 +1,5 @@
 # !diagnostics off
 
-index_ratio <- function(ratio, pediatric){
-  ratio[is.na(ratio)] <- 0
-  ratio[!pediatric & ratio < 1.5]  <-pmax(1.5, ratio[!pediatric & ratio < 1.5] * 1.4)
-  ratio[pediatric & ratio < .4]  <-pmax(.4, ratio[pediatric & ratio < .4] * 1.4)
-  ratio[!pediatric & ratio < .5] <- .5
-  ratio[pediatric & ratio < .1] <- .1
-  ratio[is.infinite(ratio)] <- 1.5
-  ratio
-}
 
 generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst, 
                                  glmm_index_fit,
@@ -17,8 +8,8 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
                                  include_variables=c(),
                                  index_ratio_func = index_ratio){
   
-  index_coef <- summary(glmm_index_fit)$coef[,1]
-  index_coef <- index_coef[names(index_coef) == "log((hts_tst_index + 1)/(hts_tst_pos_non_index + 1))"]
+  #index_coef <- summary(glmm_index_fit)$coef[,1]
+  #index_coef <- index_coef[names(index_coef) == "log((hts_tst_index + 1)/(hts_tst_pos_non_index + 1))"]
   
   variables <- c("age","ageasentered", "sitename","psnu_t","sitetype", "modality", "primepartner",
                  "snuprioritization", "sex","log_plhiv", "log_tx", "log_pop_est", "cluster_1","cluster_2","cluster_3",
@@ -269,7 +260,7 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
       log( (pdat_index_tot$hts_tst_index[site_ind] + 1) / 
                         (pdat_index_tot$hts_tst_pos_non_index[site_ind] + 1) )
     pdat_index_tot[site_ind,"hts_tst_pos_non_index"] <- site_hts_tst_pos_non_index
-    pdat_index_tot[site_ind,"lin_pred"] <- pdat_index_tot[site_ind,"lin_pred"] + index_coef * lp_change
+    pdat_index_tot[site_ind,"lin_pred"] <- pdat_index_tot[site_ind,"lin_pred"] #+ index_coef * lp_change
     n_ind_tests <- pdat_index_tot$index_ratio[site_ind] * site_hts_tst_pos_non_index
     target_tot <- target_tot + sum(n_ind_tests - pdat_index_tot$hts_tst_index[site_ind])
     pdat_index_tot[site_ind,"hts_tst_index"] <- n_ind_tests

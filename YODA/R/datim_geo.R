@@ -42,6 +42,7 @@ datim_get_locations <- function(country){
     if(is.list(coord) && length(coord) == 1 && is.list(coord[[1]])){
       coord <- coord[[1]]
     }
+    if(is.character(coord)) coord <- as.numeric(coord)
     if(!is.numeric(coord) || length(coord) != 2){
       c1 <- list()
       if(!is.list(coord))

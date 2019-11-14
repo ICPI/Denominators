@@ -285,7 +285,7 @@ These yield estimates can be used to provide guidance on the number of tests the
 
 ```
 
-If these changes are adopted, yield among non Index/IndexMod modalities could increase from `r round(model_allocations$initial_yield * 100, 2)` to `r round(model_allocations$final_yield * 100, 2)`, an increase of `r round(100*model_allocations$final_yield/model_allocations$initial_yield-100, 2)`%. The algorithm proposes increasing index testing from `r as.integer(sum(model_allocations$index_allocations$current_hts_tst_index, na.rm=TRUE))` tests per quarter to `r as.integer(round(sum(model_allocations$index_allocations$proposed_hts_tst_index, na.rm=TRUE)))`, leading to an estimated  `r round(sum(model_allocations$index_allocations$expected_new_hiv_cases_at_proposed, na.rm=TRUE)) - sum(model_allocations$index_allocations$current_hts_tst_pos_index, na.rm=TRUE)` additional identified positives.
+If these changes are adopted, yield among non Index/IndexMod modalities could increase from `r round(model_allocations$initial_yield * 100, 2)` to `r round(model_allocations$final_yield * 100, 2)`, an increase of `r round(100*model_allocations$final_yield/model_allocations$initial_yield-100, 2)`%. The algorithm proposes increasing index testing from `r as.integer(sum(model_allocations$index_allocations$current_hts_tst_index, na.rm=TRUE))` tests per quarter to `r as.integer(round(sum(model_allocations$index_allocations$proposed_hts_tst_index, na.rm=TRUE)))`, leading to an estimated  `r as.integer(round(sum(model_allocations$index_allocations$expected_new_hiv_cases_at_proposed, na.rm=TRUE)) - sum(model_allocations$index_allocations$current_hts_tst_pos_index, na.rm=TRUE))` additional identified positives.
 
 
 ## [`r fname`](file:///`r normalizePath(fname)`)
