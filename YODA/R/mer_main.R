@@ -27,8 +27,12 @@ da_locations$worldpop_50 <- world_pop_count(da_locations, wp, 50)
 rm("wp")
 
 dat_analysis <- merge(dat_analysis, da_locations, all.x=TRUE)
+dat_analysis$cluster_1 <- as.factor(dat_analysis$cluster_1)
+dat_analysis$cluster_2 <- as.factor(dat_analysis$cluster_2)
+dat_analysis$cluster_3 <- as.factor(dat_analysis$cluster_3)
 
-pmtct_fit <- pmtct_glmm(dat_analysis[dat_analysis$time >= -1.5 & dat_analysis$time < -1,])
+
+pmtct_fit <- pmtct_glmm(dat_analysis[dat_analysis$time %in% sort(unique(dat_analysis$time))[1:2],])
 dat_analysis$pmtct_lin_pred <- pmtct_fit$compute_values(dat_analysis)
 da_locations$pmtct_lin_pred <- pmtct_fit$compute_values(da_locations)
 #qplot(longitude, latitude, color=pmtct_lin_pred, data=da_locations)

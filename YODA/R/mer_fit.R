@@ -214,7 +214,7 @@ fit_gbm <-function(dat_anlaysis2, split, glmm, n_iter=20){
   mm <- sparse.model.matrix(~ obs_id_factor - 1, data=dat_full_fit)
   dat_full_fit$glmm_preds <- glmm_preds
   
-  
+
   frm <- ~log_plhiv + log_pop_est + log_tx + time + log_hts_tst + age + 
     sitetype + sex + snuprioritization + primepartner + age + sex + 
     modality + psnu_t + sitename + obs_id_factor + glmm_preds + cluster_1 + 
@@ -276,7 +276,18 @@ fit_gbm <-function(dat_anlaysis2, split, glmm, n_iter=20){
   
   glmm_full_preds <- predict(glmm_full_fit, newdata=dat_full_fit, allow.new.levels=TRUE)
   dat_full_fit$glmm_preds <- glmm_full_preds
-  mm_gbm <- sparse.model.matrix(frm,data=dat_full_fit)
+  all_va <- names(get_all_vars(frm, dat_full_fit))
+  xlevs <- lapply(dat_full_fit[all_va], 
+                  function(x){
+                    if(is.factor(x)) 
+                      levels(x) 
+                    else 
+                      NULL
+                    })
+  xlevs <- xlevs[!sapply(xlevs, is.null)]
+  xlevs <- lapply(xlevs, function(x) unique(c(x, "__out_of_sample__")))
+  
+  mm_gbm <- sparse.model.matrix(frm,data=dat_full_fit, xlev = xlevs)
   dmat <- xgb.DMatrix(mm_gbm, 
                       label=dat_full_fit$hiv_pos,
                       weight=dat_full_fit$weight,
@@ -286,7 +297,7 @@ fit_gbm <-function(dat_anlaysis2, split, glmm, n_iter=20){
   predict_gbm_full <- function(dat, glmm_preds){
     df <- dat
     dat$glmm_preds <- glmm_preds
-    mm_gbm <- sparse.model.matrix(frm,data=dat)
+    mm_gbm <- sparse.model.matrix(frm, data=dat, xlev=xlevs)
     dmat <- xgb.DMatrix(mm_gbm, 
                         base_margin=glmm_preds)
     predict(gbm_full_fit, newdata=dmat, outputmargin = TRUE)
@@ -299,6 +310,7 @@ fit_gbm <-function(dat_anlaysis2, split, glmm, n_iter=20){
     opt_res=opt_res,
     params=params,
     frm=frm,
+    xlevs=xlevs,
     predict_gbm_full=predict_gbm_full,
     dmat=dmat
   )
@@ -308,7 +320,7 @@ make_predict_full_fit <- function(glmm, gbm, enet){
   predict_full_fit <- function(dat){
     p <- predict(glmm$glmm_full_fit, newdata= dat, allow.new.levels=TRUE)
     p <- gbm$predict_gbm_full(dat, p)
-    mm <- sparse.model.matrix(~ obs_id_factor - 1, data=dat)
+    mm <- sparse.model.matrix(~ obs_id_factor - 1, data=dat, xlev=xlevs)
     glmnet_preds <- as.vector(predict(enet$glmnet_fit_full, 
                                       s=enet$glmnet_fit$lambda[enet$glmnet_ind], 
                                       newx=mm, 
