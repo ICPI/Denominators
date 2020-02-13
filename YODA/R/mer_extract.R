@@ -8,7 +8,7 @@ library(scclust)
 extract_data <- function(mer_data_source, spectrum_data_source){
   vcat("Reading MER Data\n")
   if(str_ends(mer_data_source,"txt")){
-    dat <- ICPIutilities::read_msd(mer_data_source)
+    dat <- ICPIutilities::read_msd(mer_data_source, remove_txt = FALSE)
   }else{
     dat <- readRDS(mer_data_source)
   }
@@ -16,7 +16,7 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   dat <- rename_official(dat)
   
   if(stringr::str_starts(mer_data_source, "nigeria")){
-    psnu <- dat$psnu
+    psnu <- dat$community
     psnu <- sapply(str_split(psnu, " "), function(x) x[1])
     dat$psnu <- psnu
   }
@@ -95,7 +95,7 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   
   dat_tidy <- merge(hts_tst_pos_dat,hts_tst_dat, all=TRUE)
   dat_tidy$psnu_t <- stringr::str_replace_all(tolower(dat_tidy$psnu),"-"," ")
-  dat_tidy <- dat_tidy %>% filter( substr(quarter, 1, 6) %in% c("fy2018","fy2019"))
+  dat_tidy <- dat_tidy %>% filter( substr(quarter, 1, 6) %in% c("fy2018","fy2019","fy2020"))
   
   if(!is.null(spectrum_data_source)){
     vcat("Reading Spectrum Data\n")
@@ -229,6 +229,8 @@ extract_data <- function(mer_data_source, spectrum_data_source){
     cat("Warning: Removing negative testing counts\n")
     neg_check <- dat_analysis %>% group_by(quarter, hiv_pos) %>% summarise(total_negative_count=sum(weight[weight < 0])) %>% print(n=10000)
     dat_analysis <-  dat_analysis %>% filter(weight>0, hts_tst > 0)
+  }else{
+    neg_check <- data.frame(quarter=c(), hiv_pos=c(), total_negative_count=c())
   }
   
   center_hts_tst <- mean(log(dat_analysis$hts_tst + 1), na.rm=TRUE)

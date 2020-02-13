@@ -119,7 +119,7 @@ if(country == "Cote d'Ivoire"){
     (1 | cluster_1 / cluster_2 / cluster_3) + (1 | sitename / modality)
   site_re_formula <- ~(1 | sitename / modality) + (1 | cluster_1 /cluster_2 / cluster_3)
 }else{
-  stop("unknown country")
+  warning("unknown country")
 }
 
 

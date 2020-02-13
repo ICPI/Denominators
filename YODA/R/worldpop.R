@@ -28,3 +28,27 @@ world_pop_count <- function(da_locations, wp, d=10){
   cat("\n")
   dist_1
 }
+
+
+world_pop_count_cluster <- function(da_locations, wp, d=10, cluster){
+  units(d) <- "km"
+  dist_1 <- rep(NA, nrow(da_locations))
+  parallel::clusterExport(cluster, c("da_locations","wp","d"), envir = environment())
+  parallel::clusterEvalQ(cluster, {library(sp);library(sf);library(tidyverse)})
+  fun <- function(i){
+    pt <- da_locations[i,c("longitude","latitude")] %>% as.numeric() %>% st_point()
+    #projection(pt) <- CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs")
+    #buf <- pt %>% st_buffer(dist=50000)
+    
+    buf <- st_set_crs(st_sfc(pt), st_crs("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs"))  %>% 
+      st_transform(3488) %>% 
+      st_buffer(dist=d) %>%
+      st_transform("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs")
+    
+    wp_crop <- raster::crop(wp, raster::extent(st_bbox(buf)[c(1,3,2,4)]))
+    ras <- raster::mask(wp_crop,st_as_sf(buf))
+    raster::cellStats(ras,"sum") #sum(as.array(ras),na.rm=TRUE)
+  }
+  dist_1 <- parallel::parLapplyLB(cluster,1:nrow(da_locations), fun) %>% unlist()
+  dist_1
+}

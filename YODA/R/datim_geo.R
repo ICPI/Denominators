@@ -47,8 +47,10 @@ datim_get_locations <- function(country){
       c1 <- list()
       if(!is.list(coord))
         coord <- list(coord)
+      coord <- rlang::flatten(coord)
       for(j in 1:length(coord)){
         cc <- coord[[j]]
+        #tryCatch({
         c1[[j]] <- drop(cc) %>% as.data.frame() %>% 
           geojsonio::geojson_list(lon = "V1",lat="V2") %>% 
           geojsonio::geojson_sf() %>% 
@@ -57,6 +59,7 @@ datim_get_locations <- function(country){
           st_centroid() %>% 
           st_coordinates() %>%
           as.numeric()
+        #}, error= function(xx) browser())
       }
       coord <- c(median(as.numeric(as.data.frame(c1)[1,])),
                  median(as.numeric(as.data.frame(c1)[2,])))

@@ -320,7 +320,7 @@ make_predict_full_fit <- function(glmm, gbm, enet){
   predict_full_fit <- function(dat){
     p <- predict(glmm$glmm_full_fit, newdata= dat, allow.new.levels=TRUE)
     p <- gbm$predict_gbm_full(dat, p)
-    mm <- sparse.model.matrix(~ obs_id_factor - 1, data=dat, xlev=xlevs)
+    mm <- sparse.model.matrix(~ obs_id_factor - 1, data=dat)
     glmnet_preds <- as.vector(predict(enet$glmnet_fit_full, 
                                       s=enet$glmnet_fit$lambda[enet$glmnet_ind], 
                                       newx=mm, 
