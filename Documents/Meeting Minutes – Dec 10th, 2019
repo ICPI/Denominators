@@ -1,0 +1,23 @@
+Who attended - 
+Roma, Josh, Jamie, Imran, Anubhuti, Randy, Festus, Stephanie, Alison, Aisha, Ya, Ian, Catherine, Emily 
+
+
+Census Population update
+Festus to share census data for 12 countries
+Looking at ways to share data between ICPI and Census
+Census will only share raw data - not cleaned data - because sharing cleaned data reqires internal review - so Census will only share the raw reports
+
+Agency Self-Assessment Tool - All agencies have to do it for all countries
+90s cascade by finer age sex and PSNU
+Requires assembling data from three sources - 
+	unaids data from AIDS info, 
+	Nat subnat data from DATIM
+	Data from data packs 
+
+Problem - Data doesn’t exist in a common source. So, an R function was developed that reads data packs and produces a flat file with all the data for all countries.
+Whoever needs the flat file contact denominators team - Roma/Josh
+
+VMMC
+USAID presented DMPPT2 tool. DMPPT2 tool is primarily for country application. Avenir staff time and funding is used mainly for in country TA, analysis and data updates. Since funding is ending in 2020 so need for a longer term plan. ICPI to host the new tool. If anyone needs access to the web based tool - contact Alison.
+
+Location of the tool - Scott and team have developed a Shiny server. This platform can potentially be used for housing the tool (?)
