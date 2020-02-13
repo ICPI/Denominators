@@ -22,8 +22,8 @@ time_cuts <- c(-.75, -0.5, -0.25)
 
 index_ratio <- function(ratio, pediatric){
   ratio <- ratio * 4
-  ratio[is.na(ratio)] <- .5
-  ratio[ratio == 0] <- 1
+  ratio[is.na(ratio)] <- 0
+  ratio[ratio == 0] <- 0
   ratio[is.infinite(ratio)] <- 1.5
   ratio
 }

@@ -186,7 +186,23 @@ extract_data <- function(mer_data_source, spectrum_data_source){
     if(!all(unique(dat_tidy$ageasentered) %in% unique(spec_fine$age))){
       warning("MER age band not captured by spectrum")
     }
-    
+    unk_psnu <- !(dat_tidy$psnu_t %in% spec$psnu2)
+    if(any(unk_psnu)){
+      vcat("PSNUs with no spectrum data (imputing medians):\n")
+      nms <- unique(dat_tidy$psnu_t[unk_psnu])
+      print(nms)
+      
+      spec_psnu <- spec_fine %>%
+        group_by(sex, age) %>%
+        select(-psnu2) %>%
+        summarise_all(function(x) median(x, na.rm=T))
+      
+      for(psnu in nms){
+        spec_psnu$psnu2 <- psnu
+        spec_fine <- spec_fine %>% bind_rows(spec_psnu)
+      }
+      
+    }
     vcat("Merging Spectrum and MER... ")
     dat_tidy <- merge(
       dat_tidy, 
@@ -207,8 +223,8 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   dat_tidy$hts_tst_neg <- dat_tidy$hts_tst - dat_tidy$hts_tst_pos
   dat_tidy$obs_id <- 1:nrow(dat_tidy)
   
-  vcat("PSNUs with no spectrum data:\n")
-  print(unique(dat_tidy[is.na(dat_tidy$plhiv),]$psnu_t))
+  #vcat("PSNUs with no spectrum data:\n")
+  #print(unique(dat_tidy[is.na(dat_tidy$plhiv),]$psnu_t))
   
   dat_analysis <- dat_tidy %>% gather("outcome","weight", hts_tst_pos, hts_tst_neg)
   dat_analysis$hiv_pos <- dat_analysis$outcome == "hts_tst_pos"

@@ -15,7 +15,7 @@ trans_hts_tst <- dat$trans_hts_tst
 
 
 # Add site location and worldpop covariates
-locations <- datim_get_locations(country)
+locations <- datim_get_locations(str_replace_all(country,"_"," "))
 da_locations <- site_locations(dat_analysis, locations)
 
 da_locations$cluster_1 <- boxed_groups(da_locations, group_sizes[1])
@@ -165,12 +165,12 @@ model_allocations <-  generate_allocations(dat_analysis, predict_full_fit, trans
 #                                                                  c("modality","IndexMod"))
 #                                           )
 
-filename <- paste0( "results/", stringr::str_replace_all(mer_data_source,"/","_"), "_results",".RData")
+filename <- paste0( "results/", country,"/", stringr::str_replace_all(mer_data_source,"/","_"), "_results",".RData")
 save.image(file=filename)
 
-fname <- paste(country, max_diff, "allocations.csv")
+fname <- paste0("results/",country, "/allocations.csv")
 write.csv(model_allocations$allocations, file = fname, row.names = FALSE)
-fname2 <- paste(country, max_diff, "index_allocations.csv")
+fname2 <- paste0("results/",country, "/index_allocations.csv")
 write.csv(model_allocations$index_allocations, file = fname2, row.names = FALSE)
 
 tmp <- model_allocations$allocations %>% 
@@ -214,9 +214,9 @@ for(i in 5:ncol(allocations_by_psnu)){
   allocations_by_psnu[[i]][is.na(allocations_by_psnu[[i]])] <- 0
 }
 
-fname3 <- paste(country, max_diff, "allocations_by_psnu_modality_sex_age.csv")
+fname3 <- paste0("results/",country, "/allocations_by_psnu_modality_sex_age.csv")
 write.csv(allocations_by_psnu, file = fname3, row.names = FALSE)
 
 # requires Ckmeans.1d.dp and plotly
 rmarkdown::render('mer_report.Rmd')
-file.copy("mer_report.html",paste0("mer_report_",tolower(country),".html"), overwrite = TRUE)
+file.copy("mer_report.html",paste0("results/", country,"/mer_report_",tolower(country),".html"), overwrite = TRUE)
