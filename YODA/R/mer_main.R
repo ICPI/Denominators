@@ -22,8 +22,13 @@ da_locations$cluster_1 <- boxed_groups(da_locations, group_sizes[1])
 da_locations$cluster_2 <- boxed_groups(da_locations, group_sizes[2])
 da_locations$cluster_3 <- boxed_groups(da_locations, group_sizes[3])
 
+table(da_locations$cluster_1)
+table(da_locations$cluster_2)
+table(da_locations$cluster_3)
+table(da_locations$location_mode)
+
 wp <- raster::raster(world_pop_source)
-cluster <- parallel::makeCluster(pmin(30,parallel::detectCores()))
+cluster <- parallel::makeCluster(pmin(20,parallel::detectCores()))
 da_locations$worldpop_10 <- world_pop_count_cluster(da_locations, wp, 10, cluster)
 da_locations$worldpop_50 <- world_pop_count_cluster(da_locations, wp, 50, cluster)
 parallel::stopCluster(cluster)
@@ -35,8 +40,13 @@ dat_analysis$cluster_1 <- as.factor(dat_analysis$cluster_1)
 dat_analysis$cluster_2 <- as.factor(dat_analysis$cluster_2)
 dat_analysis$cluster_3 <- as.factor(dat_analysis$cluster_3)
 
-
-pmtct_fit <- pmtct_glmm(dat_analysis[dat_analysis$time %in% sort(unique(dat_analysis$time))[1:2],])
+tmp <- dat_analysis %>% filter(ageasentered != "Unknown Age", 
+                                    ageasentered != "+50", 
+                                    agecoarse != "<15",
+                                    modality == "PMTCT ANC")
+pmtct_fit <- pmtct_glmm(tmp[tmp$time %in% sort(unique(tmp$time))[1:2],],
+                        pmtct_formula,
+                        pmtct_re_formula)
 dat_analysis$pmtct_lin_pred <- pmtct_fit$compute_values(dat_analysis)
 da_locations$pmtct_lin_pred <- pmtct_fit$compute_values(da_locations)
 #qplot(longitude, latitude, color=pmtct_lin_pred, data=da_locations)
@@ -116,11 +126,7 @@ dat_analysis_index$hts_tst_non_index[is.na(dat_analysis_index$hts_tst_non_index)
 dat_analysis_index$hts_tst_pos_non_index[is.na(dat_analysis_index$hts_tst_pos_non_index)] <- 0
 
 
-glmm_index_fit <- glmer(cbind(hts_tst_pos_index, hts_tst_index - hts_tst_pos_index) ~ pediatric + 
-                          pmtct_lin_pred + log(worldpop_50 + 1) + 
-                          log((hts_tst_index + 1) / (hts_tst_pos_non_index + 1) ) + 
-                          I((hts_tst_pos_non_index==0))+#*log(hts_tst_index + 1)) +
-                          (1 | cluster_1 / cluster_3 / sitename), #(1 | cluster_1 / cluster_3 / sitename),
+glmm_index_fit <- glmer(index_formula, #(1 | cluster_1 / cluster_3 / sitename),
                         family=binomial(), 
                         data=dat_analysis_index %>% filter(hts_tst_index > 0),
                         verbose=verbose,
@@ -142,7 +148,8 @@ qplot(1 / (1 + exp(-pd)),  hts_tst_pos_index / hts_tst_index, size=hts_tst_pos_n
 
 
 
-model_allocations <-  generate_allocations(dat_analysis, predict_full_fit, trans_hts_tst, 
+model_allocations <-  generate_allocations(dat_analysis %>% filter(time >= allocation_lookback), 
+                                           predict_full_fit, trans_hts_tst, 
                                            glmm_index_fit=glmm_index_fit,
                                            max_diff=max_diff, 
                                            max_increase=max_increase,
@@ -164,7 +171,9 @@ model_allocations <-  generate_allocations(dat_analysis, predict_full_fit, trans
 #                                           subgroup_fixed = rbind(c("modality","Index"),
 #                                                                  c("modality","IndexMod"))
 #                                           )
-
+if(!dir.exists(paste0( "results/", country))){
+  dir.create(paste0( "results/", country))
+}
 filename <- paste0( "results/", country,"/", stringr::str_replace_all(mer_data_source,"/","_"), "_results",".RData")
 save.image(file=filename)
 

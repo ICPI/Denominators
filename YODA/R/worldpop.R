@@ -20,10 +20,11 @@ world_pop_count <- function(da_locations, wp, d=10){
       st_transform(3488) %>% 
       st_buffer(dist=d) %>%
       st_transform("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs")
-    
+    tryCatch({
     wp_crop <- raster::crop(wp, raster::extent(st_bbox(buf)[c(1,3,2,4)]))
     ras <- raster::mask(wp_crop,st_as_sf(buf))
     dist_1[i] <- raster::cellStats(ras,"sum") #sum(as.array(ras),na.rm=TRUE)
+    }, error=function(...)browser())
   }
   cat("\n")
   dist_1

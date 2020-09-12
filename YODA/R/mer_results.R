@@ -39,6 +39,11 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
     unique()
   pdat <- merge(pdat, tmp, all.x=T, sort=FALSE)
   
+  active_site_types <- (dat_analysis %>% filter(time == 0 & 
+                                             sex != "Unknown Sex" & age != "Unknown Age"))$sitetype %>%
+    unique()
+  pdat <- merge(pdat, tmp, all.x=T, sort=FALSE)
+  
   
   pdat$hts_tst[is.na(pdat$hts_tst)] <- 0
   pdat$log_hts_tst <- trans_hts_tst(pdat$hts_tst)
@@ -50,7 +55,8 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
            primepartner %in% active_partners,
            modality %in% active_modalities,
            ageasentered %in% active_ages,
-           sitename %in% active_sites) 
+           sitename %in% active_sites,
+           sitetype %in% active_site_types) 
   tot <- if(is.null(total_tests_target)) sum(pdat$hts_tst) else total_tests_target
   pdat$obs_id_factor[is.na(pdat$obs_id_factor)] <- "out_of_sample"
   pdat$pediatric <- pdat$age == "<15"

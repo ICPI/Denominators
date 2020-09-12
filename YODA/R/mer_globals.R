@@ -1,4 +1,30 @@
 
+get_mer_file <- function(country){
+  files <- list.files(tolower(country))
+  mer_files <- files[stringr::str_starts(files,"MER") & 
+                       (stringr::str_ends(files,"txt") | 
+                          stringr::str_ends(files,"rds"))]
+  dts <- sapply(strsplit(mer_files,"_"), function(x) x[7])
+  dts <- as.numeric(strptime(dts,"%Y%m%d"))
+  paste0(tolower(country),"/", mer_files[which.max(dts)])
+}
+
+get_worldpop_file <- function(country){
+  files <- list.files(tolower(country))
+  files <- files[stringr::str_ends(files,"tif")]  
+  yr <- as.numeric(sapply(strsplit(files,"_|\\."), function(x) x[3]))
+  paste0(tolower(country),"/",files[which.max(yr)])
+}
+
+get_spectrum_file <- function(country){
+  file <- paste0(country,"/spectrum.xlsx")
+  if(file.exists(file)) file else NULL
+}
+
+mer_data_source <- get_mer_file(country)
+world_pop_source <- get_worldpop_file(country)
+spectrum_data_source <- get_spectrum_file(country)
+
 
 if(!exists("verbose")) verbose <- 1
 vcat <- function(...) if(verbose) cat(...)
@@ -6,6 +32,15 @@ vcat <- function(...) if(verbose) cat(...)
 if(!exists("country")) country <- "Cote d'Ivoire"
 if(!exists("max_diff")) max_diff <- 1.2
 if(!exists("n_steps")) n_steps <- 4
+
+pmtct_formula <- NULL
+pmtct_re_formula <- NULL
+
+index_formula <- cbind(hts_tst_pos_index, hts_tst_index - hts_tst_pos_index) ~ pediatric + 
+  pmtct_lin_pred + log(worldpop_50 + 1) + 
+  log((hts_tst_index + 1) / (hts_tst_pos_non_index + 1) ) + 
+  I((hts_tst_pos_non_index==0))+#*log(hts_tst_index + 1)) +
+  (1 | cluster_1 / cluster_3 / sitename)
 
 index_ratio <- function(ratio, pediatric){
   ratio[is.na(ratio)] <- 0
@@ -16,6 +51,8 @@ index_ratio <- function(ratio, pediatric){
   ratio[is.infinite(ratio)] <- 1.5
   ratio
 }
+
+allocation_lookback <- -Inf
 
 
 frm <- NULL

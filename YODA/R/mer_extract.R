@@ -5,6 +5,8 @@ library(tidyverse)
 library(scclust)
 #read_msd("../MER_Structured_Datasets_SITE_IM_FY17-19_20190322_v2_1_Coted'Ivoire.txt")
 
+
+
 extract_data <- function(mer_data_source, spectrum_data_source){
   vcat("Reading MER Data\n")
   if(str_ends(mer_data_source,"txt")){

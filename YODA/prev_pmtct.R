@@ -14,7 +14,7 @@ names(naiis) <- tolower(names(naiis))
 naiis <- naiis %>% filter(!is.na(bdwght)) %>% filter(age >=15, age <= 49)
 prop.table(wtd.table(naiis$final_hiv_status, weights = naiis$bdwght))
 
-
+mer_data_source <- "nigeria/MER_Structured_Datasets_Site_IM_FY18-20_20200320_v2_1_Nigeria.txt"
 dat <- extract_data(mer_data_source, spectrum_data_source)
 dat_analysis <- dat$dat_analysis
 trans_hts_tst <- dat$trans_hts_tst

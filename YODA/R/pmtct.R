@@ -2,9 +2,21 @@
 
 
 pmtct_glmm <- function(dat_analysis, 
-                       frm=hiv_pos ~ age + #log_hts_tst +
-                         (1 | cluster_1 /cluster_2 / cluster_3) + (1 | sitename), 
+                       frm=NULL, 
+                       re_frm = NULL,
                        nAGQ=0){
+  
+  if(is.null(frm)){
+    frm <- hiv_pos ~ age + #log_hts_tst +
+      (1 | cluster_1 /cluster_2 / cluster_3) + (1 | sitename)
+  }
+  environment(frm) <- new.env()
+  
+  if(is.null(re_frm)){
+    re_frm <- ~(1 | cluster_1/cluster_2/cluster_3) 
+  }
+  environment(re_frm) <- new.env()
+  
   dat_analysis2 <- dat_analysis %>% filter(ageasentered != "Unknown Age", 
                                             ageasentered != "+50", 
                                             agecoarse != "<15",
@@ -22,7 +34,7 @@ pmtct_glmm <- function(dat_analysis,
     predict(glmm_fit, 
                    newdata=df, 
                    allow.new.levels=TRUE, 
-                   re.form= ~(1 | cluster_1/cluster_2/cluster_3) ) - 
+                   re.form= re_frm ) - 
     predict(glmm_fit, 
             newdata=df, 
             allow.new.levels=TRUE, 
