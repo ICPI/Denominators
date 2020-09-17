@@ -1,29 +1,27 @@
 library(shiny)
 library(leaflet)
+library(mapdeck)
 library(RColorBrewer)
 library(sp)
+library(sf)
+options(encoding = 'UTF-8')
 
 load("data/data.RData")
+df_plot_sf <- as(df_plot,"sf")
+df_site_plot_sf <- sf::st_as_sf(df_site_plot, coords = c("longitude", "latitude"))
+key <- "pk.eyJ1IjoiaWZlbGxvd3MiLCJhIjoiY2tmNDd3dXZrMGFqOTJzb2V2azB3YnZ5aCJ9.nG777E-EH37e5wAJdsykug"
+
 
 shinyServer(function(input, output, session) {
-    # # Reactive expression for the data subsetted to what the user selected
-    # filteredData <- reactive({
-    #     quakes[quakes$mag >= input$range[1] & quakes$mag <= input$range[2],]
-    # })
-    # 
-    # # This reactive expression represents the palette function,
-    # # which changes as the user makes selections in UI.
-    # colorpal <- reactive({
-    #     colorNumeric(input$colors, quakes$mag)
-    # })
+
     
     last_country <- reactiveVal("")
     
     active_data <- reactive({
         if(input$plot_type == "Areas"){
-            df <- df_plot
+            df <- df_plot_sf
         }else{
-            df <- df_site_plot
+            df <- df_site_plot_sf
             df$yield <- df$hts_tst_pos / df$hts_tst_tot
         }
         if(input$country == "All"){
@@ -32,171 +30,147 @@ shinyServer(function(input, output, session) {
             df[df$countryname == input$country,]
         }
     })
-    output$map <- renderLeaflet({
-        leaflet() %>%
-            addProviderTiles(providers$CartoDB.Positron) 
+    
+    
+    # draw empty map
+    output$map <- renderMapdeck({
+        mapdeck(
+            token = key,
+            pitch = 35,
+            style = 'mapbox://styles/mapbox/light-v10'
+        )
     })
+    
     observe({
-        if(input$country != last_country()){
-            df <- df_site_plot[!is.na(df_site_plot$latitude) & 
-                                   !is.na(df_site_plot$longitude),]
-            if(input$country != "All"){
-                df <- df[df$countryname == input$country,]
-            }
-            last_country(input$country)
-            leafletProxy("map") %>%
-                flyToBounds(
-                    min(df$longitude),
-                    min(df$latitude),
-                    max(df$longitude),
-                    max(df$latitude)
-                )
-        }
-    })
-    observe({
-        
+        legend_label <- "Smoothed Adjusted Yield"
+        #dfp <- active_data()
         dfp <- active_data()
-        df_plot_sub <- dfp[dfp$time == input$time,]
+        df_plot_sub <- dfp[dfp$time == as.numeric(input$time),]
+        
         if(input$metric == "Raw"){
             df_plot_sub$fitted <- df_plot_sub$yield
+            df_plot$fitted <- df_plot$yield
+            df_plot_sub <- df_plot_sub[!is.na(df_plot_sub$yield),]
+            df_plot <- df_plot[!is.na(df_plot$yield),]
+            legend_label <- "Yield"
         }
+        
         df_plot_sub <- df_plot_sub[!is.na(df_plot_sub$fitted),]
+        if(nrow(df_plot_sub) == 0){
+            mapdeck_update(map_id = "map") %>%
+                clear_geojson() %>%
+                clear_scatterplot()
+            return(NULL)
+        }
         if(input$scale_to_time)
-            color_domain <- c(0, df_plot_sub$fitted)
+            values <- df_plot_sub$fitted
         else
-            color_domain <- c(0, dfp$fitted)
-        pal <- colorNumeric("Reds", domain=color_domain)
+            values <- df_plot$fitted
+        pal <- leaflet::colorNumeric("Reds", domain=c(0,values))
+        
+        df_plot_sub$fill_color <- pal(df_plot_sub$fitted)
+        q <- seq(from=0, to=max(df_plot_sub$fitted),length=4)
+        #c(0, quantile(df_plot_sub$fitted,c(.25, .5, .75,1)))
+        l1 <- legend_element(
+            variables = paste0(round(q*100),"%"),
+            colours = pal(q),
+            colour_type = "fill",
+            variable_type = "gradient",
+            title = legend_label
+        )
+        js <- mapdeck_legend(l1)
+        
         if(input$plot_type == "Areas"){
-            leafletProxy("map", data = df_plot_sub) %>%
-                clearShapes() %>%
-                clearControls() %>%
-            addPolygons(
-                fillColor=~pal(fitted),#pal(fitted),
-                weight=.25,
-                color="#ffffff",
-                fillOpacity = 1,
-                popup = df_plot_sub$popup_html,
-                popupOptions = popupOptions(maxWidth = 1000)
-            ) %>%
-                addLegend("bottomright", pal = pal, values = color_domain,
-                          title = "Smoothed Adjusted Yield",
-                          bins=4,
-                          opacity = 1,
-                          labFormat = labelFormat(
-                              suffix = "%", 
-                              transform=function(x) x*100
-                          )
+            mapdeck_update(map_id = "map") %>%
+                clear_scatterplot("scatter") %>%
+                clear_geojson("poly") %>%
+                add_geojson(
+                    data = df_plot_sub,
+                    tooltip = "popup_html",
+                    fill_colour = "fill_color",
+                    legend=js,
+                    update_view=FALSE,
+                    auto_highlight = TRUE,
+                    layer_id="poly"
                 )
         }else{
-            leafletProxy("map", data = df_plot_sub) %>%
-                clearShapes() %>%
-                clearControls() %>%
-                addCircles(
-                    lng=~longitude, 
-                    lat=~latitude,
-                    color=~pal(fitted),
-                    popup = df_plot_sub$popup_html,
-                    popupOptions = popupOptions(maxWidth = 1000)
-                ) %>%
-                addLegend("bottomright", pal = pal, values = color_domain,
-                          title = "Smoothed Adjusted Yield",
-                          bins=4,
-                          opacity = 1,
-                          labFormat = labelFormat(
-                              suffix = "%", 
-                              transform=function(x) x*100)
+            df_plot_sub[[legend_label]] <- df_plot_sub$fitted*100
+            mapdeck_update(map_id = "map") %>%
+                clear_scatterplot("scatter") %>%
+                clear_geojson("poly") %>%
+                add_scatterplot(
+                    data = df_plot_sub,
+                    lat = "latitude",
+                    lon = "longitude",
+                    fill_colour = legend_label,
+                    #stroke_width=4,
+                    #stroke_colour = "fill_color",
+                    tooltip = "popup_html",
+                    radius = 1500,
+                    radius_min_pixels = 3,
+                    legend=TRUE,
+                    palette = "reds",
+                    #legend=js,
+                    update_view=FALSE,
+                    #auto_highlight = FALSE,
+                    layer_id="scatter"
                 )
         }
     })
-    # output$map <- renderLeaflet({
-    #     m <- NULL
-    #     dfp <- active_data()
-    #     df_plot_sub <- dfp[dfp$time == input$time,]
-    #     if(input$metric == "Raw"){
-    #         df_plot_sub$fitted <- df_plot_sub$yield
-    #     }
-    #     df_plot_sub <- df_plot_sub[!is.na(df_plot_sub$fitted),]
-    #     if(input$scale_to_time)
-    #         color_domain <- c(0, df_plot_sub$fitted)
-    #     else
-    #         color_domain <- c(0, dfp$fitted)
-    #     pal <- colorNumeric("Reds", domain=color_domain)
-    #     if(input$plot_type == "Areas"){
-    #         m <- df_plot_sub %>%
-    #             leaflet() %>%
-    #             addProviderTiles(providers$CartoDB.Positron) %>%
-    #             addPolygons(
-    #                 fillColor=~pal(fitted),#pal(fitted),
-    #                 weight=.25,
-    #                 color="#ffffff",
-    #                 fillOpacity = 1,
-    #                 popup = df_plot_sub$popup_html,
-    #                 popupOptions = popupOptions(maxWidth = 1000)
-    #             ) %>%
-    #             addLegend("bottomright", pal = pal, values = color_domain,
-    #                       title = "Smoothed Adjusted Yield",
-    #                       bins=4,
-    #                       opacity = 1,
-    #                       labFormat = labelFormat(
-    #                           suffix = "%", 
-    #                           transform=function(x) x*100
-    #                           )
-    #             )
-    #     }else if(input$plot_type == "Facilities"){
-    #         m <- df_plot_sub %>%
-    #             leaflet() %>%
-    #             addProviderTiles(providers$CartoDB.Positron) %>%
-    #             addCircles(
-    #                 lng=~longitude, 
-    #                 lat=~latitude,
-    #                 color=~pal(fitted),
-    #                 popup = df_plot_sub$popup_html,
-    #                 popupOptions = popupOptions(maxWidth = 1000)
-    #             ) %>%
-    #             addLegend("bottomright", pal = pal, values = color_domain,
-    #                       title = "Smoothed Adjusted Yield",
-    #                       bins=4,
-    #                       opacity = 1,
-    #                       labFormat = labelFormat(
-    #                           suffix = "%", 
-    #                           transform=function(x) x*100)
-    #             )
-    #     }
-    #     m
-    #     # Use leaflet() here, and only include aspects of the map that
-    #     # won't need to change dynamically (at least, not unless the
-    #     # entire map is being torn down and recreated).
-    #     #leaflet(quakes) %>% addTiles() %>%
-    #     #    fitBounds(~min(long), ~min(lat), ~max(long), ~max(lat))
-    # })
     
-    # # Incremental changes to the map (in this case, replacing the
-    # # circles when a new color is chosen) should be performed in
-    # # an observer. Each independent set of things that can change
-    # # should be managed in its own observer.
+    
+    # scale map bounds on country change
+    observe({
+        lc <-  isolate(last_country())
+        if(input$country != lc){
+            globe <- input$country == "All"
+            df <- df_site_plot[!is.na(df_site_plot$latitude) &
+                                   !is.na(df_site_plot$longitude),]
+            if(!globe){
+                df <- df[df$countryname == input$country,]
+            }
+            if(nrow(df) == 0)
+                return(NULL)
+            isolate(last_country(input$country))
+            mapdeck_update(map_id = "map") %>%
+                mapdeck_view(
+                    c(
+                        median(df$longitude), 
+                        median(df$latitude)
+                    ),
+                    zoom=if(globe) 2 else 4,
+                    duration=1000,
+                    transition = "fly"
+                )
+            #leafletProxy("map") %>%
+            #    flyToBounds(
+            #        min(df$longitude),
+            #        min(df$latitude),
+            #        max(df$longitude),
+            #        max(df$latitude)
+            #    )
+        }
+    })
+
     # observe({
-    #     pal <- colorpal()
-    #     
-    #     leafletProxy("map", data = filteredData()) %>%
-    #         clearShapes() %>%
-    #         addCircles(radius = ~10^mag/10, weight = 1, color = "#777777",
-    #                    fillColor = ~pal(mag), fillOpacity = 0.7, popup = ~paste(mag)
-    #         )
-    # })
-    # 
-    # # Use a separate observer to recreate the legend as needed.
-    # observe({
-    #     proxy <- leafletProxy("map", data = quakes)
-    #     
-    #     # Remove any existing legend, and only if the legend is
-    #     # enabled, create a new one.
-    #     proxy %>% clearControls()
-    #     if (input$legend) {
-    #         pal <- colorpal()
-    #         proxy %>% addLegend(position = "bottomright",
-    #                             pal = pal, values = ~mag
-    #         )
+    #     if(input$country != isolate(last_country()) || input$country == "All"){
+    #         df <- df_site_plot[!is.na(df_site_plot$latitude) & 
+    #                                !is.na(df_site_plot$longitude),]
+    #         if(input$country != "All"){
+    #             df <- df[df$countryname == input$country,]
+    #         }
+    #         if(nrow(df) == 0)
+    #             return(NULL)
+    #         isolate(last_country(input$country))            
+    #         m <- draw_map()
+    #         leaflet_map(m)
     #     }
     # })
+    # draw shapes/points
+    #observe({
+    #    if(input$country == isolate(last_country()) && input$country != "All"){
+    #        draw_map(TRUE)
+    #    }
+    #})
 
 })
