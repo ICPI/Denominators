@@ -139,49 +139,49 @@ df_site_plot <- df_site_plot %>%
 save("df_plot","df_site_plot", file="pmtct_prev/shiny_app/data/data.RData")
 
 
-df_plot_sub <- df_plot[df_plot$time_ind == 21,]
+# df_plot_sub <- df_plot[df_plot$time_ind == 21,]
 
-pal <- colorNumeric("Reds", domain=c(0,df_plot_sub$fitted))
-m <- df_plot_sub %>%
-  leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(
-    fillColor=~pal(fitted),#pal(fitted),
-    weight=.25,
-    color="#ffffff",
-    fillOpacity = 1,
-    popup = df_plot_sub$popup_html,
-    popupOptions = popupOptions(maxWidth = 1000)
-  ) %>%
-  addLegend("bottomright", pal = pal, values = c(0,df_plot_sub$fitted),
-            title = "Smoothed Adjusted Yield",
-            bins=4,
-            opacity = 1,
-            labFormat = labelFormat(suffix = "%", transform=function(x) x*100)
-  )
-print(m)
-
-
-
-df_site_plot_sub <- df_site_plot %>%
-  filter(time == 2020.25, !is.na(fitted))
-pal <- colorNumeric("Reds", domain=c(0,df_site_plot_sub$fitted))
-m <- df_site_plot_sub %>%
-  leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addCircles(
-    lng=~longitude, 
-    lat=~latitude,
-    color=~pal(fitted),
-    popup = df_site_plot_sub$popup_html,
-    popupOptions = popupOptions(maxWidth = 1000)
-    ) %>%
-  addLegend("bottomright", pal = pal, values = c(0,df_site_plot_sub$fitted),
-            title = "Smoothed Adjusted Yield",
-            bins=4,
-            opacity = 1,
-            labFormat = labelFormat(suffix = "%", transform=function(x) x*100)
-  )
-print(m)
+# pal <- colorNumeric("Reds", domain=c(0,df_plot_sub$fitted))
+# m <- df_plot_sub %>%
+#   leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(
+#     fillColor=~pal(fitted),#pal(fitted),
+#     weight=.25,
+#     color="#ffffff",
+#     fillOpacity = 1,
+#     popup = df_plot_sub$popup_html,
+#     popupOptions = popupOptions(maxWidth = 1000)
+#   ) %>%
+#   addLegend("bottomright", pal = pal, values = c(0,df_plot_sub$fitted),
+#             title = "Smoothed Adjusted Yield",
+#             bins=4,
+#             opacity = 1,
+#             labFormat = labelFormat(suffix = "%", transform=function(x) x*100)
+#   )
+# print(m)
+# 
+# 
+# 
+# df_site_plot_sub <- df_site_plot %>%
+#   filter(time == 2020.25, !is.na(fitted))
+# pal <- colorNumeric("Reds", domain=c(0,df_site_plot_sub$fitted))
+# m <- df_site_plot_sub %>%
+#   leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addCircles(
+#     lng=~longitude, 
+#     lat=~latitude,
+#     color=~pal(fitted),
+#     popup = df_site_plot_sub$popup_html,
+#     popupOptions = popupOptions(maxWidth = 1000)
+#     ) %>%
+#   addLegend("bottomright", pal = pal, values = c(0,df_site_plot_sub$fitted),
+#             title = "Smoothed Adjusted Yield",
+#             bins=4,
+#             opacity = 1,
+#             labFormat = labelFormat(suffix = "%", transform=function(x) x*100)
+#   )
+# print(m)
 
 

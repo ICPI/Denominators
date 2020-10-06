@@ -5,7 +5,6 @@ library(RColorBrewer)
 library(sp)
 library(sf)
 options(encoding = 'UTF-8')
-
 load("data/data.RData")
 df_plot_sf <- as(df_plot,"sf")
 df_site_plot_sf <- sf::st_as_sf(df_site_plot, coords = c("longitude", "latitude"))
@@ -37,7 +36,7 @@ shinyServer(function(input, output, session) {
         mapdeck(
             token = key,
             pitch = 35,
-            style = 'mapbox://styles/mapbox/light-v10'
+            style = 'mapbox://styles/mapbox/dark-v10'
         )
     })
     
@@ -71,6 +70,10 @@ shinyServer(function(input, output, session) {
         df_plot_sub$fill_color <- pal(df_plot_sub$fitted)
         q <- seq(from=0, to=max(df_plot_sub$fitted),length=4)
         #c(0, quantile(df_plot_sub$fitted,c(.25, .5, .75,1)))
+        if(input$country == "All")
+            popup_variable <- NULL
+        else
+            popup_variable <- "popup_html"
         l1 <- legend_element(
             variables = paste0(round(q*100),"%"),
             colours = pal(q),
@@ -79,14 +82,13 @@ shinyServer(function(input, output, session) {
             title = legend_label
         )
         js <- mapdeck_legend(l1)
-        
         if(input$plot_type == "Areas"){
             mapdeck_update(map_id = "map") %>%
                 clear_scatterplot("scatter") %>%
                 clear_geojson("poly") %>%
                 add_geojson(
                     data = df_plot_sub,
-                    tooltip = "popup_html",
+                    tooltip = popup_variable,
                     fill_colour = "fill_color",
                     legend=js,
                     update_view=FALSE,
@@ -105,7 +107,7 @@ shinyServer(function(input, output, session) {
                     fill_colour = legend_label,
                     #stroke_width=4,
                     #stroke_colour = "fill_color",
-                    tooltip = "popup_html",
+                    tooltip = popup_variable,
                     radius = 1500,
                     radius_min_pixels = 3,
                     legend=TRUE,
