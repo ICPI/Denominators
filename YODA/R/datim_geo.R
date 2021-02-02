@@ -13,7 +13,7 @@ datim_get_locations <- function(country){
     api_filter("organisationUnitGroups.name:eq:Country") %>%
     api_get()
   
-  country_uid <- datim_countries[datim_countries$displayName == country,1]
+  country_uid <- datim_countries[tolower(datim_countries$displayName) == tolower(country),1]
   
   locations <- api_call("organisationUnits") %>%
     api_fields("id,geometry,organisationUnitGroups,displayName") %>%
@@ -230,7 +230,7 @@ boxed_groups <- function(da_locations, group_size, lat_bd=NULL, long_bd=NULL, la
     group_size = group_size,
     lat_bd=lat_bd,
     long_bd=long_bd)
-  latlon_sub$cluster_group <- NA
+  latlon_sub$cluster_group <- as.numeric(NA)
   for(i in 1:nrow(bg)){
     latlon_sub[latlon_sub$latitude >= bg[i,"lat_lower"] &
                  latlon_sub$latitude < bg[i,"lat_upper"] &  

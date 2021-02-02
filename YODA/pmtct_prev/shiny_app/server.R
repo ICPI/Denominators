@@ -15,6 +15,94 @@ shinyServer(function(input, output, session) {
 
     
     last_country <- reactiveVal("")
+    plot_data <- reactiveVal(NULL)
+    nchunks <- 20
+    vol <- new.env()
+    vol$index <- -1
+    
+    observe({
+        plot_data()
+        vol$index <- 1
+        updateNumericInput(session, "index",value=1)
+    })
+    
+    observeEvent(input$index, {
+        df <- isolate(plot_data())
+        if(is.null(df))
+            return(NULL)
+        i <- input$index
+        if(i < 1 | i != vol$index){
+            return(NULL)
+        }
+        min_send <- if(vol$plot_area) 30 else 100
+        print(i)
+        sq <- unique(ceiling(seq(from=0, to=nrow(plot_data()), length=nchunks)))
+        sq2 <- unique(
+            ceiling(
+                c(seq(
+                    from=0, 
+                    to=nrow(df), 
+                    by=max(.5, min(nrow(df)-1, min_send))
+                    ),
+                nrow(df)))
+            )
+        if(length(sq2) < length(sq))
+            sq <- sq2
+        if(i > length(sq)-1){
+            updateNumericInput(session, "index",value=-1)
+            return(NULL)
+        }
+        if(i == 1){
+            for(j in 1:nchunks){
+                mapdeck_update(map_id = "map") %>%
+                    clear_scatterplot(paste0("scatter",j)) %>%
+                    clear_geojson(paste0("poly",j))
+            }
+        }
+        df <- df[(sq[i]+1):sq[i+1],]
+        if(i == 1)
+            js <- mapdeck_legend(vol$leg)
+        else
+            js <- NULL
+        if(vol$plot_area){
+            mapdeck_update(map_id = "map") %>%
+                add_geojson(
+                    data = df,
+                    tooltip = vol$popup_variable,
+                    fill_colour = "fill_color",
+                    legend=js,
+                    update_view=FALSE,
+                    auto_highlight = TRUE,
+                    layer_id=paste0("poly",i)
+                )
+        }else{
+            
+            mapdeck_update(map_id = "map") %>%
+                add_scatterplot(
+                    data = df,
+                    lat = "latitude",
+                    lon = "longitude",
+                    fill_colour = "fill_color",
+                    #stroke_width=4,
+                    #stroke_colour = "fill_color",
+                    tooltip = vol$popup_variable,
+                    radius = 1500,
+                    radius_min_pixels = 3,
+                    legend=js,
+                    #palette = "reds",
+                    #legend=js,
+                    update_view=FALSE,
+                    #auto_highlight = FALSE,
+                    layer_id=paste0("scatter",i)
+                )
+        }
+
+        vol$index <- i + 1
+        updateNumericInput(session, "index",value=i+1)
+    })
+    
+    
+    
     
     active_data <- reactive({
         if(input$plot_type == "Areas"){
@@ -35,7 +123,7 @@ shinyServer(function(input, output, session) {
     output$map <- renderMapdeck({
         mapdeck(
             token = key,
-            pitch = 35,
+            #pitch = 35,
             style = 'mapbox://styles/mapbox/dark-v10'
         )
     })
@@ -81,42 +169,49 @@ shinyServer(function(input, output, session) {
             variable_type = "gradient",
             title = legend_label
         )
-        js <- mapdeck_legend(l1)
+        vol$leg <- l1
+        vol$popup_variable <- popup_variable
+        #js <- mapdeck_legend(l1)
         if(input$plot_type == "Areas"){
-            mapdeck_update(map_id = "map") %>%
-                clear_scatterplot("scatter") %>%
-                clear_geojson("poly") %>%
-                add_geojson(
-                    data = df_plot_sub,
-                    tooltip = popup_variable,
-                    fill_colour = "fill_color",
-                    legend=js,
-                    update_view=FALSE,
-                    auto_highlight = TRUE,
-                    layer_id="poly"
-                )
+            vol$plot_area <- TRUE
+            plot_data(df_plot_sub)
+            # mapdeck_update(map_id = "map") %>%
+            #     clear_scatterplot("scatter") %>%
+            #     clear_geojson("poly") %>%
+            #     add_geojson(
+            #         data = df_plot_sub,
+            #         tooltip = popup_variable,
+            #         fill_colour = "fill_color",
+            #         legend=js,
+            #         update_view=FALSE,
+            #         auto_highlight = TRUE,
+            #         layer_id="poly"
+            #     )
         }else{
+            vol$plot_area <- FALSE
             df_plot_sub[[legend_label]] <- df_plot_sub$fitted*100
-            mapdeck_update(map_id = "map") %>%
-                clear_scatterplot("scatter") %>%
-                clear_geojson("poly") %>%
-                add_scatterplot(
-                    data = df_plot_sub,
-                    lat = "latitude",
-                    lon = "longitude",
-                    fill_colour = legend_label,
-                    #stroke_width=4,
-                    #stroke_colour = "fill_color",
-                    tooltip = popup_variable,
-                    radius = 1500,
-                    radius_min_pixels = 3,
-                    legend=TRUE,
-                    palette = "reds",
-                    #legend=js,
-                    update_view=FALSE,
-                    #auto_highlight = FALSE,
-                    layer_id="scatter"
-                )
+            df_plot_sub$fill_color <- paste0(df_plot_sub$fill_color,"FF")
+            plot_data(df_plot_sub)
+            # mapdeck_update(map_id = "map") %>%
+            #     clear_scatterplot("scatter") %>%
+            #     clear_geojson("poly") %>%
+            #     add_scatterplot(
+            #         data = df_plot_sub,
+            #         lat = "latitude",
+            #         lon = "longitude",
+            #         fill_colour = legend_label,
+            #         #stroke_width=4,
+            #         #stroke_colour = "fill_color",
+            #         tooltip = popup_variable,
+            #         radius = 1500,
+            #         radius_min_pixels = 3,
+            #         legend=TRUE,
+            #         palette = "reds",
+            #         #legend=js,
+            #         update_view=FALSE,
+            #         #auto_highlight = FALSE,
+            #         layer_id="scatter"
+            #     )
         }
     })
     

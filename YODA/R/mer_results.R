@@ -3,9 +3,9 @@
 
 generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst, 
                                  glmm_index_fit,
-                                 max_diff=1.2, max_increase=Inf, n_steps=4, 
+                                 max_diff=1.2, max_increase=Inf, max_decrease=-Inf, n_steps=4, 
                                  total_tests_target=NULL, subgroup_fixed=NULL, subgroup_target=NULL, 
-                                 include_variables=c(),
+                                 min_pos_limits = NULL, include_variables=c(),
                                  index_ratio_func = index_ratio){
   
   index_coef <- summary(glmm_index_fit)$coef[,1]
@@ -70,51 +70,7 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
                     #"snuprioritization","cluster_1", "cluster_2", "cluster_3")
   pdat$site_id <- apply(pdat[site_id_vars],1, paste, collapse="_")
   pdat_index$site_id <- apply(pdat_index[site_id_vars],1, paste, collapse="_")
-  # pi <- pdat_index[pdat_index$hts_tst > 0, c(site_id_vars, "pediatric")] %>% unique()
-  # po <- pdat[site_id_vars] %>% unique()
-  # no_ind <- !(apply(po,1,paste, collapse="_") %in% apply(pi,1,paste, collapse="_"))
-  # po <- po[no_ind,]
-  # po$no_ind <- TRUE
-  # po <- merge(pdat,po,all.x=TRUE, sort=FALSE)
-  # po <- po[!is.na(po$no_ind) & po$hts_tst > 0,]
-  # po$modality <- "Index"
-  # po$no_ind <- NULL
-  # po$preds <- NULL
-  # po$log_hts_tst <- NULL
-  # po$obs_id_factor <- "out_of_sample"
-  # 
-  # po <- po %>%
-  #   group_by_at(vars(one_of(variables))) %>%
-  #   summarise(hts_tst= sum(hts_tst))
-  # po$pediatric <- po$age == "<15"
-  # po$hts_tst <- po$hts_tst / 1000000
-  # po$obs_id_factor <- "out_of_sample"
-  # po$time <- 0
-  # pdat_index$preds <- NULL
-  # pdat_index$log_hts_tst <- NULL
-  # po <- po %>% ungroup() %>% mutate_if(is.factor, as.character)
-  # pdat_index <- pdat_index %>% mutate_if(is.factor, as.character) %>% mutate_if(is.matrix, as.numeric)
-  # pdat_index <-  pdat_index %>% bind_rows(po)
-  # 
-  # pdat_index_tot <- pdat_index[c(site_id_vars,"hts_tst","pediatric")] %>% 
-  #   group_by_at(vars(one_of(c(site_id_vars,"pediatric")))) %>%
-  #   summarise(hts_tst_index=sum(hts_tst))
-  # pdat_non_index_pos <- dat_analysis[dat_analysis$time == 0 & 
-  #                                      dat_analysis$hiv_pos & 
-  #                                      !(dat_analysis$modality %in% c("Index","IndexMod")), 
-  #                                    c(site_id_vars,"weight")] %>% 
-  #   group_by_at(vars(one_of(site_id_vars))) %>%
-  #   summarise(hts_tst_pos_non_index=sum(weight))
-  # pdat_index_tot <- merge(pdat_index_tot, pdat_non_index_pos, all=TRUE, sort=FALSE)
-  # pdat_index_tot$hts_tst_pos_non_index[is.na(pdat_index_tot$hts_tst_pos_non_index)] <- 0
-  # pdat_index_tot$hts_tst_index[is.na(pdat_index_tot$hts_tst_index)] <- 0
-  # pdat_index_tot$hts_index_per_non_index <- pdat_index_tot$hts_tst_index / pdat_index_tot$hts_tst_pos_non_index
-  # 
-  # pdat_index_tot$lin_pred <- predict(glmm_index_fit, newdata=pdat_index_tot, allow.new.levels=TRUE)
-  # pdat_index_tot$expected_new_hiv_cases_at_proposed <- pdat_index_tot$hts_tst_index * 1 / (1 + exp(-pdat_index_tot$lin_pred))
-  # 
-  # pdat_index_tot$site_id <- apply(pdat_index_tot[site_id_vars],1, paste, collapse="_")
-  # pdat_index_tot_initial <- pdat_index_tot
+
   
   pdat$preds <- predict_full_fit(pdat)
   pdat <- pdat[order(-pdat$preds),]
@@ -153,12 +109,14 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
   }
   
   # Set to minimum hts_tst
-  pdat$hts_tst <- floor(step^(-n_steps) * initial_hts_tst)
+  init_step <- -rev(which(step^(-(0:n_steps)) >= 1/max_decrease))[1] + 1
+  pdat$hts_tst <- floor(step^(init_step) * initial_hts_tst)
   pdat$hts_tst[subgroup] <- initial_hts_tst[subgroup]
   
   pdat$log_hts_tst <- trans_hts_tst(pdat$hts_tst)
   pdat$preds <- predict_full_fit(pdat)
-  pdat$step <- -4
+  pdat$step <- init_step
+  pdat$step[subgroup] <- 0
   
   preds_step <- as.matrix(cbind(as.data.frame(preds_down[n_steps:1]), initial_preds, as.data.frame(preds_up)))
   new_step <- pmin(4, pdat$step + 1)
@@ -269,11 +227,11 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
               
   
   
-  
   # Iteratively select and increment the record that maximizes yield
   target_tot <- sum(pdat$hts_tst) + sum(pdat_index_tot$hts_tst_index)
   monitor <- 0
-  while(target_tot < tot){
+  pos_limits_met <- FALSE
+  while(target_tot < tot || !pos_limits_met){
     if(!is.null(subgroup_target)){
       #if(monitor == 1) browser()
       for(i in 1:nrow(subgroup_target)){
@@ -282,12 +240,36 @@ generate_allocations <- function(dat_analysis, predict_full_fit, trans_hts_tst,
         subgroup1 <- pdat[[subgroup_target[i,1]]] == subgroup_target[i,2]
         cnt <- sum(pdat$hts_tst[subgroup1])
         subgroup2 <- pdat_index_tot[[subgroup_target[i,1]]] == subgroup_target[i,2]
-        cnt <- cnt + sum(pdat_index_tot$hts_tst_index[subgroup2], na.rm = TRUE)
-        if(cnt > subgroup_target[i,3])
+        cnt <- cnt + sum(pdat_index_tot$expected_new_hiv_cases_at_proposed[subgroup2], na.rm = TRUE)
+        if(cnt < subgroup_target[i,3])
           yield_amoung_changes[subgroup1] <- -Inf
       }
+      
+    }
+    if(!is.null(min_pos_limits)){
+      if(target_tot > tot){
+        subgrp <- rep(FALSE, nrow(pdat))
+        for(i in 1:nrow(min_pos_limits)){
+          if(is.null(pdat[[min_pos_limits[i,1]]]))
+            stop("Unknown subgroup")
+          subgroup1 <- pdat[[min_pos_limits[i,1]]] == min_pos_limits[i,2]
+          cnt <- sum(pdat$hts_tst[subgroup1] * pdat$preds[subgroup1]) #sum(pdat$hts_tst[subgroup1])
+          subgroup2 <- pdat_index_tot[[min_pos_limits[i,1]]] == min_pos_limits[i,2]
+          cnt <- cnt + sum(pdat_index_tot$hts_tst_index[subgroup2], na.rm = TRUE)
+          if(cnt < min_pos_limits[i,3])
+            subgrp <- subgroup | subgroup1
+        }
+        yield_amoung_changes[!subgrp] <- -Inf
+        if(all(!subgrp)){
+          pos_limits_met <- TRUE
+          break
+        }
+      }
+    }else{
+      pos_limits_met <- TRUE
     }
     if(all(is.infinite(yield_amoung_changes))){
+      browser()
       warning("Unable to reach total target")
       break
     }

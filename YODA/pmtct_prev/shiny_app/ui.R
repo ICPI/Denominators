@@ -31,23 +31,25 @@ shinyUI(bootstrapPage(
     mapdeckOutput("map", width = "100%", height = "100%"),
     absolutePanel(top = 10, right = 10, class="well",
                   style = "background-color: rgba(220,220,220,0.75);min-width: 250px;",
-                  #sliderInput("time", "Year", min(df_plot$time), max(df_plot$time),
-                  #            value = max(df_plot$time), step = 0.25, ticks=FALSE, 
-                  #            round=TRUE, sep=""
+                  sliderInput("time", "Year", min(df_plot$time), max(df_plot$time),
+                              value = max(df_plot$time), step = 0.25, ticks=FALSE, 
+                              round=TRUE, sep=""
+                  ),
+                  #selectInput(
+                  #    "time",
+                  #    "Year",
+                  #    rev(seq(from=min(df_plot$time), to=max(df_plot$time), by=.25))
                   #),
-                  selectInput(
-                      "time",
-                      "Year",
-                      rev(seq(from=min(df_plot$time), to=max(df_plot$time), by=.25))
-                  ),
-                  conditionalPanel(
-                      "input.plot_type == 'Areas'",
-                    checkboxInput("scale_to_time", "Scale color to current quarter", TRUE)
-                  ),
+                checkboxInput("scale_to_time", "Scale color to current quarter", TRUE),
                   selectInput("country", "Country",
                               c("All", sort(unique(df_plot$countryname)))
                   ),
                   radioButtons("plot_type", "Show", c("Areas","Facilities")),
-                  radioButtons("metric", "Metric", c("Smoothed","Raw"))
+                  radioButtons("metric", "Metric", c("Smoothed","Raw")),
+                  conditionalPanel("false", numericInput(
+                      "index",
+                      "index",
+                      value=-1
+                  ))
     )
 ))

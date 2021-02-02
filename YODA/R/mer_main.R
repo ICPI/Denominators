@@ -6,7 +6,7 @@ source("R/mer_results.R")
 source("R/datim_geo.R")
 source("R/worldpop.R")
 source("R/pmtct.R")
-try(source(paste0(tolower(country),"/params.R")))
+try(source(paste0("application/countries/",tolower(country),"/params.R")))
 
 # Load in MER / Spectrum data
 dat <- extract_data(mer_data_source, spectrum_data_source)
@@ -171,15 +171,15 @@ model_allocations <-  generate_allocations(dat_analysis %>% filter(time >= alloc
 #                                           subgroup_fixed = rbind(c("modality","Index"),
 #                                                                  c("modality","IndexMod"))
 #                                           )
-if(!dir.exists(paste0( "results/", country))){
-  dir.create(paste0( "results/", country))
+if(!dir.exists(results_location)){
+  dir.create(results_location)
 }
-filename <- paste0( "results/", country,"/", stringr::str_replace_all(mer_data_source,"/","_"), "_results",".RData")
+filename <- paste0( results_location, "results",".RData")
 save.image(file=filename)
 
-fname <- paste0("results/",country, "/allocations.csv")
+fname <- paste0(results_location, "allocations.csv")
 write.csv(model_allocations$allocations, file = fname, row.names = FALSE)
-fname2 <- paste0("results/",country, "/index_allocations.csv")
+fname2 <- paste0(results_location, "index_allocations.csv")
 write.csv(model_allocations$index_allocations, file = fname2, row.names = FALSE)
 
 tmp <- model_allocations$allocations %>% 
@@ -223,9 +223,9 @@ for(i in 5:ncol(allocations_by_psnu)){
   allocations_by_psnu[[i]][is.na(allocations_by_psnu[[i]])] <- 0
 }
 
-fname3 <- paste0("results/",country, "/allocations_by_psnu_modality_sex_age.csv")
+fname3 <- paste0(results_location, "allocations_by_psnu_modality_sex_age.csv")
 write.csv(allocations_by_psnu, file = fname3, row.names = FALSE)
 
 # requires Ckmeans.1d.dp and plotly
 rmarkdown::render('mer_report.Rmd')
-file.copy("mer_report.html",paste0("results/", country,"/mer_report_",tolower(country),".html"), overwrite = TRUE)
+file.copy("mer_report.html",paste0(results_location,"mer_report",".html"), overwrite = TRUE)

@@ -76,7 +76,7 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   dat_sub <- dat[dat$standardizeddisaggregate == "Modality/Age/Sex/Result" & dat$indicator == "HTS_TST",]
   dat_sub <- dat_sub %>% 
     group_by(ageasentered, agesemifine, agecoarse, agefine, sex, sitename, 
-             region, operatingunit, psnu,snuprioritization, sitetype, modality, 
+             operatingunit, psnu,snuprioritization, sitetype, modality, 
              primepartner,
              facilityuid,psnuuid,communityuid) %>% 
     summarise_at(fyvars, function(x) if(all(is.na(x))) NA else sum(x, na.rm=T)) %>%
@@ -87,7 +87,7 @@ extract_data <- function(mer_data_source, spectrum_data_source){
   
   dat_sub <- dat[dat$standardizeddisaggregate == "Modality/Age/Sex/Result" & dat$indicator == "HTS_TST_POS",]
   dat_sub <- dat_sub %>% 
-    group_by(ageasentered, agesemifine, agecoarse, agefine, sex, sitename, region, operatingunit, psnu, 
+    group_by(ageasentered, agesemifine, agecoarse, agefine, sex, sitename, operatingunit, psnu, 
              snuprioritization, sitetype, modality, primepartner,facilityuid,psnuuid,communityuid) %>% 
     summarise_at(fyvars, function(x) if(all(is.na(x))) NA else sum(x, na.rm=T)) %>%
     select(-ends_with("_targets")) %>%
